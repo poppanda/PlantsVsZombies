@@ -30,7 +30,7 @@
 
 得到类似于下图的结果
 
-![Github-3](/Users/smile./Code/JavaProjects/PlantsVsZombies/Pic/Github-3.png)
+![Github-3](./Pic/Github-4.png)
 
 3、连接项目的仓库
 
