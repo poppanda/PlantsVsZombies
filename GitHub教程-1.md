@@ -59,4 +59,9 @@
 解决方法：[证书下载地址](https://github.com/Microsoft/Git-Credential-Manager-for-Windows/releases)
 
 下载最新版本，安装即可
+=======
+![Screen Shot 2020-05-31 at 6.51.02 PM](/Users/smile./Library/Application Support/typora-user-images/Screen Shot 2020-05-31 at 6.51.02 PM.png)
+
+在项目的右上角有一个Fork，点击后就会将它镜像到你的仓库
+>>>>>>> ca4373a797b0fcc2e9ccf0b95afb6ae392bab608
 
