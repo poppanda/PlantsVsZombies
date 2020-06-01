@@ -31,8 +31,9 @@
 得到类似于下图的结果
 
 ![Github-3](./Pic/Github-4.png)
-=======
-![Github-3](/Users/smile./Code/JavaProjects/PlantsVsZombies/Pic/Github-3.png)
+
+![Github-3](./Pic/Github-3.png)
+
 3、连接项目的仓库
 
 打开项目原地址（[即为我的仓库的地址](https://github.com/poppanda/PlantsVsZombies)），重复上述操作(复制项目地址)
