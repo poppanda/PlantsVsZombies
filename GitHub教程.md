@@ -30,7 +30,11 @@
 
 得到类似于下图的结果
 
+<<<<<<< HEAD
 ![Github-3](./Pic/Github-4.png)
+=======
+![Github-3](/Users/smile./Code/JavaProjects/PlantsVsZombies/Pic/Github-3.png)
+>>>>>>> PQY
 
 3、连接项目的仓库
 
@@ -56,12 +60,6 @@
 
 问题原因：Github更新了证书，需要在本地更新
 
-解决方法：[证书下载地址](https://github.com/Microsoft/Git-Credential-Manager-for-Windows/releases)
+解决方法：[证书下载地址
 
 下载最新版本，安装即可
-=======
-![Screen Shot 2020-05-31 at 6.51.02 PM](/Users/smile./Library/Application Support/typora-user-images/Screen Shot 2020-05-31 at 6.51.02 PM.png)
-
-在项目的右上角有一个Fork，点击后就会将它镜像到你的仓库
->>>>>>> ca4373a797b0fcc2e9ccf0b95afb6ae392bab608
-
