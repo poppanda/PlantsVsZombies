@@ -54,6 +54,18 @@
 
 完成同步
 
+#### 完成项目的更新
+
+1、将项目同步到本地
+
+> git pull upstream master
+
+2、对项目进行修改
+
+3、将项目上传
+
+> git push upstream
+
 ### 问题：fatal: HttpRequestException encountered.
 
 问题原因：Github更新了证书，需要在本地更新
