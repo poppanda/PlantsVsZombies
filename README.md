@@ -26,9 +26,9 @@
 
 2.Have a meeting and list all the required software and the skill
 
-​	1) Download typora and learn markdown syntax
+​	1) Download **typora** and learn **markdown syntax**
 
-​	2) Learn mermaid syntax (especially the class diagram part)
+​	2) Learn **mermaid** syntax (especially the **class diagram** part)
 
-​	3) Learn the knowledge about swing and JFrame
+​	3) Learn the knowledge about **swing** and **JFrame**
 
