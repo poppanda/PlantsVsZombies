@@ -19,3 +19,16 @@
 ​	1、创建了项目，完成了所有成员的邀请	
 
 ​	2、创建了Automated kanban，在github的项目界面按下“？(问号)”查看可用的快捷键
+
+## June.1 Develop plan
+
+1.Resolve the module deeper
+
+2.Have a meeting and list all the required software and the skill
+
+​	1) Download typora and learn markdown syntax
+
+​	2) Learn mermaid syntax (especially the class diagram part)
+
+​	3) Learn the knowledge about swing and JFrame
+
