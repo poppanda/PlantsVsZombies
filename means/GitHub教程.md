@@ -2,6 +2,18 @@
 
 你们已经被我添加为了Collaborators，你们拥有了对这个项目仓库的读写权限和向该仓库远程提交的权限，但是这个项目仓库不会出现在你们的仓库里，因此需要Fork & Pull request
 
+
+
+## Use Github Desktop to edit the files
+
+1.Download Github Desktop and setup it
+
+2.Sign up and glone the files from the origin reoisutiry(which is poppanda/PlantsVsZombies)
+
+3.Choose the default branch and fetch origin
+
+4.Edit the files and push them.
+
 ### Fork & Pull request
 
 #### Fork
