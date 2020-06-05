@@ -32,3 +32,9 @@
 
 ​	3) Learn the knowledge about **swing** and **JFrame**
 
+## June.5 开发计划
+
+1、对主界面进行初步搭建
+
+2、对僵尸和植物进行构建和绘制
+
