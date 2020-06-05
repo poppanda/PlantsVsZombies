@@ -3,7 +3,7 @@ classDiagram
 class Plant{
 	<<abstract>>
 	int life,position
-	boolean eatable
+	boolean occupy,eatable
 	String environment
 	void place()
 	void remove()
@@ -11,12 +11,17 @@ class Plant{
 
 class Shooter{
 	<<interface>>
-	void Shoot
+	int damage
+	int[] scope
+	void Shoot()
 }
+
 
 class Bomb{
 	<<interface>>
-	void Bomb
+	int damage
+	set[] scope
+	void Boom()
 }
 
 class Sunflower{
@@ -24,6 +29,8 @@ class Sunflower{
 }
 
 class PeaShooter
+
+class Repeater
 
 class SnowPea
 
@@ -45,9 +52,11 @@ Plant<--WallNut
 Plant<--Chomper
 Plant<--PotatoMine
 Plant<--CherryBomb
+Plant<--Repeater
 
 PeaShooter-->Shooter
 SnowPea-->Shooter
+Repeater-->Shooter
 
 CherryBomb-->Bomb
 PotatoMine-->Bomb

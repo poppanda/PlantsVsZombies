@@ -2,6 +2,18 @@
 
 你们已经被我添加为了Collaborators，你们拥有了对这个项目仓库的读写权限和向该仓库远程提交的权限，但是这个项目仓库不会出现在你们的仓库里，因此需要Fork & Pull request
 
+
+
+## Use Github Desktop to edit the files
+
+1.Download Github Desktop and setup it
+
+2.Sign up and glone the files from the origin reoisutiry(which is poppanda/PlantsVsZombies)
+
+3.Choose the default branch and fetch origin
+
+4.Edit the files and push them.
+
 ### Fork & Pull request
 
 #### Fork
@@ -30,7 +42,9 @@
 
 得到类似于下图的结果
 
-![Github-3](/Users/smile./Code/JavaProjects/PlantsVsZombies/Pic/Github-3.png)
+![Github-3](./Pic/Github-4.png)
+
+![Github-3](./Pic/Github-3.png)
 
 3、连接项目的仓库
 
@@ -52,16 +66,23 @@
 
 完成同步
 
+#### 完成项目的更新
+
+1、将项目同步到本地
+
+> git pull upstream master
+
+2、对项目进行修改
+
+3、将项目上传
+
+> git push upstream
+
 ### 问题：fatal: HttpRequestException encountered.
 
 问题原因：Github更新了证书，需要在本地更新
 
-解决方法：[证书下载地址](https://github.com/Microsoft/Git-Credential-Manager-for-Windows/releases)
+解决方法：[证书下载地址
 
 下载最新版本，安装即可
-=======
-![Screen Shot 2020-05-31 at 6.51.02 PM](/Users/smile./Library/Application Support/typora-user-images/Screen Shot 2020-05-31 at 6.51.02 PM.png)
-
-在项目的右上角有一个Fork，点击后就会将它镜像到你的仓库
->>>>>>> ca4373a797b0fcc2e9ccf0b95afb6ae392bab608
 
