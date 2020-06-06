@@ -1,4 +1,4 @@
-//package PlantsVsZombies.Frame;
+package PlantsVsZombies.Frame;
 
 import java.awt.*;
 import java.awt.event.*;
