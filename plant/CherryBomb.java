@@ -19,7 +19,10 @@ public class CherryBomb extends Plant{
 					imgs[i] = loadImage(file);
 				}
 			}
-				
+				    
+			
+			
+			
 			@Override
 			public BufferedImage getImage() {
 				int tem = 0;

@@ -11,6 +11,9 @@ public class Repeater extends Plant{
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	
+	
 	//º”‘ÿÕº∆¨
 	private static BufferedImage[] imgs;
 	static {
@@ -21,6 +24,7 @@ public class Repeater extends Plant{
 		}
 	}
 		
+	
 	@Override
 	public BufferedImage getImage() {
 		int tem = 0;
