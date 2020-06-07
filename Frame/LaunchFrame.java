@@ -1,8 +1,9 @@
-package PlantsVsZombies.Frame;
+//package PlantsVsZombies.Frame;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.awt.image.BufferedImage;
 
 public class LaunchFrame extends JFrame
 {
@@ -35,6 +36,7 @@ public class LaunchFrame extends JFrame
         launchPane.add(BGImg, 10);
         BGImg.setBounds(0, 0, getWidth(), getHeight());
         BGImg.setVisible(true);
+        
 
         //Options setting
         //Adventure mode
