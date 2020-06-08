@@ -20,15 +20,9 @@ class ZombieBasis{
 	void die()
 }
 
-class SpeedChange{
-	<<interface>>
-	void speedChange()
-}
-
 class	Zombie
 class FlagZombie
 class ConeheadZombie
-class PoleVaultingZombie
 class BucketheadZombie
 
 class Zombie{
@@ -44,10 +38,6 @@ class ConeheadZombie{
     ConeheadZombie()
 }
 
-class PoleVaultingZombie{
-    PolevaultingZombie()
-    void speedChange()
-}
 
 class BucketheadZombie{
    BucketheadZombie()
@@ -57,9 +47,6 @@ class BucketheadZombie{
 ZombieBasis<--Zombie
 ZombieBasis<--FlagZombie
 ZombieBasis<--ConeheadZombie
-ZombieBasis<--PoleVaultingZombie
 ZombieBasis<--BucketheadZombie
-
-PoleVaultingZombie-->SpeedChange
 ```
 
