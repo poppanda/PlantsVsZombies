@@ -2,9 +2,17 @@
 classDiagram
 class ZombieBasis{
 	<<abstract>>
-	int life,damage,speed,bodydamage1,bodydamge2,capdamage1,capdamege2
-	Zombie(int selfdamage,int capdamage,int speed)
-	void picChange()
+	int HP，damage,x,y,width,height,walknum,eatnum,dienum
+	void setX()
+	void setY()
+	void setWidth()
+	void setHeight()
+	void setZombieStyle()
+	int getX()
+	int getY()
+	int getWidth()
+	int getHeight()
+	LinkedList<Image>getZombieStyle()
 	void run()
 	void getHurt()
 	boolean havePlants()
@@ -25,6 +33,7 @@ class BucketheadZombie
 
 class Zombie{
     Zombie()
+    void run()
 }
 
 class FlagZombie{
