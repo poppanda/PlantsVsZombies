@@ -7,9 +7,11 @@ graph LR
 A[Plants] --> b(Sunflower) --> h(bringSun)
 A --> c(Peashooter) --> i(shoot)
 A --> d(Snowshoot) --> i
+A --> p(Repeater) --> i
 A --> e(Nut) --> j(stopZombies)
 A --> f(Hairygrass) --> k(blowAway)
 A --> g(Glass) --> l(isEmpty)
+A --> m(cherryBomb) --> n(Bomb)
 ```
 
 2.植物通用属性及方法
