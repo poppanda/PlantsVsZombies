@@ -1,6 +1,10 @@
 package plant;
 
+
+<<<<<<< Updated upstream
 import java.awt.Color;
+=======
+>>>>>>> Stashed changes
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -8,16 +12,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-public class Nut  extends JPanel{
+public class Main  extends JPanel{
 	
 	public static corrdinate coor=new corrdinate(); 
 	public static JFrame jframe=new JFrame();
 	public static ImageIcon back=new ImageIcon("Peashooter/background.jpg");
-	public static ImageIcon bea=new ImageIcon("Wallnut_cracked2_0.png");
+	public static ImageIcon bea=new ImageIcon("Peashooter/Bullets/PeaShooter.png");
 	//public static ImageIcon pea=new ImageIcon("nine_eleven_image/peas.gif");
 	public static ImageIcon cor=new ImageIcon("Peashooter/Corpse.gif");
 	public static ImageIcon beanone=new ImageIcon("Peashooter/Bullets/PeaShooterHit.png");
-	public static ImageIcon peasicon=new ImageIcon("WallNut/WallNut_0.png");
+	public static ImageIcon peasicon=new ImageIcon("Peashooter/Peashooter/Peashooter_0.png");
 	public static JLabel bean=new JLabel();
 	public static JLabel background=new JLabel();
 	public static JLabel corpse=new JLabel();
@@ -25,24 +29,24 @@ public class Nut  extends JPanel{
 	
 	public static void main(String[] args){
 		//参数为true会有碰撞效果，false不会
-		new Nut(true);
+		new Main(false);
 	}
 	
-	public Wallnut(Boolean flag){
+	public Main(Boolean flag){
 		jframe.setSize(back.getIconWidth(),back.getIconHeight());
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jframe.setLocationRelativeTo(null);
 		jframe.setVisible(true);
-		jframe.setTitle("坚果");
+		jframe.setTitle("豌豆射手");
 		
 		this.setLayout(null);
 		jframe.add(this);
 		
 		
 		
-		/*bean.setBounds(280,coor.y[0] , bea.getIconWidth(), bea.getIconHeight());
+		bean.setBounds(coor.x[0],coor.y[0] , bea.getIconWidth(), bea.getIconHeight());
 		bean.setIcon(bea);
-		add(bean);*/
+		add(bean);
 		
 		
 		
@@ -56,7 +60,7 @@ public class Nut  extends JPanel{
 /*		corpse.setIcon(cor);
 		corpse.setBounds(coor.x[2], coor.y[2], cor.getIconWidth(),cor.getIconHeight());
 		add(corpse);*/
-		/*Timer ct1=new Timer();
+		Timer ct1=new Timer();
 		
 		TimerTask cs1=new TimerTask(){
 			int idx=0;
@@ -73,33 +77,7 @@ public class Nut  extends JPanel{
 			}
 			
 		};
-		ct1.schedule(cs1, 200L,30L);*/
-		new Thread(new Runnable() {
-			int idx=0;
-		    public void run() {
-		    	while(true) {
-		    		String path="Wallnut_cracked1/Wallnut_cracked1_"+idx+".png";
-					ImageIcon pea=new ImageIcon(path);
-					peas.setIcon(pea);
-					if(idx<10) {
-						idx += 1;
-					}else {
-						idx = 0;
-					}
-					try
-			        {
-			            Thread.sleep(100);
-			        }
-			        catch (InterruptedException e)
-			        {
-			            // TODO Auto-generated catch block
-			            e.printStackTrace();
-			        }
-		    	}
-		    			
-		    }
-		}).start();
-
+		ct1.schedule(cs1, 200L,30L);
 		
 		
 		if(flag) {
@@ -125,11 +103,11 @@ public class Nut  extends JPanel{
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-			//	coor.x[0]+=2;
-				bean.setBounds(320,coor.y[0] , bea.getIconWidth(), bea.getIconHeight());
+				coor.x[0]+=2;
+				bean.setBounds(coor.x[0],coor.y[0] , bea.getIconWidth(), bea.getIconHeight());
 				bean.setIcon(bea);
-				int idx = 0;
-			/*	if(coor.x[0] >= coor.x[2]){
+
+				if(coor.x[0] >= coor.x[2]){
 					bean.setIcon(beanone);
 					bean.setBounds(coor.x[0],coor.y[0] , beanone.getIconWidth(), beanone.getIconHeight());
 				}
@@ -144,28 +122,8 @@ public class Nut  extends JPanel{
 					}
 					
 				}
-				*/
-				while(true) {
-					
-		    		String path="Wallnut_cracked2/Wallnut_cracked2"+idx+".png";
-					ImageIcon pea=new ImageIcon(path);
-					peas.setIcon(pea);
-					if(idx<14) {
-						idx += 1;
-					}else {
-						idx = 0;
-					}
-					try
-			        {
-			            Thread.sleep(100);
-			        }
-			        catch (InterruptedException e)
-			        {
-			            // TODO Auto-generated catch block
-			            e.printStackTrace();
-			        }
-		    	}
-				//repaint();
+				
+				repaint();
 			}
 			
 		};
@@ -180,6 +138,4 @@ public class Nut  extends JPanel{
 	}
 
 }
-
-
 
