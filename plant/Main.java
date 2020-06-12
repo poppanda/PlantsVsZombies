@@ -1,7 +1,10 @@
 package plant;
 
 
+<<<<<<< Updated upstream
 import java.awt.Color;
+=======
+>>>>>>> Stashed changes
 import java.util.Timer;
 import java.util.TimerTask;
 
