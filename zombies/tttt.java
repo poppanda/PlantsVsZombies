@@ -22,12 +22,8 @@ public class tttt {
 		zombieeee z = new zombieeee();
 		Thread t = new Thread(z);
 		t.start();
-	frame.add(z);
-		 frame.setVisible(true);
-        
-		
-		
-		
+		frame.add(z);
+		frame.setVisible(true);
 	}
 
 }
