@@ -53,8 +53,8 @@ public class LaunchFrame extends JFrame
         setContentPane(launchPane);
 
         //BackGroud setting
-        ImageIcon BGImage = new ImageIcon("../img/Screen/MainMenu.png");
-        JPanel BGImg = new JPanel()
+        ImageIcon BGImage = new ImageIcon("./img/Screen/MainMenu.png");
+        JPanel BGImg = new JPanel()//Draw BackGround
         {
             @Override
             protected void paintComponent(Graphics g)
@@ -68,8 +68,8 @@ public class LaunchFrame extends JFrame
         BGImg.setVisible(true);
         //Options setting
         //Adventure mode
-        final ImageIcon adventureIcon_Dark = new ImageIcon("../img/Screen/Adventure_1.png");
-        final ImageIcon adventureIcon_Light = new ImageIcon("../img/Screen/Adventure_0.png");
+        final ImageIcon adventureIcon_Dark = new ImageIcon("./img/Screen/Adventure_1.png");
+        final ImageIcon adventureIcon_Light = new ImageIcon("./img/Screen/Adventure_0.png");
         MyButton adventureBtn = new MyButton(340, 120, adventureIcon_Light, adventureIcon_Dark);
         adventureBtn.setBounds(410, 80, adventureBtn.getBtnWidth(), adventureBtn.getBtnHeight());
         launchPane.add(adventureBtn, 0);
@@ -127,7 +127,7 @@ public class LaunchFrame extends JFrame
                         {
                             flag.wait();
                         }
-                        AdventureMode(this);
+                        new AdventureMode(LaunchFrame.this);
                     }
                     catch(InterruptedException err)
                     {
@@ -137,12 +137,12 @@ public class LaunchFrame extends JFrame
             }
         });
         //Options right down
-        final ImageIcon helpIcon_Dark = new ImageIcon("../img/Screen/SelectorScreen_Help1.png");
-        final ImageIcon helpIcon_Light = new ImageIcon("../img/Screen/SelectorScreen_Help2.png");
-        final ImageIcon optionIcon_Dark = new ImageIcon("../img/Screen/SelectorScreen_Options1.png");
-        final ImageIcon optionIcon_Light = new ImageIcon("../img/Screen/SelectorScreen_Options2.png");
-        final ImageIcon quitIcon_Dark = new ImageIcon("../img/Screen/SelectorScreen_Quit1.png");
-        final ImageIcon quitIcon_Light = new ImageIcon("../img/Screen/SelectorScreen_Quit2.png");
+        final ImageIcon helpIcon_Dark = new ImageIcon("./img/Screen/SelectorScreen_Help1.png");
+        final ImageIcon helpIcon_Light = new ImageIcon("./img/Screen/SelectorScreen_Help2.png");
+        final ImageIcon optionIcon_Dark = new ImageIcon("./img/Screen/SelectorScreen_Options1.png");
+        final ImageIcon optionIcon_Light = new ImageIcon("./img/Screen/SelectorScreen_Options2.png");
+        final ImageIcon quitIcon_Dark = new ImageIcon("./img/Screen/SelectorScreen_Quit1.png");
+        final ImageIcon quitIcon_Light = new ImageIcon("./img/Screen/SelectorScreen_Quit2.png");
         MyButton helpBtn = new MyButton(40, 20, helpIcon_Light, helpIcon_Dark);
         launchPane.add(helpBtn, 0);
         helpBtn.setBounds(590, 500, helpBtn.getBtnWidth(), helpBtn.getBtnHeight());
@@ -223,10 +223,5 @@ public class LaunchFrame extends JFrame
             public void mousePressed(MouseEvent e){}
             public void mouseReleased(MouseEvent e){}
         });
-    }
-    public static void main(String[] args)
-    {
-        LaunchFrame frame = new LaunchFrame();
-        frame.setVisible(true);
     }
 }

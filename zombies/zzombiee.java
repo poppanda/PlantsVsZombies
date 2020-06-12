@@ -9,7 +9,7 @@ import java.util.LinkedList;
 //the class is for our group's test on 6.12
 
 
-public class fortest extends JLabel implements Runnable
+class fortest extends JLabel implements Runnable
 {
 	  int a ; int HP,damage;
 	 private int x = 250;
@@ -35,34 +35,32 @@ public class fortest extends JLabel implements Runnable
    	  g.drawImage(getDrawGroup().get(a),getX(),getY(),null);
    	  
      }
-
-     
-     
-	
 }
 
-class zzombiee extends fortest
+public class zzombiee extends fortest
 {
 	
 	public zzombiee()
 	{
 		int i;
+		setBounds(100, 100, 100, 100);
+		setVisible(true);
 		for(i = 0;i<20;i++)
  		{
- 			getBoomDie().add(new ImageIcon("src/NormalZombie/BoomDie/BoomDie_"+i+".png").getImage());
+ 			getBoomDie().add(new ImageIcon("./img/Zombies/NormalZombie/BoomDie/BoomDie_"+i+".png").getImage());
  			
  		}
  		for(i = 0;i<10;i++)
  		{
- 			getNormDie().add(new ImageIcon("src/NormalZombie/ZombieDie/ZombieDie_"+i+".png").getImage());
+ 			getNormDie().add(new ImageIcon("./img/Zombies/NormalZombie/ZombieDie/ZombieDie_"+i+".png").getImage());
  		}
  		for(i = 0;i<22;i++)
  		{
- 			getWalk().add(new ImageIcon("src/NormalZombie/Zombie/Zombie_"+i+".png").getImage());
+ 			getWalk().add(new ImageIcon("./img/Zombies/NormalZombie/Zombie/Zombie_"+i+".png").getImage());
  		}
  		for(i = 0;i<21;i++)
  		{
- 			getEat().add(new ImageIcon("src/NormalZombie/ZombieAttack/ZombieAttack_"+i+".png").getImage());
+ 			getEat().add(new ImageIcon("./img/Zombies/NormalZombie/ZombieAttack/ZombieAttack_"+i+".png").getImage());
  		}
 	}
 	
@@ -133,20 +131,3 @@ class zzombiee extends fortest
 	
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
