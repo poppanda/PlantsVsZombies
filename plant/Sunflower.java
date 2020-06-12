@@ -1,99 +1,138 @@
 package plant;
 
-import java.awt.Point;
-import java.awt.image.BufferedImage;
-import java.io.File;
+import java.awt.Color;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public  class sunFlower extends Plant{
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+public class Sunflower  extends JPanel{
 	
-	//加载向日葵图片
-	private static BufferedImage[] imgs;
-	static {
-		imgs = new BufferedImage[6];
-		for(int i=0;i<imgs.length;i++) {
-			File file = new File("path");
-			imgs[i] = loadImage(file);
-		}
+	public static corrdinate coor=new corrdinate(); 
+	public static JFrame jframe=new JFrame();
+	public static ImageIcon back=new ImageIcon("Peashooter/background.jpg");
+	public static ImageIcon bea=new ImageIcon("SunFlower/0.png");
+	//public static ImageIcon pea=new ImageIcon("nine_eleven_image/peas.gif");
+	public static ImageIcon cor=new ImageIcon("Peashooter/Corpse.gif");
+	public static ImageIcon beanone=new ImageIcon("Peashooter/Bullets/PeaShooterHit.png");
+	public static ImageIcon peasicon=new ImageIcon("SunFlower/SunFlower_0.png");
+	public static JLabel bean=new JLabel();
+	public static JLabel background=new JLabel();
+	public static JLabel corpse=new JLabel();
+	public static JLabel peas = new JLabel();
+	
+	public static void main(String[] args){
+		//参数为true会有碰撞效果，false不会
+		new Sunflower(true);
 	}
 	
-	//绘制向日葵图片的位置和大小
-		public sunFlower(int width, int height, int x, int y) {
-			super(width, height, x, y);
-			// TODO Auto-generated constructor stub
-		}
+	public sunFlower(Boolean flag){
+		jframe.setSize(back.getIconWidth(),back.getIconHeight());
+		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jframe.setLocationRelativeTo(null);
+		jframe.setVisible(true);
+		jframe.setTitle("向日葵");
 		
-	@Override
-	public BufferedImage getImage() {
-		int tem = 0;
-		if(isAlive(getHP())) {
-			//按照帧数绘制图片使图片动起来
-			tem++;
-			return imgs[tem];
-			
-		}else {
-			return null;
-		}
-	}
+		this.setLayout(null);
+		jframe.add(this);
 		
-	//生产阳光,创建了向日葵后调用循环，每次循环改变i的值，用于控制生产阳光的CD
-	int i = 5;
-	public void bringSun(boolean isTure) {
-		if(isTure) {
-			if(i%5 == 0) {
-				//生产阳光
+		
+		
+		bean.setBounds(coor.x[0],coor.y[0] , bea.getIconWidth(), bea.getIconHeight());
+		bean.setIcon(bea);
+		add(bean);
+		
+		
+		
+		/*JLabel peas=new JLabel();
+		peas.setIcon(pea);
+		peas.setBounds(coor.x[1], coor.y[1], pea.getIconWidth()-2,pea.getIconHeight());*/
+		peas.setIcon(peasicon);
+		peas.setBounds(coor.x[1], coor.y[1], peasicon.getIconWidth()-2,peasicon.getIconHeight());
+		add(peas);
+		
+/*		corpse.setIcon(cor);
+		corpse.setBounds(coor.x[2], coor.y[2], cor.getIconWidth(),cor.getIconHeight());
+		add(corpse);*/
+		Timer ct1=new Timer();
+		
+		TimerTask cs1=new TimerTask(){
+			int idx=0;
+			@Override
+			public void run() {
+				String path="SunFlower/SunFlower_"+idx+".png";
+				ImageIcon pea=new ImageIcon(path);
+				peas.setIcon(pea);
+				if(idx<18) {
+					idx += 1;
+				}else {
+					idx = 0;
+				}			
 			}
+			
+		};
+		ct1.schedule(cs1, 200L,30L);
+		
+		
+		if(flag) {
+			Timer ct=new Timer();
+			TimerTask cs=new TimerTask(){
+
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					coor.x[2]-=1;
+					corpse.setIcon(cor);
+					corpse.setBounds(coor.x[2], coor.y[2], cor.getIconWidth()+50,cor.getIconHeight());
+					
+				}
+				
+			};
+			ct.schedule(cs, 200L,30L);
 		}
-	}
-	
-	//阳光的位置
-	protected Point sunPoint;
-	//生产出来的阳光是否被点击
-	protected boolean isClick;
-	//初始化阳光值
-	protected int sunNum = 50;
-	
-	//给定生产的阳光的位置
-	public void Sun(Point p) {
-		this.sunPoint = p;
-	}
-	 //阳光掉落过程
-	public void move() {
-		if(sunPoint.x > 50) {
-			sunPoint.x -=50;
-			sunPoint.y -=50;
-		}
+
+		Timer t=new Timer();
+		TimerTask s=new TimerTask(){
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+			//	coor.x[0]+=2;
+				bean.setBounds(260,coor.y[0] , bea.getIconWidth(), bea.getIconHeight());
+				bean.setIcon(bea);
+/*
+				if(coor.x[0] >= coor.x[2]){
+					bean.setIcon(beanone);
+					bean.setBounds(coor.x[0],coor.y[0] , beanone.getIconWidth(), beanone.getIconHeight());
+				}
+				
+				if(coor.x[0] > coor.x[2]+20){
+					coor.hit+=1;
+					coor.x[0]=230;
+					
+					if(coor.hit==5){
+						coor.hit=0;
+						coor.x[2]=1420;
+					}
+					
+				}*/
+				
+				repaint();
+			}
+			
+		};
+		t.schedule(s, 200L,10L);
+		
+		background.setSize(back.getIconWidth(),back.getIconHeight());
+		background.setIcon(back);
+		add(background);
+		
+		
+		
 	}
 
-	public static BufferedImage[] getImgs() {
-		return imgs;
-	}
-
-	public static void setImgs(BufferedImage[] imgs) {
-		sunFlower.imgs = imgs;
-	}
-
-	public Point getSunPoint() {
-		return sunPoint;
-	}
-
-	public void setSunPoint(Point sunPoint) {
-		this.sunPoint = sunPoint;
-	}
-
-	public boolean isClick() {
-		return isClick;
-	}
-
-	public void setClick(boolean isClick) {
-		this.isClick = isClick;
-	}
-
-	public int getSunNum() {
-		return sunNum;
-	}
-
-	public void setSunNum(int sunNum) {
-		this.sunNum = sunNum;
-	}
-	
 }
+
+
