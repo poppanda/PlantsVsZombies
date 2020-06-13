@@ -43,7 +43,7 @@ public class zzombiee extends fortest
 	public zzombiee()
 	{
 		int i;
-		setBounds(100, 100, 100, 100);
+		setBounds(400, 400, 400, 400);
 		setVisible(true);
 		for(i = 0;i<20;i++)
  		{
