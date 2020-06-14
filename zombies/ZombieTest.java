@@ -33,14 +33,13 @@ class fortest extends JLabel implements Runnable
      {
    	  super.paint(g);
    	  g.drawImage(getDrawGroup().get(a),getX(),getY(),null);
-   	  
      }
 }
 
-public class zzombiee extends fortest
+public class ZombieTest extends fortest
 {
 	
-	public zzombiee()
+	public ZombieTest()
 	{
 		int i;
 		setBounds(400, 400, 400, 400);
@@ -127,7 +126,4 @@ public class zzombiee extends fortest
 	  		}
 	  	  } 
 	}
-	
-	
-	
 }

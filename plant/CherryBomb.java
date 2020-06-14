@@ -3,6 +3,7 @@ package plant;
 import View.*;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.locks.ReentrantLock;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -37,26 +38,21 @@ public class CherryBomb  extends JLabel{
 		new Thread(new Runnable() {
 			int idx=0;
 		    public void run() {
-		    	while(true) {
-		    		String path="CherryBomb/CherryBomb_"+idx+".png";
-					ImageIcon pea=new ImageIcon(path);
-					peas.setIcon(pea);
-					if(idx<6) {
-						idx += 1;
-					}else {
-						idx = 0;
+				try{
+			    	while(true) {
+			    		String path="CherryBomb/CherryBomb_"+idx+".png";
+						ImageIcon pea=new ImageIcon(path);
+						peas.setIcon(pea);
+						if(idx<6) {
+							idx += 1;
+						}else {
+							idx = 0;
+						}
+				        Thread.sleep(100);
 					}
-					try
-			        {
-			            Thread.sleep(100);
-			        }
-			        catch (InterruptedException e)
-			        {
-			            // TODO Auto-generated catch block
-			            e.printStackTrace();
-			        }
-		    	}
-		    			
+				}catch(InterruptedException e){
+					e.printStackTrace();
+				}
 		    }
 		}).start();
 

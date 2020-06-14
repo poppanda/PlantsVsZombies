@@ -4,6 +4,7 @@ import plant.*;
 import zombies.*;
 import java.awt.*;
 import javax.swing.*;
+import java.util.concurrent.locks.*;
 
 public class AdventureMode extends JLayeredPane
 {
@@ -16,48 +17,50 @@ public class AdventureMode extends JLayeredPane
     };
     private double BackGroundX = 0, BackGroundY = 0;
     private int BGWidth = 1400, BGHeight = 600;
-    private void moveBG(int x, int y, int t)
+    private static ReentrantLock lock = new ReentrantLock();
+    private Thread moveBG(int x, int y, int t, Thread before)
     {
         int pics = t * 100;
         double dx = x - BackGroundX, dy = y - BackGroundY;
         double ax = 4 * dx / pics / pics, ay = 4 * dy / pics / pics;
-        new Thread(()->{
-            int pic = 0;
-            for(double vx = -ax/2, vy = -ay/2; pic <= pics / 2; pic++, vx += ax, vy += ay)
-            {
-                try{
+        Thread move = new Thread(()->{
+            lock.lock();
+            try{
+                if(before != null) before.join();
+                int pic = 0;
+                for(double vx = -ax/2, vy = -ay/2; pic <= pics / 2; pic++, vx += ax, vy += ay)
+                {
                     Thread.sleep(10);
                     BackGroundX += vx;
                     BackGroundY += vy;
                     BGImgPanel.repaint();
-                }catch(InterruptedException e){
-                    e.printStackTrace();
                 }
-            }
-            for(double vx = ax*pics/2 - ax/2, vy = ay*pics/2 - ay/2; pic <= pics; pic++, vx -= ax, vy -= ay)
-            {
-                try{
+                for(double vx = ax*pics/2 - ax/2, vy = ay*pics/2 - ay/2; pic <= pics; pic++, vx -= ax, vy -= ay)
+                {
                     Thread.sleep(10);
                     BackGroundX += vx;
                     BackGroundY += vy;
                     BGImgPanel.repaint();
-                    System.out.println(BackGroundX + " " + BackGroundY);
-                }catch(InterruptedException e){
-                    e.printStackTrace();
                 }
+            }catch(InterruptedException e)
+            {
+                e.printStackTrace();
+            }finally{
+                lock.unlock();
+                BackGroundX = (int)BackGroundX;
+                BackGroundY = (int)BackGroundY;
+                BGImgPanel.repaint();
             }
-            BackGroundX = (int)BackGroundX;
-            BackGroundY = (int)BackGroundY;
-            BGImgPanel.repaint();
-        }).start();
+        });
+        move.start();
+        return move;
     }
-    // public void AddLabel(Zombie z)
-    // {
-    //     add(z, 9);
-    // }
-    public void AddPlant(CherryBomb p)
+    void AddZombie(ZombieTest zombie)
     {
-        add(p , 10);
+        //zombie.setBounds(0, 0, 400, 400);
+        zombie.setVisible(true);
+        new Thread(zombie).start();
+        add(zombie, 0);
     }
     public AdventureMode(LaunchFrame frame)
     {
@@ -67,9 +70,9 @@ public class AdventureMode extends JLayeredPane
         add(BGImgPanel, 10);
         BGImgPanel.setBounds(0, 0, getWidth(), getHeight());
         BGImgPanel.setVisible(true);
-        //moveBG(-590, 0, 3);
-        zzombiee z = new zzombiee();
-        add(z, 0);
-        new Thread(z).start();
+        Thread moveToZombie = moveBG(-590, 0, 3, null);
+        Thread moveToGrass = moveBG(400, 0, 2, moveToZombie);
+        ZombieTest zombie = new ZombieTest();
+        AddZombie(zombie);
     }
 }
