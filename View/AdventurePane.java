@@ -4,9 +4,11 @@ import plant.*;
 import zombies.*;
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.text.PlainDocument;
+
 import java.util.concurrent.locks.*;
 
-public class AdventureMode extends JLayeredPane
+public class AdventurePane extends JLayeredPane implements Runnable
 {
     final ImageIcon BGImg = new ImageIcon("./img/Background/Background_0.jpg");
     JPanel BGImgPanel = new JPanel(){
@@ -62,17 +64,21 @@ public class AdventureMode extends JLayeredPane
         new Thread(zombie).start();
         add(zombie, 0);
     }
-    public AdventureMode(LaunchFrame frame)
+    public AdventurePane(LaunchFrame frame)
     {
-        frame.setLayeredPane(this);
         setBounds(0, 0, 810, 600);//frame.getWidth(), frame.getHeight());
         setVisible(true);
-        add(BGImgPanel, 10);
+        add(BGImgPanel, -1);
         BGImgPanel.setBounds(0, 0, getWidth(), getHeight());
         BGImgPanel.setVisible(true);
+    }
+    public void run()
+    {
         Thread moveToZombie = moveBG(-590, 0, 3, null);
+        PlantChoose plantChoose = new PlantChoose(moveToZombie);
+        add(plantChoose, 2);
+        Thread chooseThread = new Thread(plantChoose);
+        chooseThread.start();
         Thread moveToGrass = moveBG(400, 0, 2, moveToZombie);
-        ZombieTest zombie = new ZombieTest();
-        AddZombie(zombie);
     }
 }
