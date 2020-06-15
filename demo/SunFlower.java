@@ -41,6 +41,7 @@ public class SunFlower extends plants implements Runnable {
 	        }
 	        	else {
 	        		this.goEmpty();
+	        		
 	        		break;
 	        	}
 	        }

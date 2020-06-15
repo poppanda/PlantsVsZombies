@@ -32,7 +32,7 @@ public class SnowPea extends plants implements Runnable {
 	            try{
 	            	x += 10;
 	                Thread.sleep(100);
-	               // idx = (idx + 1) % 2;
+	                
 	                repaint();
 	            }catch(InterruptedException e)
 	            {

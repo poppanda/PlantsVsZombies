@@ -34,6 +34,7 @@ public class CherryBomb extends plants implements Runnable {
 	                Thread.sleep(100);
 	                idx = (idx + 1) % 6;
 	                repaint();
+	                
 	            }catch(InterruptedException e)
 	            {
 	                e.printStackTrace();

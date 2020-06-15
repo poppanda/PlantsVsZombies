@@ -30,6 +30,7 @@ public class PeaShooter extends plants implements Runnable {
 	        while(true)
 	        {
 	        	if(isAlive(this.HP)) {
+	        		
 	            try{
 	                Thread.sleep(100);
 	                idx = (idx + 1) % 12;

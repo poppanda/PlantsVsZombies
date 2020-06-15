@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import javax.swing.JLabel;
 
 public class plants extends JLabel{
-		//»ù´¡ÊôĞÔ
+		//Basic properties
 		protected int HP;
 		protected int CD;
 		protected int attack;
@@ -24,12 +24,12 @@ public class plants extends JLabel{
 		public void setCD(int cD) {
 			CD = cD;
 		}
-		//ÊÇ·ñ±»ÖÖÖ²
+		//the plant is planted
 		protected static final int empty = 0;
 		protected static final int hold = 1;
 		protected int tem = empty;
 
-		// ÅĞ¶Ï×´Ì¬
+		// check is planted
 		public boolean isEmpty() {
 			return tem == empty;
 		}
@@ -37,26 +37,26 @@ public class plants extends JLabel{
 			return tem == hold;
 		}
 		
-		// ¸Ä±ä×´Ì¬
+		// change state
 		public void goEmpty() {
 			tem = empty;
 		}
 		public void goHold() {
 			tem = hold;
 		}
-		// Ö²Îï±»¹¥»÷¿ÛÑª
+		// plants are attacked and lose blood
 		public void loseHP(int attack) {
 			this.HP = HP - attack;
 		}
 				
-		//ÅĞ¶ÏÖ²ÎïÊÇ·ñ´æ»î
+		//check the plant is alive
 		public boolean isAlive(int hp) {
 			if(hp > 0)
 				return true;
 			    return false;
 		}
 				
-		//ÅĞ¶ÏCDÊ±¼ä
+		//Judge CD is ok
 		public boolean isOk(int time) {
 			if(time >= CD)
 				return true;
