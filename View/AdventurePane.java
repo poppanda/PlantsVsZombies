@@ -1,6 +1,6 @@
 package View;
 
-import plant.*;
+import demo.CherryBomb;
 import zombies.*;
 import java.awt.*;
 import javax.swing.*;
@@ -18,22 +18,23 @@ class PlantGroup extends JLabel implements Runnable
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
-        g.drawImage(PlantBarIcon.getImage(), x, y, this);
+        g.drawImage(plantGroupIcon.getImage(), x, y, this);
     }
-    public PlantChoose(Thread before)
+    public PlantGroup(Thread before)
     {
-        x = 0; y = 600;
         this.before = before;
         setBounds(0, 600 - plantGroupIcon.getIconHeight(), plantGroupIcon.getIconWidth(), plantGroupIcon.getIconHeight());
         setVisible(true);
+        x = 0; y = plantGroupIcon.getIconHeight();
+        repaint();
     }
     public void run()
     {
         try{
             if(before != null) before.join();
-            int time = 1000;
-            double ny = y, v = -(double)plantGroupIcon.getIconHeight() / 100;
-            while(time)
+            int time = 500;
+            double ny = y, v = -(double)plantGroupIcon.getIconHeight() * 10 / time;
+            while(time != 0)
             {
                 time -= 10;
                 Thread.sleep(10);
@@ -49,23 +50,32 @@ class PlantGroup extends JLabel implements Runnable
 
 class PlantBar extends JLabel implements Runnable
 {
-    final ImageIcon plantBarIcon = new ImageIcon("./img/Screen/PlantBarIcon.png");
+    private final ImageIcon plantBarIcon = new ImageIcon("./img/Screen/PlantBarIcon.png");
+    private Thread before;
     int x, y;
     @Override
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
-        g.drawImage(plantBarIcon.getImage(), x, y, this);
+        g.drawImage(plantBarIcon.getImage(), x, y, plantBarIcon.getIconWidth(), plantBarIcon.getIconHeight(), this);
     }
     public PlantBar(Thread before){
+        this.before = before;
 
+        setBorder(null);
+        setOpaque(false);
+        setBounds(0, 0, 1000, 1000);
+        setVisible(true);
+        x = 0;
+        y = -plantBarIcon.getIconHeight();
+        repaint();
     }
     public void run(){
         try{
             if(before != null) before.join();
-            int time = 1000;
-            double ny = y, v = -(double)plantBarIcon.getIconHeight() / 100;
-            while(time)
+            int time = 500;
+            double ny = y, v = (double)plantBarIcon.getIconHeight() * 10 / time;
+            while(time != 0)
             {
                 time -= 10;
                 Thread.sleep(10);
@@ -139,17 +149,21 @@ public class AdventurePane extends JLayeredPane implements Runnable
     {
         setBounds(0, 0, 810, 600);//frame.getWidth(), frame.getHeight());
         setVisible(true);
-        add(BGImgPanel, -1);
+        add(BGImgPanel, 10);
         BGImgPanel.setBounds(0, 0, getWidth(), getHeight());
         BGImgPanel.setVisible(true);
     }
     public void run()
     {
         Thread moveToZombie = moveBG(-590, 0, 3, null);
-        PlantChoose plantChoose = new PlantChoose(moveToZombie);
-        add(plantChoose, 2);
-        Thread chooseThread = new Thread(plantChoose);
-        chooseThread.start();
-        Thread moveToGrass = moveBG(400, 0, 2, moveToZombie);
+        PlantBar plantBar = new PlantBar(moveToZombie);
+        PlantGroup plantGroup = new PlantGroup(moveToZombie);
+        Thread barThread = new Thread(plantBar);
+        Thread groupThread = new Thread(plantGroup);
+        add(plantBar, JLayeredPane.POPUP_LAYER);
+        add(plantGroup, JLayeredPane.POPUP_LAYER);
+        barThread.start();
+        groupThread.start();
+        //Thread moveToGrass = moveBG(400, 0, 2, moveToZombie);
     }
 }

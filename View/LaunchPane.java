@@ -57,7 +57,7 @@ public class LaunchPane extends JLayeredPane
             }
         };
         add(BGImg, -1);
-        BGImg.setBounds(0, 0, 810, 600);
+        BGImg.setBounds(0, 0, 810, 620);
         BGImg.setVisible(true);
         //Options setting
         //Adventure mode
@@ -131,7 +131,7 @@ public class LaunchPane extends JLayeredPane
         final ImageIcon quitIcon_Light = new ImageIcon("./img/Screen/SelectorScreen_Quit2.png");
         MyButton helpBtn = new MyButton(40, 20, helpIcon_Light, helpIcon_Dark);
         add(helpBtn, 0);
-        helpBtn.setBounds(590, 500, helpBtn.getBtnWidth(), helpBtn.getBtnHeight());
+        helpBtn.setBounds(590, 515, helpBtn.getBtnWidth(), helpBtn.getBtnHeight());
         helpBtn.addMouseListener(new MouseListener()
         {
             @Override
@@ -170,7 +170,7 @@ public class LaunchPane extends JLayeredPane
         });
         MyButton optionBtn = new MyButton(40, 20, optionIcon_Light, optionIcon_Dark);
         add(optionBtn, 0);
-        optionBtn.setBounds(660, 525, optionBtn.getBtnWidth(), optionBtn.getBtnHeight());
+        optionBtn.setBounds(660, 540, optionBtn.getBtnWidth(), optionBtn.getBtnHeight());
         optionBtn.addMouseListener(new MouseListener()
         {
             @Override
@@ -190,7 +190,7 @@ public class LaunchPane extends JLayeredPane
         });
         MyButton quitBtn = new MyButton(40, 20, quitIcon_Light, quitIcon_Dark);
         add(quitBtn, 0);
-        quitBtn.setBounds(730, 515, quitBtn.getBtnWidth(), quitBtn.getBtnHeight());
+        quitBtn.setBounds(730, 535, quitBtn.getBtnWidth(), quitBtn.getBtnHeight());
         quitBtn.addMouseListener(new MouseListener()
         {
             @Override
