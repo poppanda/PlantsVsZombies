@@ -28,7 +28,7 @@ public class Main  extends JPanel{
 	public static JLabel peas = new JLabel();
 	
 	public static void main(String[] args){
-		//²ÎÊýÎªtrue»áÓÐÅö×²Ð§¹û£¬false²»»á
+		//ï¿½ï¿½ï¿½ï¿½Îªtrueï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×²Ð§ï¿½ï¿½ï¿½ï¿½falseï¿½ï¿½ï¿½ï¿½
 		new Main(false);
 	}
 	
@@ -37,7 +37,7 @@ public class Main  extends JPanel{
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jframe.setLocationRelativeTo(null);
 		jframe.setVisible(true);
-		jframe.setTitle("Íã¶¹ÉäÊÖ");
+		jframe.setTitle("ï¿½ã¶¹ï¿½ï¿½ï¿½ï¿½");
 		
 		this.setLayout(null);
 		jframe.add(this);

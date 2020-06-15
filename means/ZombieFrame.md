@@ -2,29 +2,46 @@
 classDiagram
 class ZombieBasis{
 	<<abstract>>
-	int life,damage,speed,bodydamage1,bodydamge2,capdamage1,capdamege2
-	Zombie(int selfdamage,int capdamage,int speed)
-	void picChange()
+	int HP，damage,x,y,width,height,wayOfDeath
+	LinkedList<Image> BoomDie,Walk,NormDie,Eat,DrawGroup
+	final int NormDieWay = 1,BoomDieWay = 2;
+	
+	void setX()
+	void setY()
+	void setWidth()
+	void setHeight()
+	void setZombieStyle()
+    void setBoomDie
+	void setNormDie
+	void setWalk
+	void setEat
+	LinkedList<Image> getBoomDie()
+	LinkedList<Image> getNormDie()
+	LinkedList<Image> getWalk()
+	LinkedList<Image> getEat()
+	int getX()
+	int getY()
+	int getWidth()
+	int getHeight()
 	void run()
 	void getHurt()
 	boolean havePlants()
 	boolean isAlive()
 	void die()
-}
-
-class SpeedChange{
-	<<interface>>
-	void speedChange()
+	void Boomdeath()
+	boolean iseatable()
+	boolean iseating()
+	void eat()
 }
 
 class	Zombie
 class FlagZombie
 class ConeheadZombie
-class PoleVaultingZombie
 class BucketheadZombie
 
 class Zombie{
     Zombie()
+    void run()
 }
 
 class FlagZombie{
@@ -35,10 +52,6 @@ class ConeheadZombie{
     ConeheadZombie()
 }
 
-class PoleVaultingZombie{
-    PolevaultingZombie()
-    void speedChange()
-}
 
 class BucketheadZombie{
    BucketheadZombie()
@@ -48,9 +61,6 @@ class BucketheadZombie{
 ZombieBasis<--Zombie
 ZombieBasis<--FlagZombie
 ZombieBasis<--ConeheadZombie
-ZombieBasis<--PoleVaultingZombie
 ZombieBasis<--BucketheadZombie
-
-PoleVaultingZombie-->SpeedChange
 ```
 
