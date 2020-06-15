@@ -30,6 +30,7 @@ public class CherryBomb extends plants implements Runnable {
 	        {
 	        	if(isAlive(this.HP)) {
 	            try{
+	            	
 	                Thread.sleep(100);
 	                idx = (idx + 1) % 6;
 	                repaint();
