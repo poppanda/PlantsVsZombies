@@ -3,17 +3,18 @@ package demo;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
-public class CherryBomb extends plants implements Runnable {
+public class Repeater extends plants implements Runnable {
 	int idx = 0;
+	int shoot = 13;
 	int x ;
 	int y ;
 	int width = 100;
 	int height = 100;
-	public CherryBomb() {
+	public Repeater() {
 		super();
-		HP = 10;
-		CD = 15;
-		attack = 10;
+		HP = 7;
+		CD = 9;
+		attack = 2;
 		 setBounds(0, 0, 100, 100);
 	        setVisible(true);
 	}
@@ -21,7 +22,7 @@ public class CherryBomb extends plants implements Runnable {
 	  @Override
 	    public void paint(Graphics g) {
 	        super.paint(g);
-	        g.drawImage(new ImageIcon("CherryBomb/boom/CherryBomb_" + idx + ".png").getImage(),x , y, width, height, this);
+	        g.drawImage(new ImageIcon("Repeater_" + idx + ".png").getImage(),x , y, width, height, this);
 	    }
 	  @Override
 	    public void run()
@@ -30,11 +31,9 @@ public class CherryBomb extends plants implements Runnable {
 	        {
 	        	if(isAlive(this.HP)) {
 	            try{
-	            	
 	                Thread.sleep(100);
-	                idx = (idx + 1) % 6;
+	                idx = (idx + 1) % 14;
 	                repaint();
-	                
 	            }catch(InterruptedException e)
 	            {
 	                e.printStackTrace();
@@ -47,7 +46,7 @@ public class CherryBomb extends plants implements Runnable {
 	        	}
 	        }
 }
-	public int boom() {
-		return HP = 0;
-	}
+	 
 }
+
+

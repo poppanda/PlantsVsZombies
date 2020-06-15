@@ -23,6 +23,7 @@ public class WallNut extends plants implements Runnable {
 	
 	  @Override
 	    public void paint(Graphics g) {
+		  
 	        super.paint(g);
 	        g.drawImage(new ImageIcon(path + idx + ".png").getImage(),x , y, width, height, this);
 	    }

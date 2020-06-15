@@ -7,8 +7,8 @@ public class BringSun extends plants implements Runnable {
 	
 	int x ;
 	int y ;
-	int width = 20;
-	int height = 20;
+	int width = 50;
+	int height = 50;
 	int time = 0;
 	
 	public BringSun() {
@@ -31,13 +31,10 @@ public class BringSun extends plants implements Runnable {
 	        {
 	            try{
 	            	
-	            	if(time > 15)//超过15s未点击就消失
-	            	{
-	            		
-	            		break;
-	            	}
-	            
+	            	//draw once in 10 seconds
+	            	Thread.sleep(10000);
 	            		repaint();
+	            		
 	            		Thread.sleep(100);
 	            		
 	               
