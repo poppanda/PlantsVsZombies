@@ -15,8 +15,8 @@ public class BringSun extends plants implements Runnable {
 		super();
 		CD = 6;
 		attack = 0;
-		 setBounds(0, 0, 100, 100);
-	        setVisible(true);
+		setBounds(0, 0, 100, 100);
+	    setVisible(true);
 	}
 
 	  @Override
@@ -30,14 +30,10 @@ public class BringSun extends plants implements Runnable {
 	        while(true)
 	        {
 	            try{
-	            	
 	            	//draw once in 10 seconds
 	            	Thread.sleep(10000);
 	            		repaint();
-	            		
 	            		Thread.sleep(100);
-	            		
-	               
 	            }catch(InterruptedException e)
 	            {
 	                e.printStackTrace();

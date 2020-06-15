@@ -5,28 +5,27 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
 public class WallNut extends plants implements Runnable {
-	int idx = 0;
+	
 	int x ;
 	int y ;
-	int width = 100;
-	int height = 100;
-	String path = "";
 	public WallNut() {
 		super();
 		HP = 15;
 		CD = 15;
 		attack = 0;
-		 setBounds(0, 0, 100, 100);
-	        setVisible(true);
+		setBounds(0, 0, 100, 100);
+	    setVisible(true);
+	    for(int i = 0; i < 16; i++) {
+	    	getWallnut().add(new ImageIcon("WallNut/WallNut_" + i + ".png").getImage());
+	    }
+	    for(int i = 0; i < 11; i++) {
+	    	getWallnut1().add(new ImageIcon("Wallnut_cracked1/Wallnut_cracked1_" + i + ".png").getImage());
+	    }
+	    for(int i = 0; i < 15; i++) {
+	    	getWallnut2().add(new ImageIcon("Wallnut_cracked2/Wallnut_cracked2_" + i + ".png").getImage());
+	    }
 	}
 
-	
-	  @Override
-	    public void paint(Graphics g) {
-		  
-	        super.paint(g);
-	        g.drawImage(new ImageIcon(path + idx + ".png").getImage(),x , y, width, height, this);
-	    }
 	  @Override
 	    public void run()
 	    {
@@ -35,27 +34,40 @@ public class WallNut extends plants implements Runnable {
 	        	if(isAlive(this.HP)) {
 	            try{
 	            	if(HP > 10) {
-	            		path = "WallNut/WallNut_";
-	            		if(idx <= 15) {
-	            			repaint();
-	     	                idx ++;
-	     	               Thread.sleep(100);
-	            		}
-	            		else {
-	            			idx = 0;
-	            		}
+	            		DrawGroup = Wallnut;
+	            		if(num <= 15) {
+	    	                Thread.sleep(100);
+	    	                
+	    	                repaint();
+	    	                num ++;
+	    	            	}
+	    	            	else {
+	    	            		num = 0;
+	    	            	}
 	            	}
 	            	else if(HP > 5 && HP < 10) {
-	            		path = "Wallnut_cracked1/Wallnut_cracked1_";
-	            		idx = (idx + 1) % 10;
-	            		repaint();
-	            		Thread.sleep(100);
+	            		DrawGroup = Wallnut1;
+	            		if(num <= 10) {
+	    	                Thread.sleep(100);
+	    	                
+	    	                repaint();
+	    	                num ++;
+	    	            	}
+	    	            	else {
+	    	            		num = 0;
+	    	            	}
 	            	}
 	            	else if(HP > 0 && HP < 5) {
-	            		path = "Wallnut_cracked2/Wallnut_cracked2_";
-	            		idx = (idx + 1) % 14;
-	            		repaint();
-	            		Thread.sleep(100);
+	            		DrawGroup = Wallnut2;
+	            		if(num <= 14) {
+	    	                Thread.sleep(100);
+	    	                
+	    	                repaint();
+	    	                num ++;
+	    	            	}
+	    	            	else {
+	    	            		num = 0;
+	    	            	}
 	            	}
 	            	else {
 	            		

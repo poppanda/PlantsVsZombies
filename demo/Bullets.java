@@ -5,8 +5,8 @@ import javax.swing.ImageIcon;
 
 public class Bullets extends plants implements Runnable {
 	int shoot = 1;
-	int x ;
-	int y ;
+	int x = 0 ;
+	int y = 0 ;
 	int width = 20;
 	int height = 20;
 	
@@ -14,8 +14,8 @@ public class Bullets extends plants implements Runnable {
 		super();
 		CD = 1;
 		attack = 2;
-		 setBounds(0, 0, 100, 100);
-	        setVisible(true);
+		setBounds(0, 0, 100, 100);
+	    setVisible(true);
 	}
 
 	  @Override

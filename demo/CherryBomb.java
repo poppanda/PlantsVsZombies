@@ -14,15 +14,15 @@ public class CherryBomb extends plants implements Runnable {
 		HP = 10;
 		CD = 15;
 		attack = 10;
-		 setBounds(0, 0, 100, 100);
-	        setVisible(true);
+		setBounds(0, 0, 100, 100);
+	    setVisible(true);
+	    for(int i = 0; i < 7; i++) {
+	    	getCherrybomb().add(new ImageIcon("CherryBomb/boom/CherryBomb_" + i + ".png").getImage());
+	    }
+	    DrawGroup = Cherrybomb;
 	}
 
-	  @Override
-	    public void paint(Graphics g) {
-	        super.paint(g);
-	        g.drawImage(new ImageIcon("CherryBomb/boom/CherryBomb_" + idx + ".png").getImage(),x , y, width, height, this);
-	    }
+	  
 	  @Override
 	    public void run()
 	    {
@@ -30,11 +30,15 @@ public class CherryBomb extends plants implements Runnable {
 	        {
 	        	if(isAlive(this.HP)) {
 	            try{
-	            	
-	                Thread.sleep(100);
-	                idx = (idx + 1) % 6;
-	                repaint();
-	                
+	            	if(num <= 6) {
+		                Thread.sleep(100);
+		                
+		                repaint();
+		                num ++;
+		            	}
+		            	else {
+		            		num = 0;
+		            	}
 	            }catch(InterruptedException e)
 	            {
 	                e.printStackTrace();

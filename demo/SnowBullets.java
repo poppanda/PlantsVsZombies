@@ -22,7 +22,7 @@ public class SnowBullets extends plants implements Runnable {
 	  @Override
 	    public void paint(Graphics g) {
 	        super.paint(g);
-	        g.drawImage(new ImageIcon("Peashooter/Bullets/Bullets_" + shoot + ".png").getImage(),x , y, width, height, this);
+	        g.drawImage(new ImageIcon(new ImageIcon("SnowPea/0.png").getImage(),x , y, width, height, this);
 	    }
 	  @Override
 	    public void run()

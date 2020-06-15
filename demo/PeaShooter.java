@@ -1,6 +1,9 @@
 package demo;
 
 import java.awt.Graphics;
+import java.awt.Image;
+import java.util.LinkedList;
+
 import javax.swing.ImageIcon;
 
 public class PeaShooter extends plants implements Runnable {
@@ -10,31 +13,37 @@ public class PeaShooter extends plants implements Runnable {
 	int y ;
 	int width = 100;
 	int height = 100;
+	static LinkedList<Image> pic= new LinkedList<>();
+	 LinkedList<Image> draw = new LinkedList<>();
 	public PeaShooter() {
 		super();
 		HP = 6;
 		CD = 6;
 		attack = 2;
-		 setBounds(0, 0, 100, 100);
-	        setVisible(true);
+		setBounds(0, 0, 100, 100);
+	    setVisible(true);
+	    for(int i = 0; i < 13; i++) {
+	    	getPeashooter().add(new ImageIcon("Peashooter/Peashooter/Peashooter_" + i + ".png").getImage());
+	    }
+	    DrawGroup = Peashooter;
 	}
 
-	  @Override
-	    public void paint(Graphics g) {
-	        super.paint(g);
-	        g.drawImage(new ImageIcon("Peashooter/Peashooter/Peashooter_" + idx + ".png").getImage(),x , y, width, height, this);
-	    }
 	  @Override
 	    public void run()
 	    {
 	        while(true)
 	        {
 	        	if(isAlive(this.HP)) {
-	        		
 	            try{
+	            	if(num <= 12) {
 	                Thread.sleep(100);
-	                idx = (idx + 1) % 12;
+	                
 	                repaint();
+	                num ++;
+	            	}
+	            	else {
+	            		num = 0;
+	            	}
 	            }catch(InterruptedException e)
 	            {
 	                e.printStackTrace();
@@ -47,5 +56,6 @@ public class PeaShooter extends plants implements Runnable {
 	        	}
 	        }
 }
+	 
 	 
 }

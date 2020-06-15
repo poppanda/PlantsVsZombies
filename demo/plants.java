@@ -63,6 +63,63 @@ public class plants extends JLabel{
 				return false;
 		}
 		
+		LinkedList<Image> DrawGroup ;
+		LinkedList<Image> Peashooter = new LinkedList<>();
+		LinkedList<Image> Snowpea = new LinkedList<>();
+		LinkedList<Image> Repeater = new LinkedList<>();
+		LinkedList<Image> Sunflower = new LinkedList<>();
+		LinkedList<Image> Wallnut = new LinkedList<>();
+		LinkedList<Image> Cherrybomb = new LinkedList<>();
+		public int num = 0;
 		
+		public LinkedList<Image> getDrawGroup() {
+			return DrawGroup;
+		}
+		public void setDrawGroup(LinkedList<Image> drawGroup) {
+			DrawGroup = drawGroup;
+		}
+		public LinkedList<Image> getPeashooter() {
+			return Peashooter;
+		}
+		public void setPeashooter(LinkedList<Image> peashooter) {
+			Peashooter = peashooter;
+		}
+		public LinkedList<Image> getSnowpea() {
+			return Snowpea;
+		}
+		public void setSnowpea(LinkedList<Image> snowpea) {
+			Snowpea = snowpea;
+		}
+		public LinkedList<Image> getRepeater() {
+			return Repeater;
+		}
+		public void setRepeater(LinkedList<Image> repeater) {
+			Repeater = repeater;
+		}
+		public LinkedList<Image> getSunflower() {
+			return Sunflower;
+		}
+		public void setSunflower(LinkedList<Image> sunflower) {
+			Sunflower = sunflower;
+		}
+		public LinkedList<Image> getWallnut() {
+			return Wallnut;
+		}
+		public void setWallnut(LinkedList<Image> wallnut) {
+			Wallnut = wallnut;
+		}
+		public LinkedList<Image> getCherrybomb() {
+			return Cherrybomb;
+		}
+		public void setCherrybomb(LinkedList<Image> cherrybomb) {
+			Cherrybomb = cherrybomb;
+		}
 	
+		 @Override
+	      public void paint(Graphics g)
+	      {
+	    	  super.paint(g);
+	    	  g.drawImage(getDrawGroup().get(num),getX(),getY(),getWidth(),getHeight(),null);
+	    	  
+	      }
 }

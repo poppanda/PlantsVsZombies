@@ -14,15 +14,14 @@ public class SnowPea extends plants implements Runnable {
 		HP = 6;
 		CD = 7;
 		attack = 3;
-		 setBounds(0, 0, 100, 100);
-	        setVisible(true);
+		setBounds(0, 0, 100, 100);
+	    setVisible(true);
+	    for(int i = 0; i < 15; i++) {
+	    	getSnowpea().add(new ImageIcon("SnowPea/SnowPea_" + i + ".png").getImage());
+	    }
+	    DrawGroup = Snowpea;
 	}
 
-	  @Override
-	    public void paint(Graphics g) {
-	        super.paint(g);
-	        g.drawImage(new ImageIcon("SnowPea/SnowPea_" + "0" + ".png").getImage(),x , y, width, height, this);
-	    }
 	  @Override
 	    public void run()
 	    {
@@ -30,10 +29,15 @@ public class SnowPea extends plants implements Runnable {
 	        {
 	        	if(isAlive(this.HP)) {
 	            try{
-	            	x += 10;
-	                Thread.sleep(100);
-	                
-	                repaint();
+	            	if(num <= 14) {
+		                Thread.sleep(100);
+		                
+		                repaint();
+		                num ++;
+		            	}
+		            	else {
+		            		num = 0;
+		            	}
 	            }catch(InterruptedException e)
 	            {
 	                e.printStackTrace();
@@ -46,5 +50,4 @@ public class SnowPea extends plants implements Runnable {
 	        	}
 	        }
 }
-	 
 }
