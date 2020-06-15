@@ -47,7 +47,7 @@ public class Bullets extends plants implements Runnable {
 	
 }
 	  
-	  //判断子弹是否可以击中僵尸
+	  //To determine if a bullet can hit a zombie
 	  public Boolean isHit(int x,int y) {
 		  if(this.x == x && this.y == y) {
 			  return true;

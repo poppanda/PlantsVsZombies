@@ -23,13 +23,12 @@ public class DrawCherryBombCard extends JLabel implements Runnable{
 	
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		
 		while(true) {
 			if(idx >= 0) {
 				repaint();
-	       //需要鼠标监听，否则会一直绘图，即不点击也会进入CD
 				try {
-					//5秒绘制一张图
+					//Draw a picture in 5 seconds
 					Thread.sleep(5000);
 					idx--;
 				} catch (InterruptedException e) {

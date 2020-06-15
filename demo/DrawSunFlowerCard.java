@@ -23,13 +23,11 @@ public class DrawSunFlowerCard extends JLabel implements Runnable{
 	
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		while(true) {
 			if(idx >= 0) {
 				repaint();
-	       //需要鼠标监听，否则会一直绘图，即不点击也会进入CD
 				try {
-					//2秒绘制一张图
+					//Draw a picture in 2 seconds
 					Thread.sleep(2000);
 					idx--;
 				} catch (InterruptedException e) {
