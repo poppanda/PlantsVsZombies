@@ -240,3 +240,11 @@ public abstract class ZombieBasis extends JLabel implements Runnable{
       }
       
 }
+
+
+
+
+
+
+
+

@@ -47,6 +47,8 @@ class zzombiee extends fortest
 	public zzombiee()
 	{
 		int i;
+		setBounds(400,400,400,400);///////
+		setVisible(true);/////
 		for(i = 0;i<20;i++)
  		{
  			getBoomDie().add(new ImageIcon("src/NormalZombie/BoomDie/BoomDie_"+i+".png").getImage());
