@@ -14,14 +14,14 @@ public class CherryBomb extends plants implements Runnable {
 		HP = 10;
 		CD = 15;
 		attack = 10;
-		 setBounds(0, 0, 100, 100);
-	        setVisible(true);
+		setBounds(0, 0, 1000, 1000);
+	    setVisible(true);
 	}
 
 	  @Override
 	    public void paint(Graphics g) {
 	        super.paint(g);
-	        g.drawImage(new ImageIcon("CherryBomb/boom/CherryBomb_" + idx + ".png").getImage(),x , y, width, height, this);
+	        g.drawImage(new ImageIcon("./img/Plants/CherryBomb/CherryBomb_" + idx + ".png").getImage(),x , y, width, height, this);
 	    }
 	  @Override
 	    public void run()
