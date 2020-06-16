@@ -43,26 +43,32 @@ class MyButton extends JButton
 
 public class LaunchPane extends JLayeredPane
 {
+    ImageIcon BGImage = new ImageIcon("./img/Screen/MainMenu.png");
+    final ImageIcon adventureIcon_Dark = new ImageIcon("./img/Screen/Adventure_1.png");
+    final ImageIcon adventureIcon_Light = new ImageIcon("./img/Screen/Adventure_0.png");
+    final ImageIcon helpIcon_Dark = new ImageIcon("./img/Screen/SelectorScreen_Help1.png");
+    final ImageIcon helpIcon_Light = new ImageIcon("./img/Screen/SelectorScreen_Help2.png");
+    final ImageIcon optionIcon_Dark = new ImageIcon("./img/Screen/SelectorScreen_Options1.png");
+    final ImageIcon optionIcon_Light = new ImageIcon("./img/Screen/SelectorScreen_Options2.png");
+    final ImageIcon quitIcon_Dark = new ImageIcon("./img/Screen/SelectorScreen_Quit1.png");
+    final ImageIcon quitIcon_Light = new ImageIcon("./img/Screen/SelectorScreen_Quit2.png");
+    JPanel BGImg = new JPanel()//Draw BackGround
+    {
+        @Override
+        protected void paintComponent(Graphics g)
+        {
+            super.paintComponent(g);
+            g.drawImage(BGImage.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
+        }
+    };
     public LaunchPane(LaunchFrame frame)
     {
         //BackGroud setting
-        ImageIcon BGImage = new ImageIcon("./img/Screen/MainMenu.png");
-        JPanel BGImg = new JPanel()//Draw BackGround
-        {
-            @Override
-            protected void paintComponent(Graphics g)
-            {
-                super.paintComponent(g);
-                g.drawImage(BGImage.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
-            }
-        };
         add(BGImg, -1);
         BGImg.setBounds(0, 0, 810, 620);
         BGImg.setVisible(true);
         //Options setting
         //Adventure mode
-        final ImageIcon adventureIcon_Dark = new ImageIcon("./img/Screen/Adventure_1.png");
-        final ImageIcon adventureIcon_Light = new ImageIcon("./img/Screen/Adventure_0.png");
         MyButton adventureBtn = new MyButton(340, 120, adventureIcon_Light, adventureIcon_Dark);
         adventureBtn.setBounds(410, 80, adventureBtn.getBtnWidth(), adventureBtn.getBtnHeight());
         add(adventureBtn, 0);
@@ -123,12 +129,6 @@ public class LaunchPane extends JLayeredPane
             }
         });
         //Options right down
-        final ImageIcon helpIcon_Dark = new ImageIcon("./img/Screen/SelectorScreen_Help1.png");
-        final ImageIcon helpIcon_Light = new ImageIcon("./img/Screen/SelectorScreen_Help2.png");
-        final ImageIcon optionIcon_Dark = new ImageIcon("./img/Screen/SelectorScreen_Options1.png");
-        final ImageIcon optionIcon_Light = new ImageIcon("./img/Screen/SelectorScreen_Options2.png");
-        final ImageIcon quitIcon_Dark = new ImageIcon("./img/Screen/SelectorScreen_Quit1.png");
-        final ImageIcon quitIcon_Light = new ImageIcon("./img/Screen/SelectorScreen_Quit2.png");
         MyButton helpBtn = new MyButton(40, 20, helpIcon_Light, helpIcon_Dark);
         add(helpBtn, 0);
         helpBtn.setBounds(590, 515, helpBtn.getBtnWidth(), helpBtn.getBtnHeight());
