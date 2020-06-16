@@ -3,9 +3,11 @@ package zombies;
 import javax.swing.ImageIcon;
 
 public class FlagZombie extends ZombieBasis{
-	public FlagZombie()
+	public FlagZombie(int delaytime)
 	{
 		super();
+		state = 1;
+		this.delaytime = delaytime;
 		HP = 10;
 		damage = 3;
 		int i;
@@ -25,38 +27,24 @@ public class FlagZombie extends ZombieBasis{
 			{
 				getBoomDie().add(new ImageIcon("src/NormalZombie/BoomDie/BoomDie_"+i+".png").getImage());
 			}
+			for(i = 0;i<12;i++)
+			{
+				getHead().add(new ImageIcon("src/NormalZombie/ZombieHead/ZombieHead_"+i+".png").getImage());
+			}
 	}
 	@Override
 	public void run()
 	{
-		while(true)
-  	  {
-  		  if(iseating())
-  		  {
-  			  eat();
-  			  DrawGroup = Walk;
-  			  num = 0;
-  			  repaint();
-  		  }
-  		  if(!isAlive())
-  		  {
-  			  die();
-  			  break;
-  		  } 
-  		 num++;
-  		 if(num==Walk.size())num=0;
-  		 setX(getX()-5);
-  		 repaint();
-  		 try 
- 		     {
-				Thread.sleep(100);
-			  } 
- 		     catch (InterruptedException e) 
- 		     {
-				e.printStackTrace();
-			  }
-  		 
-  	  } 
+		try
+		{
+			Thread.sleep(delaytime);
+		} 
+		catch (InterruptedException e)
+		{
+			
+			e.printStackTrace();
+		}
+		super.run();
 	}
 
 }

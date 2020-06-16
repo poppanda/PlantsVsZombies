@@ -6,25 +6,30 @@ import java.util.LinkedList;
 import javax.swing.ImageIcon;
 
 public class BucketheadZombie extends ZombieBasis{
-	LinkedList<Image> LoseCap= new LinkedList<>();
-	int losecap = 9;
-	public BucketheadZombie()
+	
+	public BucketheadZombie(int delaytime)
 	{
 		super();
-		HP = 15;
+		HP = 18;
+		state = 5;
+		this.delaytime = delaytime;
 		damage = 3;
 		int i;
-		for(i = 0;i<21;i++)
+		for(i = 0;i<15;i++)
 		{
-			getWalk().add(new ImageIcon("src/BucketheadZombie/BucketheadZombie/BucketheadZombie_"+i+".png").getImage());
+			getHatWalk().add(new ImageIcon("src/BucketheadZombie/BucketheadZombie/BucketheadZombie_"+i+".png").getImage());
 		}
 		for(i = 0;i<11;i++)
 		{
-			getEat().add(new ImageIcon("src/BucketheadZombie/BucketheadZombieAttack/BucketheadZombieAttack_"+i+".png").getImage());
+			getHatEat().add(new ImageIcon("src/BucketheadZombie/BucketheadZombieAttack/BucketheadZombieAttack_"+i+".png").getImage());
 		}
 		for(i = 0;i<22;i++)
 		{
-			LoseCap.add(new ImageIcon("src/NormalZombie/Zombie/Zombie_"+i+".png").getImage());
+			getWalk().add(new ImageIcon("src/NormalZombie/Zombie/Zombie_"+i+".png").getImage());
+		}
+		for(i = 0;i<21;i++)
+		{
+			getEat().add(new ImageIcon("src/NormalZombie/ZombieAttack/ZombieAttack_"+i+".png").getImage());
 		}
 		for(i = 0;i<20;i++)
 		{
@@ -34,51 +39,23 @@ public class BucketheadZombie extends ZombieBasis{
 		{
 			getNormDie().add(new ImageIcon("src/NormalZombie/ZombieDie/ZombieDie_"+i+".png").getImage());
 		}
+		for(i = 0;i<12;i++)
+		{
+			getHead().add(new ImageIcon("src/NormalZombie/ZombieHead/ZombieHead_"+i+".png").getImage());
+		}
 	}
 	@Override
 	public void run()
 	{
-		while(true)
-	  	  {
-			  if(HP<=losecap)
-			  {
-				  DrawGroup = LoseCap;
-	  			  num = 0;
-	  			  repaint();
-			  }
-	  		  if(iseating())
-	  		  {
-	  			  eat();
-	  			  DrawGroup = Walk;
-	  			  num = 0;
-	  			  repaint();
-	  		  }
-	  		  if(!isAlive())
-	  		  {
-	  			  die();
-	  			  break;
-	  		  }
-	  		 DrawGroup = Walk; 
-	  		 num++;
-	  		 if(DrawGroup==Walk)
-	  		 {
-	  			  if(num==Walk.size())num=0;
-	  		 }
-	  		 if(DrawGroup==LoseCap)
-	  		 {
-	  			if(num==LoseCap.size())num=0;
-	  		 }
-	  		 setX(getX()-5);
-	  		 repaint();
-	  		 try 
-	 		     {
-					Thread.sleep(100);
-				  } 
-	 		     catch (InterruptedException e) 
-	 		     {
-					e.printStackTrace();
-				  }
-	  		 
-	  	  } 
+		try
+		{
+			Thread.sleep(delaytime);
+		} 
+		catch (InterruptedException e)
+		{
+			
+			e.printStackTrace();
+		}
+		super.run();
 	}
 }

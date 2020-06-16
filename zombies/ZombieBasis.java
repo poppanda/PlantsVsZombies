@@ -7,149 +7,236 @@ import java.awt.Image;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-// problem: how to reduce HP by distinguishing the the style of plants
 
 public abstract class ZombieBasis extends JLabel implements Runnable{
-      int HP,damage;
-      private int width,height;
-      private int x = 1420;
-      private int y = (int)(Math.random()*5)*110;
+      int HP,damage,losehat=10;
+      private int x = 250;
+      private int y = (int)(Math.random()*2)*110;
       LinkedList<Image> BoomDie = new LinkedList<>();
       LinkedList<Image> Walk = new LinkedList<>();
       LinkedList<Image> NormDie = new LinkedList<>();
       LinkedList<Image> Eat =  new LinkedList<>();
+      LinkedList<Image> HatWalk= new LinkedList<>();
+      LinkedList<Image> HatEat= new LinkedList<>();
+      LinkedList<Image> Head= new LinkedList<>();
       LinkedList<Image> DrawGroup = Walk;
       final int NormDieWay = 1,BoomDieWay = 2;
-      int wayOfDeath;
       public int getX() {return x;}
       public int getY() {return y;}
-      public int getWidth() {return width;}
-      public int getHeight() {return height;}
       public void setX(int x) {this.x = x;}
       public void setY(int y) {this.y = y;}
-      public void setWidth(int width) {this.width = width;}
-      public void setHeight(int height) {this.height = height;}
       public void setBoomDie(LinkedList<Image> BoomDie) {this.BoomDie = BoomDie;}
       public void setNormDie(LinkedList<Image> NormDie) {this.NormDie = NormDie;}
       public void setWalk(LinkedList<Image> Walk) {this.Walk  = Walk;}
       public void setEat(LinkedList<Image> Eat) {this.Eat = Eat;}
+      public void setHatWalk(LinkedList<Image> HatWalk){this.HatWalk = HatWalk;}
+      public void setHatEat(LinkedList<Image> HatEat){this.HatEat = HatEat;}
       public LinkedList<Image> getBoomDie() {return BoomDie;}
       public LinkedList<Image> getNormDie() {return  NormDie;}
       public LinkedList<Image> getWalk() {return  Walk;}
       public LinkedList<Image> getEat() {return  Eat;}
       public LinkedList<Image> getDrawGroup() {return  DrawGroup;}
+      public LinkedList<Image> getHatWalk(){return HatWalk;}
+      public LinkedList<Image> getHatEat(){return HatEat;}
+      public LinkedList<Image> getHead(){return Head;}
+      public int num = 0,state,delaytime;
+     
+      public void walk()
+      {
+    	  if(HP>10)state = 5;
+    	  else state = 1;
+      }
+      public void eat()
+      {
+    	  if(HP>10)state = 6;
+    	  else state = 2;
+      }
+      public void boomdie()
+      {
+    	  state = 4;
+      }
+      public void normdie()
+      {
+    	  state = 3;
+      }
       
-      public int num = 0;
       @Override
-      public void run(){ }
+      public void run()
+      { 
+    	  while(true)
+    	  {
+    		  if(state == 1)Walk();
+    		  if(state == 2)Eat();
+    		  if(state == 3)
+    		  {
+    			  NormDie();
+    			  break;
+    		  }
+    		  if(state == 4)
+    		  {
+    			  BoomDie();
+    			  break;
+    		  }
+    		  if(state == 5)HatWalk();
+    		  if(state == 6)HatEat();
+    	  }
+      }
+
       @Override
       public void paint(Graphics g)
       {
     	  super.paint(g);
-    	  g.drawImage(getDrawGroup().get(num),getX(),getY(),getWidth(),getHeight(),null);
-    	  
-      }
-      
-      public boolean haveplants(plant p)//problem:how to make sure which plant p is
-      {
-    	  int x1 = this.getX()-p.getWidth();
-    	  int x2 = this.getX()+this.getWidth();
-    	  int y1 = this.getY()+p.getHeight();
-    	  int y2 = this.getY() - this.getHeight();
-    	  if(this.getX()<x1)return false;
-    	  if(this.getX()>x2)return false;
-    	  if(this.getY()<y2)return false;
-    	  if(this.getY()>y1)return false;
-    	  return true;
-      }
-      
-      public void Boomdeath(plant p)//if the plant isn't eatable,change the way to die
-      {
-    	  if(!p.eatable) wayOfDeath = BoomDieWay;
-      }
-      
-      public boolean isAlive()//if the zombie is alive
-      {
-    	  if(HP>0)return true;
-    	  return false;
-      }
-      
-      public void die()//the cartoon about zombie's death
-      {
-    	  if(!isAlive())
+    	  if(state==3)
     	  {
-    		  int countDown;//the number of the frames
-    		  if(haveplants(p)&&wayOfDeath==BoomDieWay)
-    		  {
-    			  DrawGroup = BoomDie;
-    			  countDown = BoomDie.size()-1;
-    			   num = 0;
-    			  
-    		  }
-    		  else
-    		  {
-    			  DrawGroup = NormDie;
-    			  countDown = NormDie.size()-1;
-    			  num = 0;
-    		  }
-    		  repaint();
-    		  while(countDown!=0)
-    		  {
-    			  try
-    			  {
-    				  num++;
-    				  repaint();
-    				  countDown--;
-    				  Thread.sleep(30);
-    			  }
-    			  catch (InterruptedException e) 
-        		  {
-    				e.printStackTrace();
-    			  }
-    		  }
+    		  g.drawImage(getHead().get(num),getX()+50,getY()+30,null);
+           	  g.drawImage(getDrawGroup().get(num),getX(),getY(),null);
     	  }
-      }
-     
-      public boolean iseatable(plant p)//if the plant is eatable
-      {
-    	  if(p.eatable)return true;
-    	  return false;
+    	  else g.drawImage(getDrawGroup().get(num),getX(),getY(),null);
       }
       
-      public boolean iseating()//if the zombie is eating
+      public void HatWalk()
       {
-    	  if(haveplants(p)&&iseatable(p))return true;
-    	  return false;
-    	  
+    	 DrawGroup = HatWalk;
+     	 num = 0;
+     	 while(true)
+     	 {
+     		 if(HP<=10)state=1;//when the HP is less than 10,the zombie will lose its hat
+     		 if(state!=5)break;
+     		 num++;
+     		 if(num==DrawGroup.size())num=0;
+     		 setX(getX()-1);
+     		 repaint();
+     		 try 
+    		     {
+ 				Thread.sleep(100);
+ 			  } 
+    		     catch (InterruptedException e) 
+    		     {
+ 				e.printStackTrace();
+ 			  }
+     		 
+     	 } 
       }
       
-      //the part about eating
-      public void eat()//the cartoon about zombie's eating
+      public void Walk()
       {
-    	 DrawGroup = Eat;
-    	 num = 0;
-    	 repaint();
-    	 while(haveplants(p))
-    	 {
-    		 num++;
-    		 if(num==DrawGroup.size())num=0;
-    		 repaint();
-    		 try 
-   		     {
-				Thread.sleep(30);
-			  } 
-   		     catch (InterruptedException e) 
-   		     {
+    	 DrawGroup = Walk;
+     	 num = 0;
+     	 repaint();
+     	 while(true)
+     	 {
+     		 if(state!=1)break;
+     		 num++;
+     		 if(num==DrawGroup.size())num=0;
+     		 setX(getX()-1);
+     		 repaint();
+     		 try 
+    		     {
+ 				Thread.sleep(100);
+ 			  } 
+    		     catch (InterruptedException e) 
+    		     {
+ 				e.printStackTrace();
+ 			  }
+     		 
+     	 } 
+      }
+      
+      public void BoomDie()
+      {
+    	int countDown;
+    	DrawGroup = BoomDie;
+		countDown = BoomDie.size()-1;
+		num = 0;
+		while(countDown!=0)
+		  {
+			try
+			{
+				num++;
+				repaint();
+				countDown--;
+				Thread.sleep(100);
+			}
+			catch (InterruptedException e) 
+			{
 				e.printStackTrace();
-			  }
-    		 
-    	 } 
+			}
+		  }
+		
+      }
+      
+      public void NormDie()
+      {
+    		int countDown;
+    		DrawGroup = NormDie;
+    		countDown = NormDie.size()-1;
+    		num = 0;
+    		repaint();
+    		while(countDown!=0)
+    		{
+    			try
+    			{
+    				num++;
+    				repaint();
+    				countDown--;
+    				Thread.sleep(100);
+    			}
+    			catch (InterruptedException e) 
+        		{
+    				e.printStackTrace();
+    			}
+    		}
+      } 
+      
+      public void HatEat()
+      {
+    	 DrawGroup = HatEat;
+      	 num = 0;
+      	 while(true)
+      	 {
+      		 if(HP<=10)state=2;//when the HP is less than 10,the zombie will lose its hat
+      		 if(state!=6)break;
+      		 num++;
+      		 if(num==DrawGroup.size())num=0;
+      		 repaint();
+      		 try 
+      		 {
+  				Thread.sleep(100);
+  			  } 
+     		     catch (InterruptedException e) 
+     		     {
+  				e.printStackTrace();
+  			  }
+      		 
+      	 } 
+      }
+      
+      public void Eat()
+      {
+     	 DrawGroup = Eat;
+      	 num = 0;
+      	 repaint();
+      	 while(true)
+      	 {
+      		 if(state!=2)break;
+      		 num++;
+      		 if(num==DrawGroup.size())num=0;
+      		 repaint();
+      		 try 
+      		 {
+  				Thread.sleep(100);
+  			  } 
+     		     catch (InterruptedException e) 
+     		     {
+  				e.printStackTrace();
+  			  }
+      		 
+      	 } 
       }
          
-      public void gethurt(plant p)//waiting for completing
+      public void getHurt(int damage)
       {
-    	  HP = HP - p.attack;
+    	  HP = HP - damage;
       }
-      
       
 }

@@ -6,25 +6,30 @@ import java.util.LinkedList;
 import javax.swing.ImageIcon;
 
 public class ConeheadZombie extends ZombieBasis {
-	LinkedList<Image> LoseCap= new LinkedList<>();
 	int losecap = 6;
-	public ConeheadZombie()
+	public ConeheadZombie(int delaytime)
 	{
 		super();
-		HP = 12;
+		HP = 15;
+		this.delaytime = delaytime;
+		state = 5;
 		damage = 3;
 		int i;
 		for(i = 0;i<21;i++)
 		{
-			getWalk().add(new ImageIcon("src/ConeheadZombie/ConeheadZombie/ConeheadZombie_"+i+".png").getImage());
+			getHatWalk().add(new ImageIcon("src/ConeheadZombie/ConeheadZombie/ConeheadZombie_"+i+".png").getImage());
 		}
 		for(i = 0;i<11;i++)
 		{
-			getEat().add(new ImageIcon("src/ConeheadZombie/ConeheadZombieAttack/ConeheadZombieAttack_"+i+".png").getImage());
+			getHatEat().add(new ImageIcon("src/ConeheadZombie/ConeheadZombieAttack/ConeheadZombieAttack_"+i+".png").getImage());
 		}
 		for(i = 0;i<22;i++)
 		{
-			LoseCap.add(new ImageIcon("src/NormalZombie/Zombie/Zombie_"+i+".png").getImage());
+			getWalk().add(new ImageIcon("src/NormalZombie/Zombie/Zombie_"+i+".png").getImage());
+		}
+		for(i = 0;i<21;i++)
+		{
+			getEat().add(new ImageIcon("src/NormalZombie/ZombieAttack/ZombieAttack_"+i+".png").getImage());
 		}
 		for(i = 0;i<20;i++)
 		{
@@ -34,52 +39,24 @@ public class ConeheadZombie extends ZombieBasis {
 		{
 			getNormDie().add(new ImageIcon("src/NormalZombie/ZombieDie/ZombieDie_"+i+".png").getImage());
 		}
+		for(i = 0;i<12;i++)
+		{
+			getHead().add(new ImageIcon("src/NormalZombie/ZombieHead/ZombieHead_"+i+".png").getImage());
+		}
 	}
 	@Override
 	public void run()
 	{
-		while(true)
-  	  {
-		  if(HP<=losecap)
-		  {
-			  DrawGroup = LoseCap;
-  			  num = 0;
-  			  repaint();
-		  }
-  		  if(iseating())
-  		  {
-  			  eat();
-  			  DrawGroup = Walk;
-  			  num = 0;
-  			  repaint();
-  		  }
-  		  if(!isAlive())
-  		  {
-  			  die();
-  			  break;
-  		  }
-  		 DrawGroup = Walk; 
-  		 num++;
-  		 if(DrawGroup==Walk)
-  		 {
-  			  if(num==Walk.size())num=0;
-  		 }
-  		 if(DrawGroup==LoseCap)
-  		 {
-  			if(num==LoseCap.size())num=0;
-  		 }
-  		 setX(getX()-5);
-  		 repaint();
-  		 try 
- 		     {
-				Thread.sleep(100);
-			  } 
- 		     catch (InterruptedException e) 
- 		     {
-				e.printStackTrace();
-			  }
-  		 
-  	  } 
+		try
+		{
+			Thread.sleep(delaytime);
+		} 
+		catch (InterruptedException e)
+		{
+			
+			e.printStackTrace();
+		}
+		super.run();
 	}
 
 }
