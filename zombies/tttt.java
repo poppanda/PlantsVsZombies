@@ -14,23 +14,21 @@ public class tttt {
 		JFrame frame=new JFrame();
 		frame.setBounds(300,200,800,600);
 		frame.setResizable(false);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-  //      fortest f = new fortest();
-   //     Thread tt = new Thread(f);
-    //    tt.start();
-      //  frame.add(f);
-		zombieeee z = new zombieeee();
+		Zombie z = new Zombie(3000);
 		Thread t = new Thread(z);
 		t.start();
-	frame.add(z);
+		frame.add(z);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		zombieeee z = new zombieeee();
+//		Thread t = new Thread(z);
+//		t.start();
+//	frame.add(z);
 		 frame.setVisible(true);
-        
-		
-		
-		
 	}
 
 }
+
+
 
 
 class zzz extends JLabel implements Runnable
