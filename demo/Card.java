@@ -16,13 +16,13 @@ public class Card extends JButton
     private ImageIcon LightIcon, DarkIcon, FillIcon,PaintingIcon;
     Cursor cursor;
     private int x, y, FillTime;
-    private final int GroupX, GroupY, GroupBoundX = 0, GroupBoundY = 0;
+    private final int GroupX, GroupY, GroupBoundX = 20, GroupBoundY = 120;
     private int state;
     final private int NORM_STATE = 1, DARK_STATE = 2, FILL_STATE = 3, IN_BAR = 4, IN_GROUP = 5;
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(PaintingIcon.getImage(), 0, 0, x, y, this);
+        g.drawImage(PaintingIcon.getImage(), 0, 0, PaintingIcon.getIconWidth(), PaintingIcon.getIconHeight(), this);
     }
     public void moveTo(int tarX, int tarY, int T)
     {
@@ -44,7 +44,8 @@ public class Card extends JButton
     }
     public Card(PlantBar pb, PlantGroup pg, AdventurePane pane, int groupX, int groupY, int fillTime, ImageIcon lightIcon, ImageIcon darkIcon, ImageIcon fillIcon, ImageIcon CursorIcon)
     {
-        LightIcon = lightIcon;
+        super();
+        PaintingIcon = LightIcon = lightIcon;
         DarkIcon = darkIcon;
         FillIcon = fillIcon;
         cursor = Toolkit.getDefaultToolkit().createCustomCursor(CursorIcon.getImage(), new Point(0, 0), "CardCursor");
@@ -52,11 +53,12 @@ public class Card extends JButton
         GroupX = groupX;
         GroupY = groupY;
 
-        setEnabled(true);
-        setBounds(GroupX + GroupBoundX, GroupY + GroupBoundY, lightIcon.getIconWidth(), lightIcon.getIconHeight());
+        x = GroupX + GroupBoundX;
+        y = GroupY + GroupBoundY;
+        setBounds(x, y, lightIcon.getIconWidth(), lightIcon.getIconHeight());
 
         pg.AddCard(this);
-        pg.add(chosenLabel());
+        //pg.add(chosenLabel());
         addActionListener(new ActionListener()
         {
             @Override
@@ -127,7 +129,7 @@ public class Card extends JButton
     public JLabel chosenLabel()
     {
         JLabel label = new JLabel(FillIcon);
-        label.setLocation(GroupX - GroupBoundX, GroupY - GroupBoundY);
+        label.setLocation(GroupX, GroupY);
         label.setVisible(true);
         return label;
     }

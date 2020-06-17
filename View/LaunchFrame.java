@@ -1,5 +1,6 @@
 package View;
 
+import demo.Card;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
