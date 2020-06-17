@@ -11,6 +11,14 @@ import java.util.concurrent.locks.*;
 
 public class AdventurePane extends JLayeredPane implements Runnable
 {
+    Thread moveToZombie = moveBG(-590, 0, 3, null);
+    PlantBar plantBar = new PlantBar(moveToZombie);
+    PlantGroup plantGroup = new PlantGroup(moveToZombie);
+    ImageIcon cli = new ImageIcon("./img/Cards/CherryBomb0.png"),
+            cdi = new ImageIcon("./img/Cards/CherryBomb2.png"),
+            cfi = new ImageIcon("./img/Cards/CherryBomb1.png"),
+            cci = new ImageIcon("./img/Blurs/CherryBomb.png");
+    Card card = new Card(plantBar, plantGroup, this, 0, 0, 2, cli, cdi, cfi, cci);
     final ImageIcon BGImg = new ImageIcon("./img/Background/Background_0.jpg");
     JPanel BGImgPanel = new JPanel(){
         public void paintComponent(Graphics g) {
@@ -56,7 +64,6 @@ public class AdventurePane extends JLayeredPane implements Runnable
                 BGImgPanel.repaint();
             }
         });
-        move.start();
         return move;
     }
     void AddZombie(ZombieTest zombie)
@@ -68,6 +75,7 @@ public class AdventurePane extends JLayeredPane implements Runnable
     }
     public AdventurePane(LaunchFrame frame)
     {
+        add(card, JLayeredPane.POPUP_LAYER, 0);
         setBounds(0, 0, 810, 600);//frame.getWidth(), frame.getHeight());
         setVisible(true);
         add(BGImgPanel, JLayeredPane.DEFAULT_LAYER);
@@ -76,9 +84,7 @@ public class AdventurePane extends JLayeredPane implements Runnable
     }
     public void run()
     {
-        Thread moveToZombie = moveBG(-590, 0, 3, null);
-        PlantBar plantBar = new PlantBar(moveToZombie);
-        PlantGroup plantGroup = new PlantGroup(moveToZombie);
+        moveToZombie.start();
         Thread barThread = new Thread(plantBar);
         Thread groupThread = plantGroup.moveTo(plantGroup.VisibleX, plantGroup.VisibleY, 500, moveToZombie);
         add(plantBar, JLayeredPane.POPUP_LAYER);
