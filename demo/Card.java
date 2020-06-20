@@ -10,41 +10,57 @@ import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.*;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Card extends JButton
 {
     private ImageIcon LightIcon, DarkIcon, FillIcon,PaintingIcon;
     Cursor cursor;
-    private int x, y, FillTime;
-    private final int GroupX, GroupY, GroupBoundX = 20, GroupBoundY = 120;
+    private int w, h, FillTime;
+    public int x, y;
+    final int GroupX, GroupY;
     private int state;
+    private boolean isMoving = false;
     final private int NORM_STATE = 1, DARK_STATE = 2, FILL_STATE = 3, IN_BAR = 4, IN_GROUP = 5;
+    private AdventurePane pane;
+    private MouseListener click = new MouseListener()
+    {
+        @Override
+        public void mouseEntered(MouseEvent e){}
+        public void mouseExited(MouseEvent arg0){}
+        public void mouseClicked(MouseEvent e)
+        {
+            // Card.this.removeMouseListener(click);
+            if(state == IN_GROUP){
+                Card.this.removeMouseListener(click);
+                Pane.moveCardToBar(Card.this);
+                state = IN_BAR;
+                Card.this.addMouseListener(click);
+            }else if(state == IN_BAR){
+                Card.this.removeMouseListener(click);
+                Pane.moveCardToGroup(Card.this);
+                state = IN_GROUP;
+                Card.this.addMouseListener(click);
+            }else if(state == NORM_STATE){
+                Card.this.removeMouseListener(click);
+                PaintingIcon = DarkIcon;
+                repaint();
+                pane.setPlant(Card.this);
+                Card.this.removeMouseListener(click);
+            }
+            // Card.this.addMouseListener(click);
+        }
+        public void mousePressed(MouseEvent e){}
+        public void mouseReleased(MouseEvent e){}
+    };
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(PaintingIcon.getImage(), 0, 0, PaintingIcon.getIconWidth(), PaintingIcon.getIconHeight(), this);
     }
-    public void moveTo(int tarX, int tarY, int T)
+    public Card(AdventurePane pane, int groupX, int groupY, int fillTime, ImageIcon lightIcon, ImageIcon darkIcon, ImageIcon fillIcon, ImageIcon CursorIcon)
     {
-        double vx = (tarX - x) * 10 / T, vy = (tarY - y) * 10 / T, nx = x, ny = y;
-        new Thread(()->{
-            int time = T;
-            while(time != 0){
-                try{
-                    Thread.sleep(10);
-                }catch(InterruptedException e){
-                    e.printStackTrace();
-                }
-                time -= 10;
-                x = (int)(nx - vx);
-                y = (int)(ny - vy);
-                setLocation(x, y);
-            }
-        });
-    }
-    public Card(PlantBar pb, PlantGroup pg, AdventurePane pane, int groupX, int groupY, int fillTime, ImageIcon lightIcon, ImageIcon darkIcon, ImageIcon fillIcon, ImageIcon CursorIcon)
-    {
-        super();
+        this.pane = pane;
         PaintingIcon = LightIcon = lightIcon;
         DarkIcon = darkIcon;
         FillIcon = fillIcon;
@@ -53,62 +69,16 @@ public class Card extends JButton
         GroupX = groupX;
         GroupY = groupY;
 
-        x = GroupX + GroupBoundX;
-        y = GroupY + GroupBoundY;
-        setBounds(x, y, lightIcon.getIconWidth(), lightIcon.getIconHeight());
+        x = GroupX;
+        y = GroupY;
+        w = lightIcon.getIconWidth();
+        h = lightIcon.getIconHeight();
+        System.out.println(w + " " + h);
+        setBounds(x, y, w, h);
+        state = IN_GROUP;
 
-        pg.AddCard(this);
-        //pg.add(chosenLabel());
-        addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                if(state == IN_GROUP){
-                    pb.AddCard(Card.this);
-                    pg.RemoveCard(Card.this);
-                    moveTo(pb.getNextCardX(), pb.getNextCardY(), 500);
-                    state = IN_BAR;
-                }else if(state == IN_BAR){
-                    pb.RemoveCard(Card.this);
-                    pg.AddCard(Card.this);
-                    moveTo(GroupX + GroupBoundX, GroupY + GroupBoundY, 500);
-                    state = IN_GROUP;
-                }else if(state == NORM_STATE){
-                    pane.setCursor(cursor);
-                    PaintingIcon = DarkIcon;
-                    repaint();
-                    new Thread(()->{
-                        try
-                        {
-                            synchronized(pane.cursor)
-                            {
-                                pane.cursor.wait();
-                            }
-                            if(state == FILL_STATE)
-                            {
-                                JLabel fillLabel = new JLabel(FillIcon);
-                                add(fillLabel);
-                                int time = fillTime;
-                                double fillX = FillIcon.getIconWidth(), fillY = 0, v = FillIcon.getIconHeight() * 10 / fillTime;
-                                while(time != 0)
-                                {
-                                    time -= 10;
-                                    fillY += v;
-                                    fillLabel.setBounds(0, 0, (int)fillX, (int)fillY);
-                                }
-                                remove(fillLabel);
-                                setState(NORM_STATE);
-                                repaint();
-                            }
-                        }catch(InterruptedException err)
-                        {
-                            err.printStackTrace();
-                        }
-                    }).start();
-                }
-            }
-        });
+        pane.addCard(this);
+        addMouseListener(click);
     }
     public void setState(int STATE)
     {

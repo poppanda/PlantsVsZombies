@@ -9,18 +9,16 @@ import javax.swing.text.PlainDocument;
 import java.util.LinkedList;
 import java.util.concurrent.locks.*;
 
+
 public class AdventurePane extends JLayeredPane implements Runnable
 {
     Thread moveToZombie = moveBG(-590, 0, 3, null);
+    Thread moveCardThread = null;
     PlantBar plantBar = new PlantBar(moveToZombie);
     PlantGroup plantGroup = new PlantGroup(moveToZombie);
-    ImageIcon cli = new ImageIcon("./img/Cards/CherryBomb0.png"),
-            cdi = new ImageIcon("./img/Cards/CherryBomb2.png"),
-            cfi = new ImageIcon("./img/Cards/CherryBomb1.png"),
-            cci = new ImageIcon("./img/Blurs/CherryBomb.png");
-    Card card = new Card(plantBar, plantGroup, this, 0, 0, 2, cli, cdi, cfi, cci);
+    StartBtn startBtn = new StartBtn(moveToZombie);
     final ImageIcon BGImg = new ImageIcon("./img/Background/Background_0.jpg");
-    JPanel BGImgPanel = new JPanel(){
+    private JPanel BGImgPanel = new JPanel(){
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
             g.drawImage(BGImg.getImage(), (int)BackGroundX, (int)BackGroundY, BGWidth, BGHeight, this);
@@ -66,6 +64,51 @@ public class AdventurePane extends JLayeredPane implements Runnable
         });
         return move;
     }
+    private Thread moveCard(Card card, int tarX, int tarY, int T)
+    {
+        return new Thread(()->{
+            lock.lock();
+            double vx = (double)(tarX - card.x) * 10 / T, vy = (double)(tarY - card.y) * 10 / T;
+            double nx = card.x, ny = card.y;
+            try{
+                while(T != 0)
+                {
+                    T -= 10;
+                    nx += vx;
+                    ny += vy;
+                    card.setBounds((int)nx, (int)ny);
+                }
+            }catch(InterruptedException e){
+                e.printStackTrace();
+            }finally{
+                lock.unlock();
+            }
+        });
+    }
+    public void moveCardToBar(Card card)
+    {
+        if(moveCardThread == null || (moveCardThread.isAlive() == false))
+        {
+            plantBar.AddCard(card);
+            plantGroup.RemoveCard(card);
+            moveCardThread = moveCard(card, plantBar.getNextCardX(), plantBar.getNextCardY(), 100);
+            moveCardThread.start();
+        }
+    }
+    public void setPlant(Card card)
+    {
+        
+    }
+    public void moveCardToGroup(Card card)
+    {
+        if(moveCardThread == null || (moveCardThread.isAlive() == false))
+        {
+            plantBar.RemoveCard(card);
+            plantGroup.AddCard(card);
+            moveCardThread = moveCard(card, plantGroup.GroupBoundX + card.GroupX, plantGroup.GroupBoundY + card.GroupY, 100);
+            moveCardThread.start();
+        }
+    }
     void AddZombie(ZombieTest zombie)
     {
         //zombie.setBounds(0, 0, 400, 400);
@@ -75,7 +118,6 @@ public class AdventurePane extends JLayeredPane implements Runnable
     }
     public AdventurePane(LaunchFrame frame)
     {
-        add(card, JLayeredPane.POPUP_LAYER, 0);
         setBounds(0, 0, 810, 600);//frame.getWidth(), frame.getHeight());
         setVisible(true);
         add(BGImgPanel, JLayeredPane.DEFAULT_LAYER);

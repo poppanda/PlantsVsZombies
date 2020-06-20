@@ -57,7 +57,6 @@ public class PlantGroup extends JLabel
                 x = (int)nx;
                 y = (int)ny;
                 setLocation(x, y);
-                System.out.println(x + " " + y);
             }
             setLocation(0, 80);
         });

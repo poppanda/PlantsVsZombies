@@ -20,7 +20,7 @@ public class LaunchFrame extends JFrame
     {
         setVisible(true);
         setTitle("Plants VS Zombies");
-        setSize(810, 620);
+        setBounds(100, 100, 810, 620);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     public static void main(String[] args)
