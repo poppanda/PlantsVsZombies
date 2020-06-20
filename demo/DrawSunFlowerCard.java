@@ -18,4 +18,5 @@ public class DrawSunFlowerCard extends Card{
 	{
 		return new SunFlower();
 	}
+	
 }

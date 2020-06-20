@@ -18,4 +18,5 @@ public class DrawWallNutCard extends Card{
 	{
 		return new WallNut();
 	}
+	
 }

@@ -18,4 +18,5 @@ public class DrawPeaShooterCard extends Card{
 	{
 		return new PeaShooter();
 	}
+	
 }
