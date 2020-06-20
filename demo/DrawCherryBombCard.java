@@ -13,4 +13,8 @@ public class DrawCherryBombCard extends Card{
 			new ImageIcon("./img/Cards/CherryBomb1.png"),
 			new ImageIcon("./img/Blurs/CherryBomb.png"));
 	}
+	public CherryBomb CreatePlant()
+	{
+		return new CherryBomb();
+	}
 }
