@@ -1,43 +1,21 @@
 package demo;
 
+import View.*;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class DrawRepeaterCard extends JLabel implements Runnable{
-	int idx = 2;
-	int x ;
-	int y ;
-	int width = 70;
-	int height = 90;
-	public DrawRepeaterCard() {
-		 setBounds(0, 0, 100, 100);
-	     setVisible(true);
+public class DrawRepeaterCard extends Card{
+	public DrawRepeaterCard(AdventurePane pane) {
+		super(pane, 159, 72, 70, 
+			new ImageIcon("./img/Cards/Repeater0.png"),
+			new ImageIcon("./img/Cards/Repeater2.png"),
+			new ImageIcon("./img/Cards/Repeater1.png"),
+			new ImageIcon("./img/Blurs/Repeater.png"));
 	}
 	
-	@Override
-    public void paint(Graphics g) {
-        super.paint(g);
-        g.drawImage(new ImageIcon("Cards/Repeater" + idx + ".png").getImage(),410 , 0, width, height, this);
-    }
-	
-	@Override
-	public void run() {
-		
-		while(true) {
-			if(idx >= 0) {
-				repaint();
-				try {
-					//Draw a picture in 3 seconds
-					Thread.sleep(3000);
-					idx--;
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-			else {
-				idx = 2;
-			}
-		}
+	public Repeater CreatePlant()
+	{
+		return new Repeater();
 	}
 }

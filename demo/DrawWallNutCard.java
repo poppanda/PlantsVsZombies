@@ -1,44 +1,21 @@
 package demo;
 
+import View.*;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class DrawWallNutCard extends JLabel implements Runnable{
-	int idx = 2;
-	int x ;
-	int y ;
-	int width = 70;
-	int height = 90;
-	public DrawWallNutCard() {
-		 setBounds(0, 0, 100, 100);
-	     setVisible(true);
+public class DrawWallNutCard extends Card{
+	public DrawWallNutCard(AdventurePane pane) {
+		super(pane, 212, 72, 1200, 
+			new ImageIcon("./img/Cards/WallNut0.png"),
+			new ImageIcon("./img/Cards/WallNut2.png"),
+			new ImageIcon("./img/Cards/WallNut1.png"),
+			new ImageIcon("./img/Blurs/WallNut.png"));
 	}
 	
-	@Override
-    public void paint(Graphics g) {
-        super.paint(g);
-        g.drawImage(new ImageIcon("Cards/WallNut" + idx + ".png").getImage(),480 , 0, width, height, this);
-    }
-	
-	@Override
-	public void run() {
-		
-		while(true) {
-			if(idx >= 0) {
-				repaint();
-				try {
-					//Draw a picture in 5 seconds
-					Thread.sleep(5000);
-					idx--;
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-			else {
-				idx = 2;
-			}
-		}
+	public WallNut CreatePlant()
+	{
+		return new WallNut();
 	}
 }
-
