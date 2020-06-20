@@ -18,11 +18,11 @@ public class CherryBomb extends plants implements Runnable {
 	    setVisible(true);
 	}
 
-	  @Override
-	    public void paint(Graphics g) {
+	@Override
+	public void paint(Graphics g){
 	        super.paint(g);
 	        g.drawImage(new ImageIcon("./img/Plants/CherryBomb/CherryBomb_" + idx + ".png").getImage(),x , y, width, height, this);
-	    }
+	}
 	  @Override
 	    public void run()
 	    {
@@ -49,5 +49,5 @@ public class CherryBomb extends plants implements Runnable {
 }
 	public int boom() {
 		return HP = 0;
-	}
+	}    		
 }
