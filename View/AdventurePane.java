@@ -9,16 +9,20 @@ import javax.swing.text.PlainDocument;
 import java.util.LinkedList;
 import java.util.concurrent.locks.*;
 
-
 public class AdventurePane extends JLayeredPane implements Runnable
 {
+    static final long serialVersionUID = 1;
     Thread moveToZombie = moveBG(-590, 0, 3, null);
     Thread moveCardThread = null;
-    PlantBar plantBar = new PlantBar(moveToZombie);
+    PlantBar plantBar = new PlantBar(moveToZombie, this);
     PlantGroup plantGroup = new PlantGroup(moveToZombie);
-    StartBtn startBtn = new StartBtn(moveToZombie);
+    JButton startBtn = new JButton("./img/Screen/StartButton.png")
+    {
+        static final long serialVersionUID = 2;
+    };
     final ImageIcon BGImg = new ImageIcon("./img/Background/Background_0.jpg");
     private JPanel BGImgPanel = new JPanel(){
+        static final long serialVersionUID = 4;
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
             g.drawImage(BGImg.getImage(), (int)BackGroundX, (int)BackGroundY, BGWidth, BGHeight, this);
@@ -26,6 +30,7 @@ public class AdventurePane extends JLayeredPane implements Runnable
     };
     private double BackGroundX = 0, BackGroundY = 0;
     private int BGWidth = 1400, BGHeight = 600;
+    public final int GroupBoundX = 20, GroupBoundY = 50;
     public Cursor cursor;
     private static ReentrantLock lock = new ReentrantLock();
     private Thread moveBG(int x, int y, int t, Thread before)
@@ -64,36 +69,41 @@ public class AdventurePane extends JLayeredPane implements Runnable
         });
         return move;
     }
-    private Thread moveCard(Card card, int tarX, int tarY, int T)
+    public void addCard(Card card)
+    {
+        plantGroup.AddCard(card);
+        add(card, JLayeredPane.POPUP_LAYER, 0);
+    }
+    public Thread moveCard(Card card, int tarX, int tarY, int T)
     {
         return new Thread(()->{
             lock.lock();
             double vx = (double)(tarX - card.x) * 10 / T, vy = (double)(tarY - card.y) * 10 / T;
             double nx = card.x, ny = card.y;
+            int time = T;
             try{
-                while(T != 0)
+                while(time != 0)
                 {
-                    T -= 10;
+                    Thread.sleep(10);
+                    time -= 10;
                     nx += vx;
                     ny += vy;
-                    card.setBounds((int)nx, (int)ny);
+                    card.setLocation((int)nx, (int)ny);
                 }
             }catch(InterruptedException e){
                 e.printStackTrace();
             }finally{
                 lock.unlock();
             }
+            card.setPosition(tarX, tarY);
         });
     }
     public void moveCardToBar(Card card)
     {
-        if(moveCardThread == null || (moveCardThread.isAlive() == false))
-        {
-            plantBar.AddCard(card);
-            plantGroup.RemoveCard(card);
-            moveCardThread = moveCard(card, plantBar.getNextCardX(), plantBar.getNextCardY(), 100);
-            moveCardThread.start();
-        }
+        plantBar.AddCard(card);
+        plantGroup.RemoveCard(card);
+        moveCardThread = moveCard(card, plantBar.getNextCardX(), plantBar.getNextCardY(), 100);
+        moveCardThread.start();
     }
     public void setPlant(Card card)
     {
@@ -101,21 +111,31 @@ public class AdventurePane extends JLayeredPane implements Runnable
     }
     public void moveCardToGroup(Card card)
     {
-        if(moveCardThread == null || (moveCardThread.isAlive() == false))
-        {
-            plantBar.RemoveCard(card);
-            plantGroup.AddCard(card);
-            moveCardThread = moveCard(card, plantGroup.GroupBoundX + card.GroupX, plantGroup.GroupBoundY + card.GroupY, 100);
-            moveCardThread.start();
-        }
+        System.out.println(moveCardThread.isAlive());
+        plantBar.RemoveCard(card);
+        plantGroup.AddCard(card);
+        moveCardThread = moveCard(card, GroupBoundX + card.GroupX, GroupBoundY + card.GroupY, 100);
+        moveCardThread.start();
     }
-    void AddZombie(ZombieTest zombie)
+    private void ShowPlants(Thread before)
+    {
+        new Thread(()->{
+            try{
+                before.join();
+                Card cherryBomb = new DrawCherryBombCard(this);
+                add(startBtn);
+            }catch(InterruptedException e){
+                e.printStackTrace();
+            }
+        }).start();
+    }
+    /*void AddZombie(Zombie zombie)
     {
         //zombie.setBounds(0, 0, 400, 400);
         zombie.setVisible(true);
         new Thread(zombie).start();
         add(zombie, 0);
-    }
+    }*/
     public AdventurePane(LaunchFrame frame)
     {
         setBounds(0, 0, 810, 600);//frame.getWidth(), frame.getHeight());
@@ -133,6 +153,7 @@ public class AdventurePane extends JLayeredPane implements Runnable
         add(plantGroup, JLayeredPane.POPUP_LAYER);
         barThread.start();
         groupThread.start();
+        ShowPlants(groupThread);
         //Thread moveToGrass = moveBG(400, 0, 2, moveToZombie);
     }
 }

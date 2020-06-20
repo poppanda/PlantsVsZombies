@@ -14,16 +14,17 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Card extends JButton
 {
+    static final long serialVersionUID = 3;
     private ImageIcon LightIcon, DarkIcon, FillIcon,PaintingIcon;
     Cursor cursor;
     private int w, h, FillTime;
     public int x, y;
-    final int GroupX, GroupY;
+    public final int GroupX, GroupY;
     private int state;
     private boolean isMoving = false;
     final private int NORM_STATE = 1, DARK_STATE = 2, FILL_STATE = 3, IN_BAR = 4, IN_GROUP = 5;
     private AdventurePane pane;
-    private MouseListener click = new MouseListener()
+    /*private MouseListener click = new MouseListener()
     {
         @Override
         public void mouseEntered(MouseEvent e){}
@@ -33,12 +34,12 @@ public class Card extends JButton
             // Card.this.removeMouseListener(click);
             if(state == IN_GROUP){
                 Card.this.removeMouseListener(click);
-                Pane.moveCardToBar(Card.this);
+                pane.moveCardToBar(Card.this);
                 state = IN_BAR;
                 Card.this.addMouseListener(click);
             }else if(state == IN_BAR){
                 Card.this.removeMouseListener(click);
-                Pane.moveCardToGroup(Card.this);
+                pane.moveCardToGroup(Card.this);
                 state = IN_GROUP;
                 Card.this.addMouseListener(click);
             }else if(state == NORM_STATE){
@@ -52,6 +53,30 @@ public class Card extends JButton
         }
         public void mousePressed(MouseEvent e){}
         public void mouseReleased(MouseEvent e){}
+    };*/
+    private ActionListener click = new ActionListener()
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            if(state == IN_GROUP){
+                Card.this.removeActionListener(click);
+                pane.moveCardToBar(Card.this);
+                state = IN_BAR;
+                Card.this.addActionListener(click);
+            }else if(state == IN_BAR){
+                Card.this.removeActionListener(click);
+                pane.moveCardToGroup(Card.this);
+                state = IN_GROUP;
+                Card.this.addActionListener(click);
+            }else if(state == NORM_STATE){
+                Card.this.removeActionListener(click);
+                PaintingIcon = DarkIcon;
+                repaint();
+                pane.setPlant(Card.this);
+                Card.this.addActionListener(click);
+            }
+        }
     };
     @Override
     protected void paintComponent(Graphics g) {
@@ -69,8 +94,8 @@ public class Card extends JButton
         GroupX = groupX;
         GroupY = groupY;
 
-        x = GroupX;
-        y = GroupY;
+        x = GroupX + pane.GroupBoundX;
+        y = GroupY + pane.GroupBoundY;
         w = lightIcon.getIconWidth();
         h = lightIcon.getIconHeight();
         System.out.println(w + " " + h);
@@ -78,7 +103,13 @@ public class Card extends JButton
         state = IN_GROUP;
 
         pane.addCard(this);
-        addMouseListener(click);
+        //addMouseListener(click);
+        addActionListener(click);
+    }
+    public void setPosition(int x, int y)
+    {
+        this.x = x;
+        this.y = y;
     }
     public void setState(int STATE)
     {
