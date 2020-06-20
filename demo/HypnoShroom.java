@@ -9,6 +9,7 @@ public class HypnoShroom extends plants implements Runnable {
 	int x ;
 	int y ;
 	public HypnoShroom() {
+		
 		super();
 		HP = 6;
 		CD = 10;

@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 
 public class DrawRepeaterCard extends Card{
 	public DrawRepeaterCard(AdventurePane pane) {
+		
 		super(pane, 159, 72, 700, 
 			new ImageIcon("./img/Cards/Repeater0.png"),
 			new ImageIcon("./img/Cards/Repeater2.png"),

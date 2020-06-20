@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
 public class SunShroom extends plants implements Runnable {
+	
 	int idx = 0;
 	int x ;
 	int y ;

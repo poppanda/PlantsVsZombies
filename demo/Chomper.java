@@ -9,6 +9,7 @@ public class Chomper extends plants implements Runnable {
 	int x ;
 	int y ;
 	public Chomper() {
+		
 		super();
 		HP = 6;
 		CD = 10;

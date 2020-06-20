@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 
 public class DrawThreePeashooterCard extends Card{
 	public DrawThreePeashooterCard(AdventurePane pane) {
+		
 		super(pane, 212, 75, 900, 
 			new ImageIcon("./img/Cards/ThreePeashooter0.png"),
 			new ImageIcon("./img/Cards/ThreePeashooter2.png"),

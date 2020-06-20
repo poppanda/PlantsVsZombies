@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 
 public class DrawHypnoShroomCard extends Card{
 	public DrawHypnoShroomCard(AdventurePane pane) {
+		
 		super(pane, 371, 72, 600, 
 			new ImageIcon("./img/Cards/HypnoShroom0.png"),
 			new ImageIcon("./img/Cards/HypnoShroom2.png"),

@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import javax.swing.JLabel;
 
 public class plants extends JLabel{
+	
 		//»ù´¡ÊôĞÔ
 		protected int HP;
 		protected int CD;

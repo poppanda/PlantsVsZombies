@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 
 public class Squash extends plants implements Runnable {
 	
+	
 	int x ;
 	int y ;
 	public Squash() {

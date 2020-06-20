@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
 public class SquetFire extends plants implements Runnable {
+	
 	int idx = 0;
 	int x ;
 	int y ;
