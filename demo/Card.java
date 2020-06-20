@@ -103,4 +103,8 @@ public class Card extends JButton
         label.setVisible(true);
         return label;
     }
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes
