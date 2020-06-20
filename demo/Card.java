@@ -23,35 +23,29 @@ public class Card extends JButton
     private boolean isMoving = false;
     final private int NORM_STATE = 1, DARK_STATE = 2, FILL_STATE = 3, IN_BAR = 4, IN_GROUP = 5;
     private AdventurePane pane;
-    private MouseListener click = new MouseListener()
+    private ActionListener click = new ActionListener()
     {
         @Override
-        public void mouseEntered(MouseEvent e){}
-        public void mouseExited(MouseEvent arg0){}
-        public void mouseClicked(MouseEvent e)
+        public void actionPerformed(ActionEvent e)
         {
-            // Card.this.removeMouseListener(click);
             if(state == IN_GROUP){
-                Card.this.removeMouseListener(click);
-                Pane.moveCardToBar(Card.this);
+                Card.this.removeActionListener(click);
+                pane.moveCardToBar(Card.this);
                 state = IN_BAR;
-                Card.this.addMouseListener(click);
+                Card.this.addActionListener(click);
             }else if(state == IN_BAR){
-                Card.this.removeMouseListener(click);
-                Pane.moveCardToGroup(Card.this);
+                Card.this.removeActionListener(click);
+                pane.moveCardToGroup(Card.this);
                 state = IN_GROUP;
-                Card.this.addMouseListener(click);
+                Card.this.addActionListener(click);
             }else if(state == NORM_STATE){
-                Card.this.removeMouseListener(click);
+                Card.this.removeActionListener(click);
                 PaintingIcon = DarkIcon;
                 repaint();
                 pane.setPlant(Card.this);
-                Card.this.removeMouseListener(click);
+                Card.this.addActionListener(click);
             }
-            // Card.this.addMouseListener(click);
         }
-        public void mousePressed(MouseEvent e){}
-        public void mouseReleased(MouseEvent e){}
     };
     @Override
     protected void paintComponent(Graphics g) {
@@ -103,8 +97,4 @@ public class Card extends JButton
         label.setVisible(true);
         return label;
     }
-<<<<<<< Updated upstream
 }
-=======
-}
->>>>>>> Stashed changes

@@ -3,12 +3,34 @@ package View;
 import demo.*;
 import zombies.*;
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.text.PlainDocument;
 
+import java.util.Timer;
 import java.util.LinkedList;
+import java.util.TimerTask;
 import java.util.concurrent.locks.*;
 
+class Click implements MouseListener
+{
+    public boolean clicked;
+    public int clickX, clickY;
+    public void reset(){clicked = false;}
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if(e.getButton() == e.BUTTON1){
+            clickX = e.getX();
+            clickY = e.getY();
+        }else{
+            clickX = clickY = 0;
+        }
+    }
+    public void mouseEntered(MouseEvent e){}
+    public void mouseExited(MouseEvent e){}
+    public void mousePressed(MouseEvent e){}
+    public void mouseReleased(MouseEvent e){}
+}
 
 public class AdventurePane extends JLayeredPane implements Runnable
 {
@@ -16,7 +38,9 @@ public class AdventurePane extends JLayeredPane implements Runnable
     Thread moveCardThread = null;
     PlantBar plantBar = new PlantBar(moveToZombie);
     PlantGroup plantGroup = new PlantGroup(moveToZombie);
-    StartBtn startBtn = new StartBtn(moveToZombie);
+    
+    Click click = new Click();
+    JButton startBtn = new JButton("./img/Screen/StartButton.png");
     final ImageIcon BGImg = new ImageIcon("./img/Background/Background_0.jpg");
     private JPanel BGImgPanel = new JPanel(){
         public void paintComponent(Graphics g) {
@@ -64,7 +88,11 @@ public class AdventurePane extends JLayeredPane implements Runnable
         });
         return move;
     }
-    private Thread moveCard(Card card, int tarX, int tarY, int T)
+    public void addCard(Card card)
+    {
+        plantGroup.AddCard(card);
+    }
+    public Thread moveCard(Card card, int tarX, int tarY, int T)
     {
         return new Thread(()->{
             lock.lock();
@@ -97,17 +125,61 @@ public class AdventurePane extends JLayeredPane implements Runnable
     }
     public void setPlant(Card card)
     {
-        
+        Timer timer = new Timer();
+        Graphics g = new Graphics();
+        click.reset();
+        addMouseListener(click);
+        timer.schedule(new TimerTask(){
+            @Override
+            public void run() {
+                if(click.clicked)
+                {
+                    timer.cancel();
+                    timer.purge();
+                }
+                else
+                {
+                    g.dispose();
+                }
+            }
+        }, 0, 10);
+        removeMouseListener(click);
     }
     public void moveCardToGroup(Card card)
     {
-        if(moveCardThread == null || (moveCardThread.isAlive() == false))
-        {
-            plantBar.RemoveCard(card);
-            plantGroup.AddCard(card);
-            moveCardThread = moveCard(card, plantGroup.GroupBoundX + card.GroupX, plantGroup.GroupBoundY + card.GroupY, 100);
-            moveCardThread.start();
-        }
+        System.out.println(moveCardThread.isAlive());
+        plantBar.RemoveCard(card);
+        plantGroup.AddCard(card);
+        moveCardThread = moveCard(card, GroupBoundX + card.GroupX, GroupBoundY + card.GroupY, 100);
+        moveCardThread.start();
+    }
+    private void ShowPlants(Thread before)
+    {
+        new Thread(()->{
+            try{
+                before.join();
+                Card[] cards ={
+                    new DrawCherryBombCard(this),
+                    new DrawPeaShooterCard(this),
+                    new DrawRepeaterCard(this),
+                    new DrawSnowPeaCard(this),
+                    new DrawSunFlowerCard(this),
+                    new DrawWallNutCard(this)
+                    };
+                add(startBtn);
+                startBtn.addActionListener(new ActionListener()
+                {
+                    @Override
+                    public void actionPerformed(ActionEvent e)
+                    {
+                        Thread groupThread = plantGroup.moveTo(plantGroup.InvisibleX, plantGroup.InvisibleY, 100, null);
+                        groupThread.start();
+                    }
+                });
+            }catch(InterruptedException e){
+                e.printStackTrace();
+            }
+        }).start();
     }
     void AddZombie(ZombieTest zombie)
     {
