@@ -14,12 +14,11 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Card extends JButton
 {
-    static final long serialVersionUID = 3;
     private ImageIcon LightIcon, DarkIcon, FillIcon,PaintingIcon;
     Cursor cursor;
     private int w, h, FillTime;
     public int x, y;
-    public final int GroupX, GroupY;
+    final int GroupX, GroupY;
     private int state;
     private boolean isMoving = false;
     final private int NORM_STATE = 1, DARK_STATE = 2, FILL_STATE = 3, IN_BAR = 4, IN_GROUP = 5;
@@ -64,8 +63,8 @@ public class Card extends JButton
         GroupX = groupX;
         GroupY = groupY;
 
-        x = GroupX + pane.GroupBoundX;
-        y = GroupY + pane.GroupBoundY;
+        x = GroupX;
+        y = GroupY;
         w = lightIcon.getIconWidth();
         h = lightIcon.getIconHeight();
         System.out.println(w + " " + h);
@@ -73,13 +72,7 @@ public class Card extends JButton
         state = IN_GROUP;
 
         pane.addCard(this);
-        //addMouseListener(click);
-        addActionListener(click);
-    }
-    public void setPosition(int x, int y)
-    {
-        this.x = x;
-        this.y = y;
+        addMouseListener(click);
     }
     public void setState(int STATE)
     {

@@ -34,16 +34,15 @@ class Click implements MouseListener
 
 public class AdventurePane extends JLayeredPane implements Runnable
 {
-    static final long serialVersionUID = 1;
     Thread moveToZombie = moveBG(-590, 0, 3, null);
     Thread moveCardThread = null;
-    PlantBar plantBar = new PlantBar(moveToZombie, this);
+    PlantBar plantBar = new PlantBar(moveToZombie);
     PlantGroup plantGroup = new PlantGroup(moveToZombie);
+    
     Click click = new Click();
     JButton startBtn = new JButton("./img/Screen/StartButton.png");
     final ImageIcon BGImg = new ImageIcon("./img/Background/Background_0.jpg");
     private JPanel BGImgPanel = new JPanel(){
-        static final long serialVersionUID = 4;
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
             g.drawImage(BGImg.getImage(), (int)BackGroundX, (int)BackGroundY, BGWidth, BGHeight, this);
@@ -51,7 +50,6 @@ public class AdventurePane extends JLayeredPane implements Runnable
     };
     private double BackGroundX = 0, BackGroundY = 0;
     private int BGWidth = 1400, BGHeight = 600;
-    public final int GroupBoundX = 20, GroupBoundY = 50;
     public Cursor cursor;
     private static ReentrantLock lock = new ReentrantLock();
     private Thread moveBG(int x, int y, int t, Thread before)
@@ -100,30 +98,30 @@ public class AdventurePane extends JLayeredPane implements Runnable
             lock.lock();
             double vx = (double)(tarX - card.x) * 10 / T, vy = (double)(tarY - card.y) * 10 / T;
             double nx = card.x, ny = card.y;
-            int time = T;
             try{
-                while(time != 0)
+                while(T != 0)
                 {
-                    Thread.sleep(10);
-                    time -= 10;
+                    T -= 10;
                     nx += vx;
                     ny += vy;
-                    card.setLocation((int)nx, (int)ny);
+                    card.setBounds((int)nx, (int)ny);
                 }
             }catch(InterruptedException e){
                 e.printStackTrace();
             }finally{
                 lock.unlock();
             }
-            card.setPosition(tarX, tarY);
         });
     }
     public void moveCardToBar(Card card)
     {
-        plantBar.AddCard(card);
-        plantGroup.RemoveCard(card);
-        moveCardThread = moveCard(card, plantBar.getNextCardX(), plantBar.getNextCardY(), 100);
-        moveCardThread.start();
+        if(moveCardThread == null || (moveCardThread.isAlive() == false))
+        {
+            plantBar.AddCard(card);
+            plantGroup.RemoveCard(card);
+            moveCardThread = moveCard(card, plantBar.getNextCardX(), plantBar.getNextCardY(), 100);
+            moveCardThread.start();
+        }
     }
     public void setPlant(Card card)
     {
@@ -183,13 +181,13 @@ public class AdventurePane extends JLayeredPane implements Runnable
             }
         }).start();
     }
-    /*void AddZombie(Zombie zombie)
+    void AddZombie(ZombieTest zombie)
     {
         //zombie.setBounds(0, 0, 400, 400);
         zombie.setVisible(true);
         new Thread(zombie).start();
         add(zombie, 0);
-    }*/
+    }
     public AdventurePane(LaunchFrame frame)
     {
         setBounds(0, 0, 810, 600);//frame.getWidth(), frame.getHeight());
@@ -207,7 +205,6 @@ public class AdventurePane extends JLayeredPane implements Runnable
         add(plantGroup, JLayeredPane.POPUP_LAYER);
         barThread.start();
         groupThread.start();
-        ShowPlants(groupThread);
         //Thread moveToGrass = moveBG(400, 0, 2, moveToZombie);
     }
 }
