@@ -18,12 +18,12 @@ public class PotatoMine extends plants implements Runnable {
 	int height = 100;
 	static LinkedList<Image> pic= new LinkedList<>();
 	 LinkedList<Image> draw = new LinkedList<>();
-	public PotatoMine() {
+	public PotatoMine(int X, int Y) {
 		super();
 		HP = 4;
 		CD = 7;
 		attack = 4;
-		setBounds(0, 0, 100, 100);
+		setBounds(X, Y, 100, 100);
 	    setVisible(true);
 	    for(int i = 0; i < 8; i++) {
 	    	getPotatoMine().add(new ImageIcon("PotatoMine/PotatoMine/PotatoMine_" + i + ".png").getImage());

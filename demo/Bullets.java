@@ -4,36 +4,37 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
 public class Bullets extends plants implements Runnable {
-	int shoot = 1;
-	int x ;
-	int y ;
+
+	int x;
+	int y;
 	int width = 20;
 	int height = 20;
 	
-	public Bullets() {
+	public Bullets(int X, int Y) {
 		super();
 		CD = 1;
 		attack = 2;
-		 setBounds(0, 0, 100, 100);
-	        setVisible(true);
+		setBounds(X, Y, 100, 100);
+		x = X;
+	    setVisible(true);
+	    getBullets().add(new ImageIcon("Peashooter/Bullets/Bullets_1.png" ).getImage());
+	   
+	   
+	    getBulletsbomb().add(new ImageIcon("Peashooter/Bullets/Bullets_2.png" ).getImage());
+	    
 	}
-
-	  @Override
-	    public void paint(Graphics g) {
-	        super.paint(g);
-	        g.drawImage(new ImageIcon("Peashooter/Bullets/Bullets_" + shoot + ".png").getImage(),x , y, width, height, this);
-	    }
 	  @Override
 	    public void run()
 	    {
 	        while(true)
 	        {
 	            try{
+	            	DrawGroup = Bullets;
+	            	Thread.sleep(100);
 	            		x += 15;
 	            		repaint();
-	            		Thread.sleep(100);
 	            		if(isHit(x,y)) {
-	            			shoot++;
+	            			DrawGroup = Bulletsbomb;
 	            			repaint();
 	            			break;
 	            		}
@@ -47,7 +48,7 @@ public class Bullets extends plants implements Runnable {
 	
 }
 	  
-	  //To determine if a bullet can hit a zombie
+	  //判断子弹是否可以击中僵尸
 	  public Boolean isHit(int x,int y) {
 		  if(this.x == x && this.y == y) {
 			  return true;

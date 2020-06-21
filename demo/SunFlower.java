@@ -9,20 +9,19 @@ public class SunFlower extends plants implements Runnable {
 	int y ;
 	int width = 100;
 	int height = 100;
-	public SunFlower() {
+	public SunFlower(int X, int Y) {
 		super();
 		HP = 4;
-		CD = 5;
+		CD = 6;
 		attack = 0;
-		 setBounds(0, 0, 100, 100);
-	        setVisible(true);
+		setBounds(X, Y, 100, 100);
+	    setVisible(true);
+	    for(int i = 0; i < 18; i++) {
+	    	getSunflower().add(new ImageIcon("SunFlower/SunFlower_" + i + ".png").getImage());
+	    }
+	    DrawGroup = Sunflower;
 	}
 
-	  @Override
-	    public void paint(Graphics g) {
-	        super.paint(g);
-	        g.drawImage(new ImageIcon("SunFlower/SunFlower_" + idx + ".png").getImage(),x , y, width, height, this);
-	    }
 	  @Override
 	    public void run()
 	    {
@@ -30,9 +29,15 @@ public class SunFlower extends plants implements Runnable {
 	        {
 	        	if(isAlive(this.HP)) {
 	            try{
-	                Thread.sleep(100);
-	                idx = (idx + 1) % 17;
-	                repaint();
+	            	if(num <= 17) {
+		                Thread.sleep(100);
+		                
+		                repaint();
+		                num ++;
+		            	}
+		            	else {
+		            		num = 0;
+		            	}
 	            }catch(InterruptedException e)
 	            {
 	                e.printStackTrace();
@@ -41,7 +46,6 @@ public class SunFlower extends plants implements Runnable {
 	        }
 	        	else {
 	        		this.goEmpty();
-	        		
 	        		break;
 	        	}
 	        }
@@ -50,4 +54,3 @@ public class SunFlower extends plants implements Runnable {
 	  
 	 
 }
-

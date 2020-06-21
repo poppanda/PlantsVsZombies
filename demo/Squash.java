@@ -11,12 +11,12 @@ public class Squash extends plants implements Runnable {
 	
 	int x ;
 	int y ;
-	public Squash() {
+	public Squash(int X, int Y) {
 		super();
 		HP = 6;
 		CD = 10;
 		attack = 10;
-		setBounds(0, 0, 100, 100);
+		setBounds(X, Y, 100, 100);
 	    setVisible(true);
 	    for(int i = 0; i < 17; i++) {
 	    	getSquash().add(new ImageIcon("Squash/Squash/Squash_" + i + ".png").getImage());

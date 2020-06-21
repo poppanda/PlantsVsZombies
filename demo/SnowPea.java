@@ -9,12 +9,12 @@ public class SnowPea extends plants implements Runnable {
 	int y ;
 	int width = 100;
 	int height = 100;
-	public SnowPea() {
+	public SnowPea(int X, int Y) {
 		super();
 		HP = 6;
 		CD = 7;
 		attack = 3;
-		 setBounds(0, 0, 100, 100);
+		 setBounds(X, Y, 100, 100);
 	        setVisible(true);
 	}
 

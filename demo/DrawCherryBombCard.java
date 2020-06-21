@@ -8,9 +8,9 @@ import javax.swing.JLabel;
 public class DrawCherryBombCard extends Card{
 	public DrawCherryBombCard(AdventurePane pane) {
 <<<<<<< HEAD
-		super(pane, 265, 72, 1500, 
+		super(pane, 265, 72, 15000, 
 =======
-		super(pane, 0, 72, 1500, 
+		super(pane, 0, 72, 15000, 
 >>>>>>> 06bdd91daab52a1f5189fa9fca805acd85fa46af
 			new ImageIcon("./img/Cards/CherryBomb0.png"),
 			new ImageIcon("./img/Cards/CherryBomb2.png"),

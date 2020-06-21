@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 public class DrawPotatoMineCard extends Card{
 	public DrawPotatoMineCard(AdventurePane pane) {
 		
-		super(pane, 53, 75, 500, 
+		super(pane, 53, 75, 5000, 
 			new ImageIcon("./img/Cards/PotatoMine0.png"),
 			new ImageIcon("./img/Cards/PotatoMine2.png"),
 			new ImageIcon("./img/Cards/PotatoMine1.png"),

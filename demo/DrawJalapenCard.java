@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 public class DrawJalapenCard extends Card{
 	public DrawSnowPeaCard(AdventurePane pane) {
 		
-		super(pane, 0, 75, 800, 
+		super(pane, 0, 75, 8000, 
 			new ImageIcon("./img/Cards/Jalapen0.png"),
 			new ImageIcon("./img/Cards/Jalapen2.png"),
 			new ImageIcon("./img/Cards/Jalapen1.png"),

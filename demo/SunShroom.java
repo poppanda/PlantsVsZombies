@@ -12,12 +12,12 @@ public class SunShroom extends plants implements Runnable {
 	int y ;
 	int width = 100;
 	int height = 100;
-	public SunShroom() {
+	public SunShroom(int X, int Y) {
 		super();
 		HP = 4;
 		CD = 6;
 		attack = 0;
-		setBounds(0, 0, 100, 100);
+		setBounds(X, Y, 100, 100);
 	    setVisible(true);
 	    for(int i = 0; i < 10; i++) {
 	    	getSunShroom().add(new ImageIcon("SunShroom/SunShroom/SunShroom_" + i + ".png").getImage());

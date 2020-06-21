@@ -10,12 +10,12 @@ public class SquetFire extends plants implements Runnable {
 	int y ;
 	int width = 100;
 	int height = 100;
-	public SquetFire() {
+	public SquetFire(int X, int Y) {
 		super();
 		HP = 10;
 		CD = 15;
 		attack = 10;
-		setBounds(0, 0, 100, 100);
+		setBounds(X, Y, 100, 100);
 	    setVisible(true);
 	    for(int i = 0; i < 8; i++) {
 	    	getJalapenExplode().add(new ImageIcon("Jalapeno/JalapenoExplode/JalaPenoExplode_" + i + ".png").getImage());

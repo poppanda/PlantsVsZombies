@@ -89,6 +89,8 @@ public class plants extends JLabel{
 		LinkedList<Image> ThreePeashooter = new LinkedList<>();
 		LinkedList<Image> SunShroom = new LinkedList<>();
 		LinkedList<Image> SunShroomBig = new LinkedList<>();
+		LinkedList<Image> Bulletsbomb = new LinkedList<>();
+		LinkedList<Image> Snowbullets = new LinkedList<>();
 		
 		public int num = 0;
 		
@@ -217,9 +219,7 @@ public class plants extends JLabel{
 		public LinkedList<Image> getSquashAttack() {
 			return SquashAttack;
 		}
-		public void setAquashAttack(LinkedList<Image> aquashAttack) {
-			SquashAttack = aquashAttack;
-		}
+		
 		public LinkedList<Image> getHypnoShroomSleep() {
 			return HypnoShroomSleep;
 		}
@@ -243,6 +243,21 @@ public class plants extends JLabel{
 		}
 		public void setSunShroomBig(LinkedList<Image> sunShroomBig) {
 			SunShroomBig = sunShroomBig;
+		}
+		public LinkedList<Image> getBulletsbomb() {
+			return Bulletsbomb;
+		}
+		public void setBulletsbomb(LinkedList<Image> bulletsbomb) {
+			Bulletsbomb = bulletsbomb;
+		}
+		public LinkedList<Image> getSnowbullets() {
+			return Snowbullets;
+		}
+		public void setSnowbullets(LinkedList<Image> snowbullets) {
+			Snowbullets = snowbullets;
+		}
+		public void setSquashAttack(LinkedList<Image> squashAttack) {
+			SquashAttack = squashAttack;
 		}
 		@Override
 	      public void paint(Graphics g)
