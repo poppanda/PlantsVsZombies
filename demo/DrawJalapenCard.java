@@ -1,0 +1,23 @@
+package demo;
+
+import View.*;
+import java.awt.Graphics;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
+public class DrawJalapenCard extends Card{
+	public DrawSnowPeaCard(AdventurePane pane) {
+		
+		super(pane, 0, 75, 800, 
+			new ImageIcon("./img/Cards/Jalapen0.png"),
+			new ImageIcon("./img/Cards/Jalapen2.png"),
+			new ImageIcon("./img/Cards/Jalapen1.png"),
+			new ImageIcon("./img/Blurs/Jalapen.png"));
+	}
+	
+	public Jalapen CreatePlant()
+	{
+		return new Jalapen();
+	}
+	
+}

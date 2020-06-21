@@ -9,6 +9,7 @@ import java.util.LinkedList;
 
 public class PlantGroup extends JLabel
 {
+    static final long serialVersionUID = 6;
     private int x, y;
     public final int VisibleY, VisibleX, InvisibleX, InvisibleY;
     private Thread before;

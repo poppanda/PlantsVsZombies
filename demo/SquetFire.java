@@ -3,26 +3,27 @@ package demo;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
-public class CherryBomb extends plants implements Runnable {
+public class SquetFire extends plants implements Runnable {
+	
 	int idx = 0;
 	int x ;
 	int y ;
 	int width = 100;
 	int height = 100;
-	public CherryBomb() {
+	public SquetFire() {
 		super();
 		HP = 10;
 		CD = 15;
 		attack = 10;
-		setBounds(0, 0, 1000, 1000);
+		setBounds(0, 0, 100, 100);
 	    setVisible(true);
+	    for(int i = 0; i < 8; i++) {
+	    	getJalapenExplode().add(new ImageIcon("Jalapeno/JalapenoExplode/JalaPenoExplode_" + i + ".png").getImage());
+	    }
+	    DrawGroup = JalapenExplode;
 	}
 
-	@Override
-	public void paint(Graphics g){
-	        super.paint(g);
-	        g.drawImage(new ImageIcon("./img/Plants/CherryBomb/CherryBomb_" + idx + ".png").getImage(),x , y, width, height, this);
-	}
+	  
 	  @Override
 	    public void run()
 	    {
@@ -30,11 +31,14 @@ public class CherryBomb extends plants implements Runnable {
 	        {
 	        	if(isAlive(this.HP)) {
 	            try{
-	            	
-	                Thread.sleep(100);
-	                idx = (idx + 1) % 6;
-	                repaint();
-	                
+	            	if(num <= 7) {
+		                Thread.sleep(200);
+		                repaint();
+		                num ++;
+		            	}
+		            	else {
+		            		num = 0;
+		            	}
 	            }catch(InterruptedException e)
 	            {
 	                e.printStackTrace();
@@ -47,7 +51,5 @@ public class CherryBomb extends plants implements Runnable {
 	        	}
 	        }
 }
-	public int boom() {
-		return HP = 0;
-	}    		
+	
 }
