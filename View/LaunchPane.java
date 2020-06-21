@@ -151,8 +151,8 @@ public class LaunchPane extends JLayeredPane
                     JLabel developer = new JLabel();
                     developer.setText("开发人员：曹雨薇 牛冰冰 潘曲阳");
                     developer.setBounds(300, 200, 400, 50);
-                    Font font = new Font("宋体", Font.PLAIN, 20);
-                    developer.setFont(font);
+                    //Font font = new Font("宋体", Font.PLAIN, 20);
+                    //developer.setFont(font);
                     add(developer, 0);
                     try{
                         Thread.sleep(3000);
