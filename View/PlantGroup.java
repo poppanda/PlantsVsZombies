@@ -3,6 +3,8 @@ package View;
 import demo.*;
 import javax.swing.*;
 import java.awt.Graphics;
+import java.security.DrbgParameters.Capability;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class PlantGroup extends JLabel
@@ -33,6 +35,11 @@ public class PlantGroup extends JLabel
         setVisible(true);
         repaint();
     }
+    public void removeALL(AdventurePane pane)
+    {
+        for(Card c:cards) pane.remove(c);
+        pane.repaint();
+    }
     public Thread moveTo(int tarX, int tarY, int T, Thread before)
     {
         return new Thread(()->{
@@ -43,7 +50,7 @@ public class PlantGroup extends JLabel
                     e.printStackTrace();
                 }
             }
-            double vx = (tarX - x) * 10 / T, vy = (tarY - y) * 10 / T, nx = x, ny = y;
+            double vx = (double)(tarX - x) * 10 / T, vy = (double)(tarY - y) * 10 / T, nx = x, ny = y;
             int time = T;
             while(time != 0){
                 try{
@@ -58,7 +65,6 @@ public class PlantGroup extends JLabel
                 y = (int)ny;
                 setLocation(x, y);
             }
-            setLocation(0, 80);
         });
     }
     public void AddCard(Card card)
