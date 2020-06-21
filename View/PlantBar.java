@@ -18,14 +18,14 @@ public class PlantBar extends JLabel implements Runnable
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
-        g.drawImage(plantBarIcon.getImage(), x, y, plantBarIcon.getIconWidth(), plantBarIcon.getIconHeight(), this);
+        g.drawImage(plantBarIcon.getImage(), 0, 0, plantBarIcon.getIconWidth(), plantBarIcon.getIconHeight(), this);
     }
     public PlantBar(Thread before, AdventurePane pane)
     {
         this.pane = pane;
         this.before = before;
-        cardCapacity = 8;
-        cardX = new int[]{0, 80, 132, 132, 132, 132, 132, 132, 132, 132};
+        cardCapacity = 3;
+        cardX = new int[]{0, 80, 132, 184, 236, 288, 340, 392, 444, 496};
         cardY = 7;
         cardsInBar = 0;
         x = 0;
@@ -33,9 +33,13 @@ public class PlantBar extends JLabel implements Runnable
 
         setBorder(null);
         setOpaque(false);
-        setBounds(0, 0, 1000, 1000);
+        setBounds(x, y, 1000, 1000);
         setVisible(true);
         repaint();
+    }
+    public void setFightState()
+    {
+        for(Card c : cards)c.setState(c.NORM_STATE);
     }
     public void run(){
         try{
@@ -48,19 +52,19 @@ public class PlantBar extends JLabel implements Runnable
                 Thread.sleep(10);
                 ny += v;
                 y = (int)ny;
-                repaint();
+                setLocation(x, y);
             }
         }catch(InterruptedException e){
             e.printStackTrace();
         }
     }
+    public boolean hasEmptyPosition(){return cards.size() < cardCapacity;}
     public int getNextCardX()
     {
         return cardX[cards.size()];
     }
     public int getNextCardY()
     {
-        System.out.println(cardY);
         return cardY;
     }
     public void AddCard(Card card)
@@ -84,7 +88,7 @@ public class PlantBar extends JLabel implements Runnable
         for(int i = pos; i < cards.size(); i++)
         {
             Card c = cards.get(i);
-            Thread move = pane.moveCard(c, cardX[i], cardY, 100);
+            Thread move = pane.moveCard(c, cardX[i + 1], cardY, 100);
             move.start();
         }
     }

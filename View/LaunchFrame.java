@@ -7,12 +7,13 @@ import javax.swing.JFrame;
 public class LaunchFrame extends JFrame
 {
     private LaunchPane launchPane = new LaunchPane(this);
-    private AdventurePane adventurePane = new AdventurePane(this);
+    private AdventurePane adventurePane;
     public void runLaunchPane(){
         setLayeredPane(launchPane);
     }
     public void runAdventurePane()
     {
+        adventurePane = new AdventurePane(this);
         setLayeredPane(adventurePane);
         new Thread(adventurePane).start();
     }
@@ -25,7 +26,8 @@ public class LaunchFrame extends JFrame
     }
     public static void main(String[] args)
     {
+        System.out.println(Runtime.getRuntime().maxMemory());
         LaunchFrame launchFrame = new LaunchFrame();
-        launchFrame.runLaunchPane();
+        launchFrame.runAdventurePane();
     }
 }
