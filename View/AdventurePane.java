@@ -134,6 +134,9 @@ public class AdventurePane extends JLayeredPane implements Runnable
                     {
                         locX = (locX - 55) / 80 * 80 + 55;
                         locY = (locY - 100) / 97 * 97 + 100;
+                        plants nxt = card.CreatePlant(locX, locY);
+                        add(nxt, JLayeredPane.POPUP_LAYER);
+                        //plantsList.add(nxt);
                         card.setState(card.FILL_STATE);
                     }
                     remove(blur);
