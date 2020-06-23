@@ -15,9 +15,9 @@ public class DrawRepeaterCard extends Card{
 			new ImageIcon("./img/Blurs/Repeater.png"));
 	}
 	
-	public Repeater CreatePlant()
+	public Repeater CreatePlant(int X, int Y)
 	{
-		return new Repeater();
+		return new Repeater(X, Y);
 	}
 	
 }

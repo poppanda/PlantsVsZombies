@@ -15,9 +15,9 @@ public class DrawSunShroomCard extends Card{
 			new ImageIcon("./img/Blurs/SunShroom.png"));
 	}
 	
-	public SunShroom CreatePlant()
+	public SunShroom CreatePlant(int X, int Y)
 	{
-		return new SunShroom();
+		return new SunShroom(X, Y);
 	}
 	
 }

@@ -15,9 +15,9 @@ public class DrawHypnoShroomCard extends Card{
 			new ImageIcon("./img/Blurs/HypnoShroom.png"));
 	}
 	
-	public HypnoShroom CreatePlant()
+	public HypnoShroom CreatePlant(int X, int Y)
 	{
-		return new HypnoShroom();
+		return new HypnoShroom(X, Y);
 	}
 	
 }

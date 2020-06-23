@@ -15,9 +15,9 @@ public class DrawJalapenCard extends Card{
 			new ImageIcon("./img/Blurs/Jalapen.png"));
 	}
 	
-	public Jalapen CreatePlant()
+	public Jalapen CreatePlant(int X, int Y)
 	{
-		return new Jalapen();
+		return new Jalapen(X, Y);
 	}
 	
 }

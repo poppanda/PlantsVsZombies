@@ -15,9 +15,9 @@ public class DrawWallNutCard extends Card{
 			new ImageIcon("./img/Blurs/WallNut.png"));
 	}
 	
-	public WallNut CreatePlant()
+	public WallNut CreatePlant(int X, int Y)
 	{
-		return new WallNut();
+		return new WallNut(X, Y);
 	}
 	
 }

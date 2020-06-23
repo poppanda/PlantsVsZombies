@@ -15,9 +15,9 @@ public class DrawChomperCard extends Card{
 			new ImageIcon("./img/Blurs/Chomper.png"));
 	}
 	
-	public Chomper CreatePlant()
+	public Chomper CreatePlant(int X, int Y)
 	{
-		return new Chomper();
+		return new Chomper(X, Y);
 	}
 	
 }

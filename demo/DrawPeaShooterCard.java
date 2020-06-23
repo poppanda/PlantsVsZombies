@@ -15,9 +15,9 @@ public class DrawPeaShooterCard extends Card{
 			new ImageIcon("./img/Blurs/Peashooter.png"));
 	}
 	
-	public PeaShooter CreatePlant()
+	public PeaShooter CreatePlant(int X, int Y)
 	{
-		return new PeaShooter();
+		return new PeaShooter(X, Y);
 	}
 	
 }

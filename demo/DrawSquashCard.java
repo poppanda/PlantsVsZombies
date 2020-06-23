@@ -15,9 +15,9 @@ public class DrawSquashCard extends Card{
 			new ImageIcon("./img/Blurs/Squash.png"));
 	}
 	
-	public Squash CreatePlant()
+	public Squash CreatePlant(int X, int Y)
 	{
-		return new Squash();
+		return new Squash(X, Y);
 	}
 	
 }

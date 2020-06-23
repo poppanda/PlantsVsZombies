@@ -15,9 +15,9 @@ public class DrawThreePeashooterCard extends Card{
 			new ImageIcon("./img/Blurs/ThreePeashooter.png"));
 	}
 	
-	public ThreePeashooter CreatePlant()
+	public ThreePeashooter CreatePlant(int X, int Y)
 	{
-		return new ThreePeashooter();
+		return new ThreePeashooter(X, Y);
 	}
 	
 }

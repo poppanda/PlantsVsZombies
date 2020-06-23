@@ -15,9 +15,9 @@ public class DrawPotatoMineCard extends Card{
 			new ImageIcon("./img/Blurs/PotatoMine.png"));
 	}
 	
-	public PotatoMine CreatePlant()
+	public PotatoMine CreatePlant(int X, int Y)
 	{
-		return new PotatoMine();
+		return new PotatoMine(X, Y);
 	}
 	
 }

@@ -15,9 +15,9 @@ public class DrawSnowPeaCard extends Card{
 			new ImageIcon("./img/Blurs/SnowPea.png"));
 	}
 	
-	public SnowPea CreatePlant()
+	public SnowPea CreatePlant(int X, int Y)
 	{
-		return new SnowPea();
+		return new SnowPea(X, Y);
 	}
 	
 }

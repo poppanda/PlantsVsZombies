@@ -15,9 +15,9 @@ public class DrawSunFlowerCard extends Card{
 			new ImageIcon("./img/Blurs/SunFlower.png"));
 	}
 	
-	public SunFlower CreatePlant()
+	public SunFlower CreatePlant(int X, int Y)
 	{
-		return new SunFlower();
+		return new SunFlower(X, Y);
 	}
 	
 }
