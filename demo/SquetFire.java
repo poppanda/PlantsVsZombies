@@ -3,7 +3,7 @@ package demo;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
-public class SquetFire extends plants implements Runnable {
+public class SquetFire extends plants {
 	
 	int idx = 0;
 	int x ;

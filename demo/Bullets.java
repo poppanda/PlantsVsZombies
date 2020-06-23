@@ -3,7 +3,7 @@ package demo;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
-public class Bullets extends plants implements Runnable {
+public class Bullets extends plants{
 
 	int x;
 	int y;

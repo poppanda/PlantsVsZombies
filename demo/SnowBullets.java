@@ -3,7 +3,7 @@ package demo;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
-public class SnowBullets extends plants implements Runnable {
+public class SnowBullets extends plants  {
 
 	int x;
 	int y;

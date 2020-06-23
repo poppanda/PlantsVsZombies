@@ -3,7 +3,7 @@ package demo;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
-public class SunFlower extends plants implements Runnable {
+public class SunFlower extends plants  {
 	int idx = 0;
 	int x ;
 	int y ;

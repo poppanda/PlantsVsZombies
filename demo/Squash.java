@@ -6,7 +6,7 @@ import java.awt.Graphics;
 
 import javax.swing.ImageIcon;
 
-public class Squash extends plants implements Runnable {
+public class Squash extends plants  {
 	
 	
 	int x ;

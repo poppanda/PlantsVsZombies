@@ -3,7 +3,7 @@ package demo;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
-public class Repeter extends plants implements Runnable {
+public class Repeter extends plants {
 	int idx = 0;
 	int shoot = 13;
 	int x ;

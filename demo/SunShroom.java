@@ -5,7 +5,7 @@ package demo;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
-public class SunShroom extends plants implements Runnable {
+public class SunShroom extends plants  {
 	
 	int idx = 0;
 	int x ;

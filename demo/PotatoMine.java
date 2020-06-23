@@ -8,7 +8,7 @@ import java.util.LinkedList;
 
 import javax.swing.ImageIcon;
 
-public class PotatoMine extends plants implements Runnable {
+public class PotatoMine extends plants  {
 	
 	int idx = 0;
 	int shoot = 13;

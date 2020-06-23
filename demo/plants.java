@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 import javax.swing.JLabel;
 
-public class plants extends JLabel{
+public class plants extends JLabel implements Runnable{
 	
 		//»ù´¡ÊôÐÔ
 		protected int HP;
@@ -266,4 +266,10 @@ public class plants extends JLabel{
 	    	  g.drawImage(getDrawGroup().get(num),getX(),getY(),getWidth(),getHeight(),null);
 	    	  
 	      }
+		
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			
+		}
 }

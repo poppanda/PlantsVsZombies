@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 import javax.swing.ImageIcon;
 
-public class Chomper extends plants implements Runnable {
+public class Chomper extends plants  {
 	
 	int x ;
 	int y ;

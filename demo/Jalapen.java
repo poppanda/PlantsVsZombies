@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 import javax.swing.ImageIcon;
 
-public class Jalapen extends plants implements Runnable {
+public class Jalapen extends plants  {
 	
 	int idx = 0;
 	int shoot = 13;

@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 import javax.swing.ImageIcon;
 
-public class HypnoShroom extends plants implements Runnable {
+public class HypnoShroom extends plants  {
 	
 	int x ;
 	int y ;

@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 import javax.swing.ImageIcon;
 
-public class PeaShooter extends plants implements Runnable {
+public class PeaShooter extends plants {
 	int idx = 0;
 	int shoot = 13;
 	int x ;

@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 import javax.swing.ImageIcon;
 
-public class WallNut extends plants implements Runnable {
+public class WallNut extends plants  {
 	int idx = 0;
 	int x ;
 	int y ;
