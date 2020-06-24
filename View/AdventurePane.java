@@ -9,6 +9,10 @@ import javax.swing.*;
 import java.util.Timer;
 import java.util.LinkedList;
 import java.util.TimerTask;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.*;
 
 public class AdventurePane extends JLayeredPane implements Runnable
@@ -17,6 +21,7 @@ public class AdventurePane extends JLayeredPane implements Runnable
     Thread moveCardThread = null;
     PlantBar plantBar = new PlantBar(moveToZombie, this);
     PlantGroup plantGroup = new PlantGroup(moveToZombie);
+    Battle battle = new Battle();
     AddPlantPlain addPlantPlain = new AddPlantPlain();
     Blur blur = new Blur();
     
@@ -135,8 +140,9 @@ public class AdventurePane extends JLayeredPane implements Runnable
                         locX = (locX - 55) / 80 * 80 + 55;
                         locY = (locY - 100) / 97 * 97 + 100;
                         plants nxt = card.CreatePlant(locX, locY);
+                        battle.addPlant(nxt);
                         add(nxt, JLayeredPane.POPUP_LAYER);
-                        //plantsList.add(nxt);
+                        battle.addPlant(nxt);
                         card.setState(card.FILL_STATE);
                     }
                     remove(blur);
@@ -164,19 +170,6 @@ public class AdventurePane extends JLayeredPane implements Runnable
     }
     private void ShowPlants(Thread before)
     {
-        startBtn.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                plantGroup.removeALL(AdventurePane.this);
-                plantBar.setFightState();
-                Thread groupThread = plantGroup.moveTo(plantGroup.InvisibleX, plantGroup.InvisibleY, 100, null);
-                groupThread.start();
-                remove(startBtn);
-                moveBG(-200, 0, 2, groupThread).start();
-            }
-        });
         startBtn.setBounds(151, 543, 158, 45);
         startBtn.setVisible(false);
         new Thread(()->{
@@ -213,6 +206,22 @@ public class AdventurePane extends JLayeredPane implements Runnable
         add(plantGroup, JLayeredPane.POPUP_LAYER, 1);
         barThread.start();
         groupThread.start();
+        startBtn.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                plantGroup.removeALL(AdventurePane.this);
+                plantBar.setFightState();
+                Thread groupThread = plantGroup.moveTo(plantGroup.InvisibleX, plantGroup.InvisibleY, 100, null);
+                groupThread.start();
+                remove(startBtn);
+                Thread moveThread =  moveBG(-200, 0, 2, groupThread);
+                moveThread.start();
+                battle.before = moveThread;
+                new Thread(battle).start();
+            }
+        });
         ShowPlants(groupThread);
     }
 }
@@ -276,5 +285,33 @@ class AddPlantPlain extends JLabel
         setBounds(0, 0, 810, 620);
         addMouseListener(click);
         addMouseMotionListener(coor);
+    }
+}
+
+class Battle implements Runnable
+{
+    private LinkedList<plants> plantList = new LinkedList<plants>();
+    private LinkedList<ZombieBasis> zombieList = new LinkedList<ZombieBasis>();
+    private ExecutorService livePlants = new ThreadPoolExecutor(45, 45, 500, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>());
+    private ExecutorService liveZombies = new ThreadPoolExecutor(45, 45, 500, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>());
+    
+    public Thread before;
+    void addPlant(plants P)
+    {
+        plantList.add(P);
+        livePlants.submit(new Thread(P));
+    }
+    void addZombie(ZombieBasis Z)
+    {
+        zombieList.add(Z);
+        liveZombies.submit(new Thread(Z));
+    }
+    public void run()
+    {
+        int rest = 10;
+        while(rest != 0)
+        {
+            
+        }
     }
 }
