@@ -6,6 +6,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class DrawSunShroomCard extends Card{
+	public int x;
+	public int y;
 	public DrawSunShroomCard(AdventurePane pane) {
 		
 		super(pane, 159, 75, 4000, 
@@ -17,7 +19,16 @@ public class DrawSunShroomCard extends Card{
 	
 	public SunShroom CreatePlant(int X, int Y)
 	{
+		this.x = X;
+		this.y = Y;
 		return new SunShroom(X, Y);
 	}
 	
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
 }

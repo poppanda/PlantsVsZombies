@@ -4,9 +4,9 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
 public class SnowPea extends plants  {
-	int idx = 0;
-	int x ;
-	int y ;
+	
+	public int x ;
+	public int y ;
 	int width = 100;
 	int height = 100;
 	public SnowPea(int X, int Y) {
@@ -14,6 +14,8 @@ public class SnowPea extends plants  {
 		HP = 6;
 		CD = 7;
 		attack = 3;
+		this.x = X;
+		this.y = Y;
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
 	    for(int i = 0; i < 15; i++) {
@@ -29,6 +31,7 @@ public class SnowPea extends plants  {
 	        {
 	        	if(isAlive(this.HP)) {
 	            try{
+	            	state = AttACK_STATE;
 	            	if(num <= 14) {
 		                Thread.sleep(100);
 		                
@@ -51,4 +54,11 @@ public class SnowPea extends plants  {
 	        }
 }
 	 
+		public int getX() {
+			return x;
+		}
+
+		public int getY() {
+			return y;
+		}
 }

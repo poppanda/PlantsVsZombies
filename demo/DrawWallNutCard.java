@@ -6,6 +6,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class DrawWallNutCard extends Card{
+	public int x;
+	public int y;
 	public DrawWallNutCard(AdventurePane pane) {
 		
 		super(pane, 212, 72, 12000, 
@@ -17,7 +19,16 @@ public class DrawWallNutCard extends Card{
 	
 	public WallNut CreatePlant(int X, int Y)
 	{
+		this.x = X;
+		this.y = Y;
 		return new WallNut(X, Y);
 	}
 	
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
 }

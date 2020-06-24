@@ -8,14 +8,15 @@ import javax.swing.ImageIcon;
 
 public class Squash extends plants  {
 	
-	
-	int x ;
-	int y ;
+	public int x ;
+	public int y ;
 	public Squash(int X, int Y) {
 		super();
 		HP = 6;
 		CD = 10;
 		attack = 10;
+		this.x = X;
+		this.y = Y;
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
 	    for(int i = 0; i < 17; i++) {
@@ -82,6 +83,13 @@ public class Squash extends plants  {
 	        }
 }
 	 
+		public int getX() {
+			return x;
+		}
+
+		public int getY() {
+			return y;
+		}
 }
 
 

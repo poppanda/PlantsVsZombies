@@ -6,6 +6,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class DrawRepeaterCard extends Card{
+	public int x;
+	public int y;
 	public DrawRepeaterCard(AdventurePane pane) {
 		
 		super(pane, 159, 72, 7000, 
@@ -17,7 +19,17 @@ public class DrawRepeaterCard extends Card{
 	
 	public Repeater CreatePlant(int X, int Y)
 	{
+		this.x = X;
+		this.y = Y;
 		return new Repeater(X, Y);
+	}
+	
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
 	}
 	
 }

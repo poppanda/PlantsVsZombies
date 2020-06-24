@@ -6,6 +6,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class DrawPeaShooterCard extends Card{
+	public int x;
+	public int y;
 	public DrawPeaShooterCard(AdventurePane pane) {
 		
 		super(pane, 53, 72, 6000, 
@@ -17,7 +19,16 @@ public class DrawPeaShooterCard extends Card{
 	
 	public PeaShooter CreatePlant(int X, int Y)
 	{
+		this.x = X;
+		this.y = Y;
 		return new PeaShooter(X, Y);
 	}
 	
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
 }

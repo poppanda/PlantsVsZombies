@@ -3,10 +3,10 @@ package demo;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
-public class SnowBullets extends plants  {
+public class SnowBullets extends plants {
 
-	int x;
-	int y;
+	public int x;
+	public int y;
 	int width = 20;
 	int height = 20;
 	
@@ -15,7 +15,8 @@ public class SnowBullets extends plants  {
 		CD = 1;
 		attack = 2;
 		setBounds(X, Y, 100, 100);
-		x = X;
+		this.x = X;
+		this.y = Y;
 	    setVisible(true);
 	    getSnowbullets().add(new ImageIcon("SnowPea/0.png" ).getImage());
 	    DrawGroup = Snowbullets;
@@ -26,11 +27,11 @@ public class SnowBullets extends plants  {
 	        while(true)
 	        {
 	            try{
-	            	
+	            	repaint();
 	            	Thread.sleep(100);
 	            		x += 15;
-	            		repaint();
-	            		if(isHit(x,y)) {
+	            		
+	            		if(state == HIT_STATE) {
 	            			DrawGroup = Bulletsbomb;
 	            			repaint();
 	            			break;
@@ -46,10 +47,18 @@ public class SnowBullets extends plants  {
 }
 	  
 	  //判断子弹是否可以击中僵尸
-	  public Boolean isHit(int x,int y) {
-		  if(this.x == x && this.y == y) {
-			  return true;
+	  public int isHit(int x,int y) {
+		  if(this.y == y) {
+			  return state = 2;
 		  }
-		  return false;
+		  return state = 1;
 	  }
+	  
+	  public int getX() {
+			return x;
+		}
+
+		public int getY() {
+			return y;
+		}
 }

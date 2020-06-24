@@ -10,10 +10,8 @@ import javax.swing.ImageIcon;
 
 public class ThreePeashooter extends plants  {
 	
-	int idx = 0;
-	int shoot = 13;
-	int x ;
-	int y ;
+	public int x ;
+	public int y ;
 	int width = 100;
 	int height = 100;
 	static LinkedList<Image> pic= new LinkedList<>();
@@ -23,6 +21,8 @@ public class ThreePeashooter extends plants  {
 		HP = 6;
 		CD = 6;
 		attack = 4;
+		this.x = X;
+		this.y = Y;
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
 	    for(int i = 0; i < 17; i++) {
@@ -38,6 +38,7 @@ public class ThreePeashooter extends plants  {
 	        {
 	        	if(isAlive(this.HP)) {
 	            try{
+	            	state = AttACK_STATE;
 	            	if(num <= 15) {
 	                Thread.sleep(100);
 	                
@@ -60,5 +61,12 @@ public class ThreePeashooter extends plants  {
 	        }
 }
 	 
+		public int getX() {
+			return x;
+		}
+
+		public int getY() {
+			return y;
+		}
 }
 

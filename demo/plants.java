@@ -12,6 +12,8 @@ public class plants extends JLabel implements Runnable{
 		protected int HP;
 		protected int CD;
 		protected int attack;
+		public int state;
+		public final int AttACK_STATE = 1, HIT_STATE = 2, BOMB_STATE = 3;
 		
 		public int getHP() {
 			return HP;
@@ -271,5 +273,21 @@ public class plants extends JLabel implements Runnable{
 		public void run() {
 			// TODO Auto-generated method stub
 			
+		}
+		
+		public Bullets getBullet(int x, int y) {
+			return new Bullets(x, y);
+		}
+		
+		public Bomb getBomb(int x, int y) {
+			return new Bomb(x, y);
+		}
+		
+		public boolean involve(int x, int y) {
+			return true;
+		}
+		
+		public int isHit(int x, int y) {
+			return state = 2;
 		}
 }

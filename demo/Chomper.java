@@ -6,13 +6,15 @@ import javax.swing.ImageIcon;
 
 public class Chomper extends plants  {
 	
-	int x ;
-	int y ;
+	public int x ;
+	public int y ;
 	public Chomper(int X, int Y) {
 		super();
 		HP = 6;
 		CD = 10;
 		attack = 10;
+		this.x = X;
+		this.y = Y;
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
 	    for(int i = 0; i < 13; i++) {
@@ -89,5 +91,13 @@ public class Chomper extends plants  {
 	        	}
 	        }
 }
+	  
+		public int getX() {
+			return x;
+		}
+
+		public int getY() {
+			return y;
+		}
 	 
 }

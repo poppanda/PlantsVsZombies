@@ -6,6 +6,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class DrawChomperCard extends Card{
+	
+	public int x;
+	public int y;
 	public DrawChomperCard(AdventurePane pane) {
 		
 		super(pane, 318, 72, 9000, 
@@ -17,7 +20,17 @@ public class DrawChomperCard extends Card{
 	
 	public Chomper CreatePlant(int X, int Y)
 	{
+		this.x = X;
+		this.y = Y;
 		return new Chomper(X, Y);
+	}
+	
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
 	}
 	
 }

@@ -6,14 +6,16 @@ import javax.swing.ImageIcon;
 
 public class HypnoShroom extends plants  {
 	
-	int x ;
-	int y ;
+	public int x ;
+	public int y ;
 	public HypnoShroom(int X, int Y) {
 		
 		super();
 		HP = 6;
 		CD = 10;
 		attack = 10;
+		this.x = X;
+		this.y = Y;
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
 	    for(int i = 0; i < 15; i++) {
@@ -83,4 +85,11 @@ public class HypnoShroom extends plants  {
 	        }
 }
 	 
+		public int getX() {
+			return x;
+		}
+
+		public int getY() {
+			return y;
+		}
 }

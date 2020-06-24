@@ -10,10 +10,8 @@ import javax.swing.ImageIcon;
 
 public class PotatoMine extends plants  {
 	
-	int idx = 0;
-	int shoot = 13;
-	int x ;
-	int y ;
+	public int x ;
+	public int y ;
 	int width = 100;
 	int height = 100;
 	static LinkedList<Image> pic= new LinkedList<>();
@@ -23,6 +21,8 @@ public class PotatoMine extends plants  {
 		HP = 4;
 		CD = 7;
 		attack = 4;
+		this.x = X;
+		this.y = Y;
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
 	    for(int i = 0; i < 8; i++) {
@@ -63,7 +63,14 @@ public class PotatoMine extends plants  {
 	  public int boom() {
 		  return this.HP = 0;
 	  }
-	 
+	  
+		public int getX() {
+			return x;
+		}
+
+		public int getY() {
+			return y;
+		}
 }
 
 

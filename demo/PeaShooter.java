@@ -7,10 +7,9 @@ import java.util.LinkedList;
 import javax.swing.ImageIcon;
 
 public class PeaShooter extends plants {
-	int idx = 0;
-	int shoot = 13;
-	int x ;
-	int y ;
+	
+	public int x ;
+	public int y ;
 	int width = 100;
 	int height = 100;
 	static LinkedList<Image> pic= new LinkedList<>();
@@ -20,6 +19,8 @@ public class PeaShooter extends plants {
 		HP = 6;
 		CD = 6;
 		attack = 2;
+		this.x = X;
+		this.y = Y;
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
 	    for(int i = 0; i < 13; i++) {
@@ -35,6 +36,7 @@ public class PeaShooter extends plants {
 	        {
 	        	if(isAlive(this.HP)) {
 	            try{
+	            	state = AttACK_STATE;
 	            	if(num <= 12) {
 	                Thread.sleep(100);
 	                
@@ -57,4 +59,11 @@ public class PeaShooter extends plants {
 	        }
 }
 	 
+		public int getX() {
+			return x;
+		}
+
+		public int getY() {
+			return y;
+		}
 }
