@@ -14,18 +14,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileReader;
 
-//the file's form is:  wave+count
+//the file's form is:  wave(‘1’is a big wave,‘0’ is normal wave)+count(the count of all types zombies)
 public class Zombiefactory {
-	ExecutorService pool=Executors.newCachedThreadPool();
-	int i,num;char c[];
-	int delaytime ;
-	final int BigWave = 1;
-	final int NormWave = 0;
-	final int ZombieNum = 1,FlagNum = 3,ConeheadNum = 2,BucketheadNum = 4;
-	int style = (int) (Math.random() * 4)+1;
-	String s;
-	public void getZombie(String filename)
+	public void getZombie(String filename，,AdventurePane pane)
 	{
+		String s;
+		int i,num;char c[];
+		final char BigWave = '1';
+		final char NormWave = '0';
+		final int ZombieNum = 1,FlagNum = 3,ConeheadNum = 2,BucketheadNum = 4;
 		try
 		{
 			BufferedReader in=new BufferedReader(new FileReader(filename));
@@ -34,13 +31,9 @@ public class Zombiefactory {
 				while((s = in.readLine())!=null)
 				{
 					c = s.toCharArray();
-					if(c[0]=='0')
-					{
-						delaytime = (int) (Math.random() * 2000)+2000;
-						style = (int) (Math.random() * 2)+1;
-					}
-						
-					if(c[0]=='1')
+					delaytime = (int) (Math.random() * 2000)+2000;
+					style = (int) (Math.random() * 2)+1;	
+					if(c[0]==BigWave)
 					{
 						delaytime = (int) (Math.random() * 2000);
 						style = (int) (Math.random() * 4)+1;
@@ -50,25 +43,24 @@ public class Zombiefactory {
 					{
 						if(style==FlagNum)
 						{
-							pool.execute(new FlagZombie(delaytime));
+							pane.addZombie(new FlagZombie(delaytime));
 						}
 						if (style==ConeheadNum)
 						{
-							pool.execute(new ConeheadZombie(delaytime));
+							pane.addZombie(new ConeheadZombie(delaytime));
 						}
 						if(style==BucketheadNum)
 						{
-							pool.execute(new BucketheadZombie(delaytime));
+							pane.addZombie(new BucketheadZombie(delaytime));
 						}
 						if(style==ZombieNum)
 						{
-							pool.execute(new Zombie(delaytime));
+							pane.addZombie(new Zombie(delaytime));
 						}
 					}
 					
 				}
 				in.close();
-				pool.shutdown();
 			} 
 			catch (IOException e)
 			{
