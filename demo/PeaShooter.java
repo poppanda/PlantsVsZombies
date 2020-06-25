@@ -26,17 +26,24 @@ public class PeaShooter extends plants {
 	    for(int i = 0; i < 13; i++) {
 	    	getPeashooter().add(new ImageIcon("Peashooter/Peashooter/Peashooter_" + i + ".png").getImage());
 	    }
+	  
 	    DrawGroup = Peashooter;
 	}
 
 	  @Override
 	    public void run()
 	    {
+		  
 	        while(true)
 	        {
 	        	if(isAlive(this.HP)) {
 	            try{
 	            	state = AttACK_STATE;
+	            	if(BulletsList.size() == 0) {
+	            		BulletsList.add(new Bullets(x+10,y));
+	            	}
+	            	Thread t = new Thread(BulletsList.getFirst());
+	            	t.start();
 	            	if(num <= 12) {
 	                Thread.sleep(100);
 	                

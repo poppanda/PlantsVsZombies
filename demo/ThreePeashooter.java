@@ -39,6 +39,17 @@ public class ThreePeashooter extends plants  {
 	        	if(isAlive(this.HP)) {
 	            try{
 	            	state = AttACK_STATE;
+	            	if(BulletsList.size() == 0) {
+	            		BulletsList.add(new Bullets(x+10,y));
+	            		BulletsList.add(new Bullets(x+40,y));
+	            		BulletsList.add(new Bullets(x+70,y));
+	            	}
+	            	Thread t1 = new Thread(BulletsList.getFirst());
+	            	t1.start();
+	            	Thread t2 = new Thread(BulletsList.get(1));
+	            	t2.start();
+	            	Thread t3 = new Thread(BulletsList.getLast());
+	            	t3.start();
 	            	if(num <= 15) {
 	                Thread.sleep(100);
 	                

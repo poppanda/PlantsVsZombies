@@ -93,6 +93,7 @@ public class plants extends JLabel implements Runnable{
 		LinkedList<Image> SunShroomBig = new LinkedList<>();
 		LinkedList<Image> Bulletsbomb = new LinkedList<>();
 		LinkedList<Image> Snowbullets = new LinkedList<>();
+		LinkedList<Bullets> BulletsList = new LinkedList<Bullets>();
 		
 		public int num = 0;
 		
@@ -261,6 +262,14 @@ public class plants extends JLabel implements Runnable{
 		public void setSquashAttack(LinkedList<Image> squashAttack) {
 			SquashAttack = squashAttack;
 		}
+		
+		public LinkedList<Bullets> getBulletsList() {
+			return BulletsList;
+		}
+		public void setBulletsList(LinkedList<Bullets> bulletsList) {
+			BulletsList = bulletsList;
+		}
+		
 		@Override
 	      public void paint(Graphics g)
 	      {

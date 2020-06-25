@@ -7,8 +7,8 @@ public class Bullets extends plants {
 
 	public int x;
 	public int y;
-	int width = 200;
-	int height = 200;
+	int width = 20;
+	int height = 20;
 	
 	public Bullets(int X, int Y) {
 		super();
@@ -65,4 +65,14 @@ public class Bullets extends plants {
 		public int getY() {
 			return y;
 		}
+		
+		 public Bullets getBullet() {
+			  Bullets ret =BulletsList.getFirst();
+			  BulletsList.removeFirst();
+			  return ret;
+		  }
+		  
+		  public boolean remainBullets() {
+			  return BulletsList.size() != 0;
+		  }
 }

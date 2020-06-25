@@ -32,6 +32,11 @@ public class SnowPea extends plants  {
 	        	if(isAlive(this.HP)) {
 	            try{
 	            	state = AttACK_STATE;
+	            	if(BulletsList.size() == 0) {
+	            		BulletsList.add(new Bullets(x+10,y));
+	            	}
+	            	Thread t = new Thread(BulletsList.getFirst());
+	            	t.start();
 	            	if(num <= 14) {
 		                Thread.sleep(100);
 		                
