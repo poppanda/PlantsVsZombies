@@ -33,8 +33,8 @@ public class Bullets extends plants {
 	            try{
 	            	DrawGroup = Bullets;
 	            	Thread.sleep(100);
-	            		x += 15;
 	            		repaint();
+	            		this.setBounds(x+20, y, this.width, this.height);
 	            		if(state == HIT_STATE) {
 	            			DrawGroup = Bulletsbomb;
 	            			repaint();
@@ -50,7 +50,7 @@ public class Bullets extends plants {
 	
 }
 	  
-	  //判断子弹是否可以击中僵尸
+	  //to determine if a bulletcan hit a zombie
 	  public int isHit(int x,int y) {
 		  if(this.y == y) {
 			  return state = HIT_STATE;

@@ -29,7 +29,7 @@ public class SnowBullets extends plants {
 	            try{
 	            	repaint();
 	            	Thread.sleep(100);
-	            		x += 15;
+	            	this.setBounds(x+20, y, this.width, this.height);
 	            		
 	            		if(state == HIT_STATE) {
 	            			DrawGroup = Bulletsbomb;
@@ -46,7 +46,7 @@ public class SnowBullets extends plants {
 	
 }
 	  
-	  //判断子弹是否可以击中僵尸
+	//to determine if a bulletcan hit a zombie
 	  public int isHit(int x,int y) {
 		  if(this.y == y) {
 			  return state = 2;

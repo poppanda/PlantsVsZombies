@@ -19,7 +19,7 @@ public class Repeter extends plants {
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
 	    for(int i = 0; i < 13; i++) {
-	    	getRepeater().add(new ImageIcon("Repeater_" + idx + ".png").getImage());
+	    	getRepeater().add(new ImageIcon("Repeater_" + i + ".png").getImage());
 	    }
 	    DrawGroup = Repeater;
 	}
