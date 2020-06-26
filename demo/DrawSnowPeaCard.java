@@ -22,6 +22,4 @@ public class DrawSnowPeaCard extends Card{
 		this.y = Y;
 		return new SnowPea(X, Y);
 	}
-	
-	
 }

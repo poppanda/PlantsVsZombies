@@ -6,9 +6,10 @@ import javax.swing.JFrame;
 
 public class LaunchFrame extends JFrame
 {
-    private LaunchPane launchPane = new LaunchPane(this);
+    private LaunchPane launchPane;
     private AdventurePane adventurePane;
     public void runLaunchPane(){
+        launchPane = new LaunchPane(this);
         setLayeredPane(launchPane);
     }
     public void runAdventurePane()
