@@ -27,7 +27,6 @@ public class LaunchFrame extends JFrame
     }
     public static void main(String[] args)
     {
-        System.out.println(Runtime.getRuntime().maxMemory());
         LaunchFrame launchFrame = new LaunchFrame();
         launchFrame.runAdventurePane();
     }

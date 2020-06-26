@@ -281,7 +281,7 @@ public class plants extends JLabel implements Runnable{
 	      public void paint(Graphics g)
 	      {
 	    	  super.paint(g);
-	    	  g.drawImage(getDrawGroup().get(num),getX(),getY(),getWidth(),getHeight(),null);
+	    	  g.drawImage(getDrawGroup().get(num),0, 0,null);
 	    	  
 	      }
 		
