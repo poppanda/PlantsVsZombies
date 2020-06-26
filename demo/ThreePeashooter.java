@@ -23,6 +23,7 @@ public class ThreePeashooter extends plants  {
 		this.y = Y;
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
+	    
 	    for(int i = 0; i < 16; i++) {
 	    	getThreePeashooter().add(new ImageIcon("./img/Plants/Threepeater/Threepeater_" + i + ".png").getImage());
 	    }

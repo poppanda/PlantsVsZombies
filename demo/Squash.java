@@ -17,6 +17,7 @@ public class Squash extends plants  {
 		this.y = Y;
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
+	    
 	    for(int i = 0; i < 17; i++) {
 	    	getSquash().add(new ImageIcon("./img/Plants/Squash/Squash/Squash_" + i + ".png").getImage());
 	    }

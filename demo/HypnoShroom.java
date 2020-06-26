@@ -15,6 +15,7 @@ public class HypnoShroom extends plants  {
 		this.y = Y;
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
+	    
 	    for(int i = 0; i < 15; i++) {
 	    	getHypnoShroom().add(new ImageIcon("./img/Plants/HypnoShroom/HypnoShroom/HypnoShroom_" + i + ".png").getImage());
 	    }

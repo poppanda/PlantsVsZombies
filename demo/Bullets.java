@@ -17,9 +17,8 @@ public class Bullets extends plants {
 		setBounds(X, Y, 100, 100);
 		
 	    setVisible(true);
+	    
 	    getBullets().add(new ImageIcon("./img/Bullets/PeaNormal/PeaNormal_0.png" ).getImage());
-	   
-	   
 	    getBulletsbomb().add(new ImageIcon("./img/Bullets/PeaNormalExplode/PeaNormalExplode_0.png" ).getImage());
 	    
 	}

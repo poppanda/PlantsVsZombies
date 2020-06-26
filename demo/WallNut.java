@@ -16,6 +16,7 @@ public class WallNut extends plants  {
 		this.y = Y;
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
+	   
 	    for(int i = 0; i < 16; i++) {
 	    	getWallnut().add(new ImageIcon("./img/Plants/WallNut/WallNut/WallNut_" + i + ".png").getImage());
 	    }

@@ -18,6 +18,7 @@ public class SunShroom extends plants  {
 		this.y = Y;
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
+	    
 	    for(int i = 0; i < 10; i++) {
 	    	getSunShroom().add(new ImageIcon("./img/Plants/SunShroom/SunShroom/SunShroom_" + i + ".png").getImage());
 	    }

@@ -16,6 +16,7 @@ public class SnowBullets extends plants {
 		this.x = X;
 		this.y = Y;
 	    setVisible(true);
+	    
 	    getSnowbullets().add(new ImageIcon("./img/Bullets/PeaNormal/PeaNormal_0.png" ).getImage());
 	    DrawGroup = Snowbullets;
 	}

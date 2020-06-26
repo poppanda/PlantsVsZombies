@@ -23,6 +23,7 @@ public class PotatoMine extends plants  {
 		this.y = Y;
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
+	    
 	    for(int i = 0; i < 8; i++) {
 	    	getPotatoMine().add(new ImageIcon("./img/Plants/PotatoMine/PotatoMine/PotatoMine_" + i + ".png").getImage());
 	    }

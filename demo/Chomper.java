@@ -15,6 +15,7 @@ public class Chomper extends plants  {
 		this.y = Y;
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
+	    
 	    for(int i = 0; i < 13; i++) {
 	    	getChomper().add(new ImageIcon("./img/Plants/Chomper/Chomper/Chomper_" + i + ".png").getImage());
 	    }

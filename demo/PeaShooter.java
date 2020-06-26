@@ -21,6 +21,7 @@ public class PeaShooter extends plants {
 		this.y = Y;
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
+	    
 	    for(int i = 0; i < 13; i++) {
 	    	getPeashooter().add(new ImageIcon("./img/Plants/Peashooter/Peashooter_" + i + ".png").getImage());
 	    }
