@@ -18,10 +18,6 @@ public class Repeater extends plants {
 	    setVisible(true);
 	    for(int i = 0; i < 15; i++) {
 	    	getRepeater().add(new ImageIcon("./img/Plants/RepeaterPea/RepeaterPea_" + i + ".png").getImage());
-
-	    for(int i = 0; i < 13; i++) {
-	    	getRepeater().add(new ImageIcon("./img/Plants/Repeater_" + i + ".png").getImage());
-
 	    }
 	    DrawGroup = Repeater;
 	}
@@ -34,24 +30,16 @@ public class Repeater extends plants {
 	        {
 	        	if(isAlive(this.HP)) {
 	            try{
-	            	state = AttACK_STATE;
+	            	if(num == 2) state = ATTACK_STATE;
+	            	else state = NORMAL_STATE;
 	            	if(BulletsList.size() == 0) {
 	            		BulletsList.add(new Bullets(x+10,y));
 	            		BulletsList.add(new Bullets(x+40,y));
 	            	}
-	            	Thread t1 = new Thread(BulletsList.getFirst());
-	            	t1.start();
-	            	Thread t2 = new Thread(BulletsList.getLast());
-	            	t2.start();
-	            	if(num <= 14) {
-		                Thread.sleep(100);
-		                
-		                repaint();
-		                num ++;
-		            	}
-		            	else {
-		            		num = 0;
-		            	}
+	            	
+	            	Thread.sleep(100);
+	                repaint();
+	                num = (num + 1) % 15;
 	            }catch(InterruptedException e)
 	            {
 	                e.printStackTrace();
@@ -65,5 +53,14 @@ public class Repeater extends plants {
 	        }
 }
 
+	  public Bullets getBullet() {
+		  Bullets ret =BulletsList.getFirst();
+		  BulletsList.removeFirst();
+		  return ret;
+	  }
+	  
+	  public boolean remainBullets() {
+		  return BulletsList.size() != 0;
+	  }
 }
 

@@ -37,21 +37,14 @@ public class PeaShooter extends plants {
 	        {
 	        	if(isAlive(this.HP)) {
 	            try{
-	            	state = AttACK_STATE;
+	            	if(num == 3) state = ATTACK_STATE;
+	            	else state = NORMAL_STATE;
 	            	if(BulletsList.size() == 0) {
 	            		BulletsList.add(new Bullets(x+10,y));
 	            	}
-	            	Thread t = new Thread(BulletsList.getFirst());
-	            	t.start();
-	            	if(num <= 12) {
-	                Thread.sleep(100);
-	                
+	            	Thread.sleep(100);
 	                repaint();
-	                num ++;
-	            	}
-	            	else {
-	            		num = 0;
-	            	}
+	                num = (num + 1) % 12;
 	            }catch(InterruptedException e)
 	            {
 	                e.printStackTrace();
@@ -64,5 +57,15 @@ public class PeaShooter extends plants {
 	        	}
 	        }
 }
+	  
+	  public Bullets getBullet() {
+		  Bullets ret =BulletsList.getFirst();
+		  BulletsList.removeFirst();
+		  return ret;
+	  }
+	  
+	  public boolean remainBullets() {
+		  return BulletsList.size() != 0;
+	  }
 	 
 }

@@ -9,7 +9,7 @@ public class WallNut extends plants  {
 	int height = 100;
 	public WallNut(int X, int Y) {
 		super();
-		HP = 3;
+		HP = 15;
 		CD = 15;
 		attack = 0;
 		this.x = X;
@@ -37,39 +37,27 @@ public class WallNut extends plants  {
 	            try{
 	            	if(HP > 10) {
 	            		DrawGroup = Wallnut;
-	            		if(num <= 15) {
+	            		
 	    	                Thread.sleep(100);
-	    	                
+	    	                num = (num + 1) %16;
 	    	                repaint();
-	    	                num ++;
-	    	            	}
-	    	            	else {
-	    	            		num = 0;
-	    	            	}
+	    	               
 	            	}
 	            	else if(HP > 5 && HP < 10) {
 	            		DrawGroup = Wallnut1;
-	            		if(num <= 10) {
+	            		
 	    	                Thread.sleep(100);
-	    	                
+	    	                num = (num + 1) %11;
 	    	                repaint();
-	    	                num ++;
-	    	            	}
-	    	            	else {
-	    	            		num = 0;
-	    	            	}
+	    	               
 	            	}
 	            	else if(HP > 0 && HP < 5) {
 	            		DrawGroup = Wallnut2;
-	            		if(num <= 14) {
+	            		
 	    	                Thread.sleep(100);
-	    	                
+	    	                num = (num + 1) %15;
 	    	                repaint();
-	    	                num ++;
-	    	            	}
-	    	            	else {
-	    	            		num = 0;
-	    	            	}
+	    	               
 	            	}
 	            	else {
 	            		

@@ -15,12 +15,10 @@ public class Bullets extends plants {
 		this.x = X;
 		this.y = Y;
 		setBounds(X, Y, 100, 100);
-		
 	    setVisible(true);
 	    
 	    getBullets().add(new ImageIcon("./img/Bullets/PeaNormal/PeaNormal_0.png" ).getImage());
 	    getBulletsbomb().add(new ImageIcon("./img/Bullets/PeaNormalExplode/PeaNormalExplode_0.png" ).getImage());
-	    
 	}
 	  @Override
 	    public void run()
@@ -56,13 +54,5 @@ public class Bullets extends plants {
 	  }
 	  
 		
-		 public Bullets getBullet() {
-			  Bullets ret =BulletsList.getFirst();
-			  BulletsList.removeFirst();
-			  return ret;
-		  }
-		  
-		  public boolean remainBullets() {
-			  return BulletsList.size() != 0;
-		  }
+		
 }

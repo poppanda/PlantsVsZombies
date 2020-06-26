@@ -23,7 +23,6 @@ public class ThreePeashooter extends plants  {
 		this.y = Y;
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
-	    
 	    for(int i = 0; i < 16; i++) {
 	    	getThreePeashooter().add(new ImageIcon("./img/Plants/Threepeater/Threepeater_" + i + ".png").getImage());
 	    }
@@ -37,27 +36,17 @@ public class ThreePeashooter extends plants  {
 	        {
 	        	if(isAlive(this.HP)) {
 	            try{
-	            	state = AttACK_STATE;
+	            	if(num == 6) state = ATTACK_STATE;
+	            	else state = NORMAL_STATE;
 	            	if(BulletsList.size() == 0) {
 	            		BulletsList.add(new Bullets(x+10,y));
 	            		BulletsList.add(new Bullets(x+40,y));
 	            		BulletsList.add(new Bullets(x+70,y));
 	            	}
-	            	Thread t1 = new Thread(BulletsList.getFirst());
-	            	t1.start();
-	            	Thread t2 = new Thread(BulletsList.get(1));
-	            	t2.start();
-	            	Thread t3 = new Thread(BulletsList.getLast());
-	            	t3.start();
-	            	if(num <= 15) {
 	                Thread.sleep(100);
-	                
+	                num = (num + 1) % 16;
 	                repaint();
-	                num ++;
-	            	}
-	            	else {
-	            		num = 0;
-	            	}
+	             
 	            }catch(InterruptedException e)
 	            {
 	                e.printStackTrace();
@@ -71,5 +60,14 @@ public class ThreePeashooter extends plants  {
 	        }
 }
 	 
+	  public Bullets getBullet() {
+		  Bullets ret =BulletsList.getFirst();
+		  BulletsList.removeFirst();
+		  return ret;
+	  }
+	  
+	  public boolean remainBullets() {
+		  return BulletsList.size() != 0;
+	  }
 }
 

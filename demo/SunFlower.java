@@ -16,7 +16,6 @@ public class SunFlower extends plants  {
 		this.y = Y;
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
-	    
 	    for(int i = 0; i < 18; i++) {
 	    	getSunflower().add(new ImageIcon("./img/Plants/SunFlower/SunFlower_" + i + ".png").getImage());
 	    }
@@ -30,15 +29,9 @@ public class SunFlower extends plants  {
 	        {
 	        	if(isAlive(this.HP)) {
 	            try{
-	            	if(num <= 17) {
 		                Thread.sleep(100);
-		                
+		                num = (num + 1) % 18;
 		                repaint();
-		                num ++;
-		            	}
-		            	else {
-		            		num = 0;
-		            	}
 	            }catch(InterruptedException e)
 	            {
 	                e.printStackTrace();
