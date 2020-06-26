@@ -16,13 +16,9 @@ public class Repeater extends plants {
 		this.y = Y;
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
-	    for(int i = 0; i < 15; i++) {
+	    for(int i = 0; i < 15; i++) 
 	    	getRepeater().add(new ImageIcon("./img/Plants/RepeaterPea/RepeaterPea_" + i + ".png").getImage());
 
-	    for(int i = 0; i < 13; i++) {
-	    	getRepeater().add(new ImageIcon("./img/Plants/Repeater_" + i + ".png").getImage());
-
-	    }
 	    DrawGroup = Repeater;
 	}
 
