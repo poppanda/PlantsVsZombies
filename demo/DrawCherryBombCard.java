@@ -17,8 +17,6 @@ public class DrawCherryBombCard extends Card{
 	
 	public CherryBomb CreatePlant(int X, int Y)
 	{
-		this.x = X;
-		this.y = Y;
 		return new CherryBomb(X, Y);
 	}
 	
