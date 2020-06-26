@@ -12,7 +12,7 @@ import java.awt.Toolkit;
 import java.awt.event.*;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class Card extends JButton
+public abstract class Card extends JButton
 {
     static final long serialVersionUID = 3;
     private ImageIcon LightIcon, DarkIcon, FillIcon,PaintingIcon;
@@ -81,6 +81,7 @@ public class Card extends JButton
         pane.addCard(this);
         addActionListener(click);
     }
+    abstract public plants CreatePlant(int X, int Y);
     public void setPosition(int x, int y)
     {
         this.x = x;

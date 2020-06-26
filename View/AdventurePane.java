@@ -19,9 +19,11 @@ public class AdventurePane extends JLayeredPane implements Runnable
 {
     Thread moveToZombie = moveBG(-590, 0, 3, null);
     Thread moveCardThread = null;
+    Thread battleThread;
+    LaunchFrame frame;
     PlantBar plantBar = new PlantBar(moveToZombie, this);
     PlantGroup plantGroup = new PlantGroup(moveToZombie);
-    Battle battle = new Battle();
+    Battle battle = new Battle(this);
     AddPlantPlain addPlantPlain = new AddPlantPlain();
     Blur blur = new Blur();
     
@@ -141,8 +143,6 @@ public class AdventurePane extends JLayeredPane implements Runnable
                         locY = (locY - 100) / 97 * 97 + 100;
                         plants nxt = card.CreatePlant(locX, locY);
                         battle.addPlant(nxt);
-                        add(nxt, JLayeredPane.POPUP_LAYER);
-                        battle.addPlant(nxt);
                         card.setState(card.FILL_STATE);
                     }
                     remove(blur);
@@ -183,6 +183,7 @@ public class AdventurePane extends JLayeredPane implements Runnable
                     new DrawSunFlowerCard(this),
                     new DrawWallNutCard(this)
                     };
+                    
                 add(startBtn, JLayeredPane.POPUP_LAYER, 0);
             }catch(InterruptedException e){
                 e.printStackTrace();
@@ -191,19 +192,21 @@ public class AdventurePane extends JLayeredPane implements Runnable
     }
     public AdventurePane(LaunchFrame frame)
     {
-        setBounds(0, 0, 810, 600);//frame.getWidth(), frame.getHeight());
+        this.frame = frame;
+        setBounds(0, 0, 810, 600);
         setVisible(true);
-        add(BGImgPanel, JLayeredPane.DEFAULT_LAYER);
+        //add(BGImgPanel, JLayeredPane.DEFAULT_LAYER);
         BGImgPanel.setBounds(0, 0, getWidth(), getHeight());
         BGImgPanel.setVisible(true);
+        add(new Repeater(80, 97));
     }
     public void run()
     {
         moveToZombie.start();
         Thread barThread = new Thread(plantBar);
         Thread groupThread = plantGroup.moveTo(plantGroup.VisibleX, plantGroup.VisibleY, 500, moveToZombie);
-        add(plantBar, JLayeredPane.POPUP_LAYER, 1);
-        add(plantGroup, JLayeredPane.POPUP_LAYER, 1);
+        //add(plantBar, JLayeredPane.POPUP_LAYER, 1);
+        //add(plantGroup, JLayeredPane.POPUP_LAYER, 1);
         barThread.start();
         groupThread.start();
         startBtn.addActionListener(new ActionListener()
@@ -219,10 +222,31 @@ public class AdventurePane extends JLayeredPane implements Runnable
                 Thread moveThread =  moveBG(-200, 0, 2, groupThread);
                 moveThread.start();
                 battle.before = moveThread;
-                new Thread(battle).start();
+                battleThread = new Thread(battle);
+                battleThread.start();
             }
         });
         ShowPlants(groupThread);
+        try{
+            synchronized(battle)
+            {
+                battle.wait();
+            }
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
+        JButton backToMenu = new JButton();
+        backToMenu.setLocation(300, 200);
+        if(battle.win)backToMenu.setIcon(new ImageIcon("./img/Screen/GameVictory.png"));
+        else backToMenu.setIcon(new ImageIcon("./img/Screen/GameLoose.jpg"));
+        add(backToMenu, JLayeredPane.DRAG_LAYER);
+        backToMenu.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                frame.runLaunchPane();
+            }
+        });
     }
 }
 
@@ -292,26 +316,79 @@ class Battle implements Runnable
 {
     private LinkedList<plants> plantList = new LinkedList<plants>();
     private LinkedList<ZombieBasis> zombieList = new LinkedList<ZombieBasis>();
+    private LinkedList<Bullets> bulletList = new LinkedList<Bullets>();
+    //private LinkedList<Bomb> bombList = new LinkedList<Bomb>();
     private ExecutorService livePlants = new ThreadPoolExecutor(45, 45, 500, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>());
     private ExecutorService liveZombies = new ThreadPoolExecutor(45, 45, 500, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>());
-    
+    private ExecutorService liveBullets = new ThreadPoolExecutor(45, 45, 500, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>());
+    public boolean win = false;
+    boolean hasZombie[] = new boolean[]{false, false, false, false, false, false};
+    AdventurePane pane;
+    Battle(AdventurePane pane)
+    {
+        this.pane = pane;
+    }
+    //(locY - 100) / 97 * 97 + 100
     public Thread before;
     void addPlant(plants P)
     {
+        pane.add(P, JLayeredPane.MODAL_LAYER);
         plantList.add(P);
         livePlants.submit(new Thread(P));
     }
-    void addZombie(ZombieBasis Z)
+/*    void addZombie(ZombieBasis Z)
     {
+        pane.add(P, JLayeredPane.MODAL_LAYER);
         zombieList.add(Z);
         liveZombies.submit(new Thread(Z));
-    }
+    }*/
     public void run()
     {
-        int rest = 10;
+        int rest = 10, lineP;
+        try{
+            if(before != null) before.join();
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
+        //while(liveZombies.isTerminated() == false)
         while(rest != 0)
         {
-            
+/*            try{
+                Thread.sleep(100);
+            }catch(InterruptedException e){
+                e.printStackTrace();
+            }
+            for(ZombieBasis z : zombieList)
+            {
+                if(z.disappear == true) zombieList.remove(z);
+                for(Bullets b : bulletList)
+                    if(Math.abs(b.getX() - z.getX()) <= damageDis)
+                        z.getHurt(b.damage);
+                if(z.HP <= 0)
+                {
+                    z.normdie();
+                    continue;
+                }
+            }
+            for(plants p : plantList)
+                if(hasZombie[lineP] && p.state == p.ATTACK_STATE){
+                    while(p.bullet.size())
+                    {
+                        Bullets b = p.getBullet();
+                        bulletList.add(b);
+                        liveBullets.submit(new Thread(b));
+                    }
+                }else if(p.state == p.BOMB_STATE){
+                    Bomb b = p.getBomb();
+                    bombList.add(b);
+                }
+            for(Bomb b : bombList)
+                for(ZombieBasis z : zombieList)
+                    if(b.involve(z.getX(), z.getY()))z.bombdie();
+*/
         }
+        if(rest == 0) win = true;
+        else win = false;
+        Battle.this.notify();
     }
 }
