@@ -3,11 +3,11 @@ package demo;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
-public class Repeter extends plants {
+public class Repeater extends plants {
 
 	int width = 100;
 	int height = 100;
-	public Repeter(int X, int Y) {
+	public Repeater(int X, int Y) {
 		super();
 		HP = 7;
 		CD = 9;
@@ -16,9 +16,12 @@ public class Repeter extends plants {
 		this.y = Y;
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
-	    
 	    for(int i = 0; i < 15; i++) {
 	    	getRepeater().add(new ImageIcon("./img/Plants/RepeaterPea/RepeaterPea_" + i + ".png").getImage());
+
+	    for(int i = 0; i < 13; i++) {
+	    	getRepeater().add(new ImageIcon("./img/Plants/Repeater_" + i + ".png").getImage());
+
 	    }
 	    DrawGroup = Repeater;
 	}
@@ -63,3 +66,4 @@ public class Repeter extends plants {
 }
 
 }
+
