@@ -17,13 +17,13 @@ public class WallNut extends plants  {
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
 	    for(int i = 0; i < 16; i++) {
-	    	getWallnut().add(new ImageIcon("WallNut/WallNut_" + i + ".png").getImage());
+	    	getWallnut().add(new ImageIcon("./img/Plants/WallNut/WallNut/WallNut_" + i + ".png").getImage());
 	    }
 	    for(int i = 0; i < 11; i++) {
-	    	getWallnut1().add(new ImageIcon("Wallnut_cracked1/Wallnut_cracked1_" + i + ".png").getImage());
+	    	getWallnut1().add(new ImageIcon("./img/Plants/WallNut/Wallnut_cracked1/Wallnut_cracked1_" + i + ".png").getImage());
 	    }
 	    for(int i = 0; i < 15; i++) {
-	    	getWallnut2().add(new ImageIcon("Wallnut_cracked2/Wallnut_cracked2_" + i + ".png").getImage());
+	    	getWallnut2().add(new ImageIcon("./img/Plants/WallNut/Wallnut_cracked2/Wallnut_cracked2_" + i + ".png").getImage());
 	    }
 	}
 

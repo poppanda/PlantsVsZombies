@@ -17,7 +17,7 @@ public class SquetFire extends plants {
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
 	    for(int i = 0; i < 8; i++) {
-	    	getJalapenExplode().add(new ImageIcon("Jalapeno/JalapenoExplode/JalaPenoExplode_" + i + ".png").getImage());
+	    	getJalapenExplode().add(new ImageIcon("./img/Plants/Jalapeno/JalapenoExplode/JalaPenoExplode_" + i + ".png").getImage());
 	    }
 	    DrawGroup = JalapenExplode;
 	}

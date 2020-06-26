@@ -16,10 +16,10 @@ public class HypnoShroom extends plants  {
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
 	    for(int i = 0; i < 15; i++) {
-	    	getHypnoShroom().add(new ImageIcon("HypnoShroom/HypnoShroom/HypnoShroom_" + i + ".png").getImage());
+	    	getHypnoShroom().add(new ImageIcon("./img/Plants/HypnoShroom/HypnoShroom/HypnoShroom_" + i + ".png").getImage());
 	    }
 	    for(int i = 0; i < 12; i++) {
-	    	getHypnoShroomSleep().add(new ImageIcon("HypnoShroom/HypnoShroomSleep/HypnoShroomSleep_" + i + ".png").getImage());
+	    	getHypnoShroomSleep().add(new ImageIcon("./img/Plants/HypnoShroom/HypnoShroomSleep/HypnoShroomSleep_" + i + ".png").getImage());
 	    }
 	}
 	

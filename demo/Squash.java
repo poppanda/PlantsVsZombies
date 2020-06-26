@@ -18,13 +18,13 @@ public class Squash extends plants  {
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
 	    for(int i = 0; i < 17; i++) {
-	    	getSquash().add(new ImageIcon("Squash/Squash/Squash_" + i + ".png").getImage());
+	    	getSquash().add(new ImageIcon("./img/Plants/Squash/Squash/Squash_" + i + ".png").getImage());
 	    }
 	   
-	    getSquashAim().add(new ImageIcon("Squash/SquashAim/SquashAim_0.png").getImage());
+	    getSquashAim().add(new ImageIcon("./img/Plants/Squash/SquashAim/SquashAim_0.png").getImage());
 	    
 	    for(int i = 0; i < 4; i++) {
-	    	getSquashAttack().add(new ImageIcon("Squash/SquashAttack/SquashAttack_" + i + ".png").getImage());
+	    	getSquashAttack().add(new ImageIcon("./img/Plants/Squash/SquashAttack/SquashAttack_" + i + ".png").getImage());
 	    }
 	}
 	

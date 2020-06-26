@@ -22,7 +22,7 @@ public class Jalapen extends plants  {
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
 	    for(int i = 0; i < 8; i++) {
-	    	getJalapen().add(new ImageIcon("Jalapeno/Jalapeno/Jalapeno_" + i + ".png").getImage());
+	    	getJalapen().add(new ImageIcon("./img/Plants/Jalapeno/Jalapeno/Jalapeno_" + i + ".png").getImage());
 	    }
 	    DrawGroup = Jalapen;
 	}

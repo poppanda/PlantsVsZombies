@@ -17,7 +17,7 @@ public class SunFlower extends plants  {
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
 	    for(int i = 0; i < 18; i++) {
-	    	getSunflower().add(new ImageIcon("SunFlower/SunFlower_" + i + ".png").getImage());
+	    	getSunflower().add(new ImageIcon("./img/Plants/SunFlower/SunFlower_" + i + ".png").getImage());
 	    }
 	    DrawGroup = Sunflower;
 	}

@@ -22,7 +22,7 @@ public class PeaShooter extends plants {
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
 	    for(int i = 0; i < 13; i++) {
-	    	getPeashooter().add(new ImageIcon("Peashooter/Peashooter/Peashooter_" + i + ".png").getImage());
+	    	getPeashooter().add(new ImageIcon("./img/Plants/Peashooter/Peashooter_" + i + ".png").getImage());
 	    }
 	  
 	    DrawGroup = Peashooter;

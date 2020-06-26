@@ -16,13 +16,13 @@ public class Chomper extends plants  {
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
 	    for(int i = 0; i < 13; i++) {
-	    	getChomper().add(new ImageIcon("Chomper/Chomper/Chomper_" + i + ".png").getImage());
+	    	getChomper().add(new ImageIcon("./img/Plants/Chomper/Chomper/Chomper_" + i + ".png").getImage());
 	    }
 	    for(int i = 0; i < 9; i++) {
-	    	getChomperAttack().add(new ImageIcon("Chomper/ChomperAttack/ChomperAttack_" + i + ".png").getImage());
+	    	getChomperAttack().add(new ImageIcon("./img/Plants/Chomper/ChomperAttack/ChomperAttack_" + i + ".png").getImage());
 	    }
 	    for(int i = 0; i < 6; i++) {
-	    	getChomperDigest().add(new ImageIcon("Chomper/ChomperDigest/ChomperDigest_" + i + ".png").getImage());
+	    	getChomperDigest().add(new ImageIcon("./img/Plants/Chomper/ChomperDigest/ChomperDigest_" + i + ".png").getImage());
 	    }
 	}
 	

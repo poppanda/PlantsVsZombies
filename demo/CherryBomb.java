@@ -17,7 +17,7 @@ public class CherryBomb extends plants  {
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
 	    for(int i = 0; i < 7; i++) {
-	    	getCherrybomb().add(new ImageIcon("CherryBomb/boom/CherryBomb_" + i + ".png").getImage());
+	    	getCherrybomb().add(new ImageIcon("./img/Plants/CherryBomb/CherryBomb_" + i + ".png").getImage());
 	    }
 	    DrawGroup = Cherrybomb;
 	}

@@ -24,7 +24,7 @@ public class PotatoMine extends plants  {
 		setBounds(X, Y, 100, 100);
 	    setVisible(true);
 	    for(int i = 0; i < 8; i++) {
-	    	getPotatoMine().add(new ImageIcon("PotatoMine/PotatoMine/PotatoMine_" + i + ".png").getImage());
+	    	getPotatoMine().add(new ImageIcon("./img/Plants/PotatoMine/PotatoMine/PotatoMine_" + i + ".png").getImage());
 	    }
 	    DrawGroup = PotatoMine;
 	}
