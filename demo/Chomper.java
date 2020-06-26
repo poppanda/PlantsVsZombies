@@ -47,14 +47,20 @@ public class Chomper extends plants  {
 	            try{
 	            	if(canEat(100,100) == false) {
 	            		DrawGroup = Chomper;
+	            		Thread.sleep(100);
+		                repaint();
 	            		num = (num + 1) % 13;
 	            	}
 	            	else if(canEat(100,100)) {
 	            		DrawGroup = ChomperAttack;
+	            		Thread.sleep(100);
+		                repaint();
 	            		num = (num + 1) % 9;
 	            	}
 	            	else if(eating()) {
 	            		DrawGroup = ChomperDigest;
+	            		Thread.sleep(100);
+		                repaint();
 	            		num = (num + 1) % 6;
 	            	}
 	            }catch(InterruptedException e)
