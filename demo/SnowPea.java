@@ -5,8 +5,6 @@ import javax.swing.ImageIcon;
 
 public class SnowPea extends plants  {
 	
-	public int x ;
-	public int y ;
 	int width = 100;
 	int height = 100;
 	public SnowPea(int X, int Y) {
@@ -58,12 +56,5 @@ public class SnowPea extends plants  {
 	        	}
 	        }
 }
-	 
-		public int getX() {
-			return x;
-		}
-
-		public int getY() {
-			return y;
-		}
+	  
 }

@@ -6,8 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class DrawSquashCard extends Card{
-	public int x;
-	public int y;
+	
 	public DrawSquashCard(AdventurePane pane) {
 		
 		super(pane, 106, 75, 15000, 
@@ -24,12 +23,5 @@ public class DrawSquashCard extends Card{
 		return new Squash(X, Y);
 	}
 	
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
 	
 }

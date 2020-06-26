@@ -7,8 +7,6 @@ import javax.swing.JLabel;
 
 public class DrawHypnoShroomCard extends Card{
 	
-	public int x;
-	public int y;
 	public DrawHypnoShroomCard(AdventurePane pane) {
 		
 		super(pane, 371, 72, 6000, 
@@ -24,13 +22,5 @@ public class DrawHypnoShroomCard extends Card{
 		this.y = Y;
 		return new HypnoShroom(X, Y);
 	}
-	
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
-	
+		
 }

@@ -7,8 +7,6 @@ import javax.swing.JLabel;
 
 public class DrawChomperCard extends Card{
 	
-	public int x;
-	public int y;
 	public DrawChomperCard(AdventurePane pane) {
 		
 		super(pane, 318, 72, 9000, 
@@ -25,12 +23,5 @@ public class DrawChomperCard extends Card{
 		return new Chomper(X, Y);
 	}
 	
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
 	
 }

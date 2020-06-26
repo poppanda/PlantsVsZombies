@@ -1,9 +1,6 @@
 package demo;
 
 public class Bomb extends plants{
-	
-	public int x;
-	public int y;
 	public Bomb(int X, int Y) {
 		super();
 		CD = 1;
@@ -24,12 +21,5 @@ public class Bomb extends plants{
 		return false;
 	}
 
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
 
 }

@@ -8,8 +8,6 @@ import javax.swing.ImageIcon;
 
 public class Squash extends plants  {
 	
-	public int x ;
-	public int y ;
 	public Squash(int X, int Y) {
 		super();
 		HP = 6;
@@ -82,14 +80,7 @@ public class Squash extends plants  {
 	        	}
 	        }
 }
-	 
-		public int getX() {
-			return x;
-		}
-
-		public int getY() {
-			return y;
-		}
+	
 }
 
 

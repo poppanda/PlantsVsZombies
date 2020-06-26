@@ -6,8 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class DrawSunFlowerCard extends Card{
-	public int x;
-	public int y;
+	
 	public DrawSunFlowerCard(AdventurePane pane) {
 		
 		super(pane, 0, 72, 6000, 
@@ -24,11 +23,4 @@ public class DrawSunFlowerCard extends Card{
 		return new SunFlower(X, Y);
 	}
 	
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
 }

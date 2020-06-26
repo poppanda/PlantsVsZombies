@@ -5,8 +5,6 @@ import javax.swing.ImageIcon;
 
 public class SquetFire extends plants {
 	
-	public int x ;
-	public int y ;
 	int width = 100;
 	int height = 100;
 	public SquetFire(int X, int Y) {
@@ -53,11 +51,4 @@ public class SquetFire extends plants {
 	        }
 }
 	
-		public int getX() {
-			return x;
-		}
-
-		public int getY() {
-			return y;
-		}
 }

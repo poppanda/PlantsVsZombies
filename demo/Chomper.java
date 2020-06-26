@@ -6,8 +6,6 @@ import javax.swing.ImageIcon;
 
 public class Chomper extends plants  {
 	
-	public int x ;
-	public int y ;
 	public Chomper(int X, int Y) {
 		super();
 		HP = 6;
@@ -91,13 +89,6 @@ public class Chomper extends plants  {
 	        	}
 	        }
 }
-	  
-		public int getX() {
-			return x;
-		}
-
-		public int getY() {
-			return y;
-		}
+	
 	 
 }

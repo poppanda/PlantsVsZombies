@@ -5,8 +5,6 @@ import javax.swing.ImageIcon;
 
 public class SnowBullets extends plants {
 
-	public int x;
-	public int y;
 	int width = 20;
 	int height = 20;
 	
@@ -53,12 +51,5 @@ public class SnowBullets extends plants {
 		  }
 		  return state = 1;
 	  }
-	  
-	  public int getX() {
-			return x;
-		}
-
-		public int getY() {
-			return y;
-		}
+	
 }

@@ -6,10 +6,7 @@ import javax.swing.ImageIcon;
 
 public class HypnoShroom extends plants  {
 	
-	public int x ;
-	public int y ;
 	public HypnoShroom(int X, int Y) {
-		
 		super();
 		HP = 6;
 		CD = 10;
@@ -84,12 +81,5 @@ public class HypnoShroom extends plants  {
 	        	}
 	        }
 }
-	 
-		public int getX() {
-			return x;
-		}
-
-		public int getY() {
-			return y;
-		}
+	
 }

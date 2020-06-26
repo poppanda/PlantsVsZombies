@@ -5,8 +5,6 @@ import javax.swing.ImageIcon;
 
 public class Bullets extends plants {
 
-	public int x;
-	public int y;
 	int width = 20;
 	int height = 20;
 	
@@ -58,13 +56,6 @@ public class Bullets extends plants {
 		  return state = AttACK_STATE;
 	  }
 	  
-	  public int getX() {
-			return x;
-		}
-
-		public int getY() {
-			return y;
-		}
 		
 		 public Bullets getBullet() {
 			  Bullets ret =BulletsList.getFirst();

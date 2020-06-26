@@ -14,6 +14,21 @@ public class plants extends JLabel implements Runnable{
 		protected int attack;
 		public int state;
 		public final int AttACK_STATE = 1, HIT_STATE = 2, BOMB_STATE = 3;
+		public int x;
+		public int y;
+		
+		public int getX() {
+			return x;
+		}
+		public void setX(int x) {
+			this.x = x;
+		}
+		public int getY() {
+			return y;
+		}
+		public void setY(int y) {
+			this.y = y;
+		}
 		
 		public int getHP() {
 			return HP;

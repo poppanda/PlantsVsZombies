@@ -4,8 +4,7 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
 public class CherryBomb extends plants  {
-	public int x ;
-	public int y ;
+
 	int width = 100;
 	int height = 100;
 	public CherryBomb(int X, int Y) {
@@ -55,11 +54,5 @@ public class CherryBomb extends plants  {
 		return HP = 0;
 	}
 	
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
+	
 }

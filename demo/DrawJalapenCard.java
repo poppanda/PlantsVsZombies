@@ -6,8 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class DrawJalapenCard extends Card{
-	public int x;
-	public int y;
+	
 	public DrawSnowPeaCard(AdventurePane pane) {
 		
 		super(pane, 0, 75, 8000, 
@@ -24,11 +23,4 @@ public class DrawJalapenCard extends Card{
 		return new Jalapen(X, Y);
 	}
 	
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
 }

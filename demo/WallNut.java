@@ -5,9 +5,6 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
 public class WallNut extends plants  {
-	
-	public int x ;
-	public int y ;
 	int width = 100;
 	int height = 100;
 	public WallNut(int X, int Y) {
@@ -91,13 +88,6 @@ public class WallNut extends plants  {
 	        }
 }
 	 
-		public int getX() {
-			return x;
-		}
-
-		public int getY() {
-			return y;
-		}
 }
 
 

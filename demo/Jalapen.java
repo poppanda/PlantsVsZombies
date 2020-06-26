@@ -8,8 +8,6 @@ import javax.swing.ImageIcon;
 
 public class Jalapen extends plants  {
 	
-	public int x ;
-	public int y ;
 	int width = 100;
 	int height = 100;
 	static LinkedList<Image> pic= new LinkedList<>();
@@ -61,13 +59,6 @@ public class Jalapen extends plants  {
 	  public int spurt_fire() {
 		  return this.HP = 0;
 	  }
-	 
-		public int getX() {
-			return x;
-		}
 
-		public int getY() {
-			return y;
-		}
 }
 
