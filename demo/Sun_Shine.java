@@ -1,7 +1,5 @@
 package demo;
 
-package demo;
-
 import View.*;
 import java.awt.Graphics;
 import java.awt.event.*;
