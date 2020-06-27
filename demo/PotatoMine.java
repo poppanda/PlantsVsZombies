@@ -24,7 +24,7 @@ public class PotatoMine extends plants {
 		}
 		getBombPotato().add(new ImageIcon("./img/Plants/PotatoMine/PotatoMineExplode/PotatoMineExplode_0.png").getImage());
 		getPotatoInit().add(new ImageIcon("./img/Plants/PotatoMine/PotatoMineInit/PotatoMineInit_0.png").getImage());
-		
+		DrawGroup = PotatoInit;
 	}
 
 	@Override
@@ -39,7 +39,11 @@ public class PotatoMine extends plants {
 						Thread.sleep(100);
 						beBigTime -= 100;
 						repaint();
-						if(beBigTime == 0) state = ALL_STATE;
+						if(beBigTime == 0)
+						{
+							state = ALL_STATE;
+							num = 0;
+						}
 					}
 					else if(state == ALL_STATE) {
 						DrawGroup = PotatoMine;

@@ -39,6 +39,15 @@ public class AdventurePane extends JLayeredPane implements Runnable
     private int BGWidth = 1400, BGHeight = 600;
     public int GroupBoundX = 15, GroupBoundY = 50;
     private static ReentrantLock lock = new ReentrantLock();
+    public AdventurePane(LaunchFrame frame)
+    {
+        this.frame = frame;
+        setBounds(0, 0, 810, 600);
+        setVisible(true);
+        add(BGImgPanel, JLayeredPane.DEFAULT_LAYER);
+        BGImgPanel.setBounds(0, 0, getWidth(), getHeight());
+        BGImgPanel.setVisible(true);
+    }
     private Thread moveBG(int x, int y, int t, Thread before)
     {
         int pics = t * 50;
@@ -79,6 +88,11 @@ public class AdventurePane extends JLayeredPane implements Runnable
     {
         plantGroup.AddCard(card);
     }
+    public void addSunshine(Sunshine s)
+    {
+        add(s, JLayeredPane.DRAG_LAYER);
+        battle.addSunshine(s);
+    }
     public Thread moveCard(Card card, int tarX, int tarY, int T)
     {
         return new Thread(()->{
@@ -108,8 +122,17 @@ public class AdventurePane extends JLayeredPane implements Runnable
         int locX = addPlantPlain.coor.point.x, locY = addPlantPlain.coor.point.y;
         if(locX >= 55 && locX <= 775 && locY >=100 && locY <= 585)
         {
-            locX = (locX - 55) / 80 * 80 + 55;
-            locY = (locY - 100) / 97 * 97 + 100;
+            int gridX, gridY;
+            gridX = (locX - 55) / 80;
+            gridY = (locY - 100) / 97;
+            if(addPlantPlain.Placed[gridX][gridY] == false)
+            {
+                locX = (locX - 55) / 80 * 80 + 55;
+                locY = (locY - 100) / 97 * 97 + 100;
+            }else{
+                locX = -500;
+                locY = -500;
+            }
         }
         else
         {
@@ -139,11 +162,22 @@ public class AdventurePane extends JLayeredPane implements Runnable
                         locY = addPlantPlain.click.clickP.y;
                     if(locX >= 55 && locX <= 775 && locY >=100 && locY <= 585)
                     {
-                        locX = (locX - 55) / 80 * 80 + 55;
-                        locY = (locY - 100) / 97 * 97 + 100;
-                        plants nxt = card.CreatePlant(locX, locY);
-                        battle.addPlant(nxt);
-                        card.setState(card.FILL_STATE);
+                        int gridX, gridY;
+                        gridX = (locX - 55) / 80;
+                        gridY = (locY - 100) / 97;
+                        if(addPlantPlain.Placed[gridX][gridY] == false)
+                        {
+                            addPlantPlain.Placed[gridX][gridY] = true;
+                            locX = (locX - 55) / 80 * 80 + 55;
+                            locY = (locY - 100) / 97 * 97 + 100;
+                            plants nxt = card.CreatePlant(locX, locY);
+                            battle.addPlant(nxt);
+                            card.setState(card.FILL_STATE);
+                        }else{
+                            card.setState(card.NORM_STATE);
+                        }
+                    }else{
+                        card.setState(card.NORM_STATE);
                     }
                     remove(blur);
                     remove(addPlantPlain);
@@ -195,15 +229,6 @@ public class AdventurePane extends JLayeredPane implements Runnable
                 e.printStackTrace();
             }
         }).start();
-    }
-    public AdventurePane(LaunchFrame frame)
-    {
-        this.frame = frame;
-        setBounds(0, 0, 810, 600);
-        setVisible(true);
-        add(BGImgPanel, JLayeredPane.DEFAULT_LAYER);
-        BGImgPanel.setBounds(0, 0, getWidth(), getHeight());
-        BGImgPanel.setVisible(true);
     }
     public void run()
     {
@@ -299,13 +324,13 @@ class Coordinate implements MouseMotionListener
     public void mouseMoved(MouseEvent e)
     {
         point = e.getPoint();
-        System.out.println(point);
     }
     public void mouseDragged(MouseEvent e){}
 }
 
 class AddPlantPlain extends JLabel
 {
+    boolean[][] Placed = new boolean[10][6];
     Click click = new Click();
     Coordinate coor = new Coordinate();
     AddPlantPlain()
@@ -322,7 +347,8 @@ class Battle implements Runnable
     private LinkedList<plants> plantList = new LinkedList<plants>();
     private LinkedList<ZombieBasis> zombieList = new LinkedList<ZombieBasis>();
     private LinkedList<Bullets> bulletList = new LinkedList<Bullets>();
-    //private LinkedList<Bomb> bombList = new LinkedList<Bomb>();
+    private LinkedList<Bomb> bombList = new LinkedList<Bomb>();
+    private LinkedList<Sunshine> sunshineList = new LinkedList<Sunshine>();
     private ExecutorService livePlants = new ThreadPoolExecutor(45, 45, 500, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>());
     private ExecutorService liveZombies = new ThreadPoolExecutor(45, 45, 500, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>());
     private ExecutorService liveBullets = new ThreadPoolExecutor(45, 45, 500, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>());
@@ -341,6 +367,10 @@ class Battle implements Runnable
         plantList.add(P);
         livePlants.submit(new Thread(P));
     }
+    public void addSunshine(Sunshine s)
+    {
+        sunshineList.add(s);
+    }
 /*    void addZombie(ZombieBasis Z)
     {
         pane.add(P, JLayeredPane.MODAL_LAYER);
@@ -349,6 +379,7 @@ class Battle implements Runnable
     }*/
     public void run()
     {
+        //new Sunshine(100, 0, 1, pane);
         int rest = 10, lineP;
         try{
             if(before != null) before.join();
@@ -358,11 +389,22 @@ class Battle implements Runnable
         //while(liveZombies.isTerminated() == false)
         while(rest != 0)
         {
-/*            try{
+            try{
                 Thread.sleep(100);
             }catch(InterruptedException e){
                 e.printStackTrace();
             }
+            for(plants p : plantList)
+                if(p.state == p.DEAD_STATE)
+                {
+                    pane.remove(p);
+                    int gridX, gridY;
+                    gridX = (p.getX() - 55) / 80;
+                    gridY = (p.getY() - 100) / 97;
+                    pane.addPlantPlain.Placed[gridX][gridY] = false;
+                    pane.repaint();
+                }
+            /*
             for(ZombieBasis z : zombieList)
             {
                 if(z.disappear == true) zombieList.remove(z);

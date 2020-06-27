@@ -23,7 +23,7 @@ public abstract class Card extends JButton
     private int state;
     private boolean isMoving = false;
     public final int NORM_STATE = 1, DARK_STATE = 2, FILL_STATE = 3, IN_BAR = 4, IN_GROUP = 5, LOCK_STATE = 6;
-    private AdventurePane pane;
+    protected AdventurePane pane;
     private ActionListener click = new ActionListener()
     {
         @Override
@@ -47,7 +47,6 @@ public abstract class Card extends JButton
                 pane.setPlant(Card.this);
                 Card.this.addActionListener(click);
             }else if(state == FILL_STATE){
-                Fill();
             }
         }
     };

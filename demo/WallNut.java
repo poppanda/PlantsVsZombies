@@ -25,7 +25,8 @@ public class WallNut extends plants  {
 	    }
 	    for(int i = 0; i < 15; i++) {
 	    	getWallnut2().add(new ImageIcon("./img/Plants/WallNut/Wallnut_cracked2/Wallnut_cracked2_" + i + ".png").getImage());
-	    }
+		}
+		DrawGroup = getWallnut();
 	}
 
 	  @Override
