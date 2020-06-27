@@ -22,7 +22,7 @@ public class PotatoMine extends plants {
 			getPotatoMine().add(new ImageIcon("./img/Plants/PotatoMine/PotatoMine/PotatoMine_" + i + ".png").getImage());
 		}
 		getBombPotato().add(new ImageIcon("./img/Plants/PotatoMine/PotatoMineExplode/PotatoMineExplode_0.png").getImage());
-		getPotatoInit().add(new ImageIcon("./img/Plants/PotatoMine/PotatoMineInit/PotatoMineInit_0.png"));
+		getPotatoInit().add(new ImageIcon("./img/Plants/PotatoMine/PotatoMineInit/PotatoMineInit_0.png").getImage());
 		
 	}
 
