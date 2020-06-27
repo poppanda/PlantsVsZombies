@@ -14,7 +14,7 @@ public class CherryBomb extends plants {
 		attack = 10;
 		this.x = X;
 		this.y = Y;
-		setBounds(X, Y, 100, 100);
+		setBounds(X, Y, 300, 300);
 		setVisible(true);
 
 		for (int i = 0; i < 7; i++) {
@@ -36,6 +36,7 @@ public class CherryBomb extends plants {
 					repaint();
 					if (num + 1 == 7) break;
 					else num++;
+					System.out.println(num);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -46,8 +47,8 @@ public class CherryBomb extends plants {
 		}
 		state = BOMB_STATE;
 		DrawGroup = BombCherry;
+		num = 0;
 		repaint();
-		System.out.println("DONE");
 	}
 	public int boom() {
 		return HP = 0;
