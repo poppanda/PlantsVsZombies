@@ -47,14 +47,20 @@ public class CherryBomb extends plants {
 			}
 		}
 		state = BOMB_STATE;
+		try{
+			Thread.sleep(100);
+		}catch(InterruptedException e){
+			e.printStackTrace();
+		}
 		DrawGroup = BombCherry;
 		num = 0;
 		repaint();
 		state = DEAD_STATE;
 	}
-	public int boom() {
-		return HP = 0;
+	public Bomb getBomb()
+	{
+		Bomb ret = new Bomb(x - 80, x + 160, y - 97, y + 194);
+		ret.setState(ret.BOMB_STATE);
+		return ret;
 	}
-
-
 }
