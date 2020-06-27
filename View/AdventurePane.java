@@ -387,10 +387,26 @@ class Battle implements Runnable
                     Bomb b = p.getBomb();
                     bombList.add(b);
                 }
+            */
+            /*
             for(Bomb b : bombList)
-                for(ZombieBasis z : zombieList)
-                    if(b.involve(z.getX(), z.getY()))z.bombdie();
-*/
+                if(b.state == BOMB_STATE)
+                {
+                    for(ZombieBasis z : zombieList)
+                        if(b.involve(z.getX(), z.getY()))z.bombdie();
+                }else{
+                    for(ZombieBasis z : zombieList)
+                        if(b.involve(z.getX(), z.getY()))
+                        {
+                            b.setState(b.BOMB_STATE);
+                            break;
+                        }
+                    if(b.BOMB_STATE)
+                    {
+                        for(ZombieBasis z : zombieList)
+                            if(b.involve(z.getX(), z.getY()))z.bombdie();
+                    }
+                }*/
         }
         if(rest == 0) win = true;
         else win = false;

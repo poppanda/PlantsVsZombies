@@ -1,29 +1,22 @@
 package demo;
 
-public class Bomb extends plants{
-	public Bomb(int X, int Y) {
-		super();
-		CD = 1;
-		attack = 10;
-		setBounds(X, Y, 100, 100);
-		this.x = X;
-		this.y = Y;
+public class Bomb
+{
+	int x0, x1, y0, y1;
+	public int state;
+	public final int WAIT_STATE = 0, BOMB_STATE = 1;
+	public Bomb(int x0, int x1, int y0, int y1){
+		this.x0 = x0;
+		this.x1 = x1;
+		this.y0 = y0;
+		this.y1 = y1;
 	}
-	
-	public void run() {
-		
+	void setState(int state){
+		this.state = state;
 	}
-	
-	
 	public boolean involve(int x, int y) {
-		if((x >= x - 200 || x <= x + 200) && ((y >= y - 200 || y <= y + 200)))
+		if(x >= x0 && x <= x1 && y >= y0 && y <= y1)
 			return true;
 		return false;
 	}
-	
-	public void getBomb(int x, int y) {
-		
-	}
-
-
 }
