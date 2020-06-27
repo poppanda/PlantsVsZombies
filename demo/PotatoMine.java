@@ -15,6 +15,7 @@ public class PotatoMine extends plants {
 		attack = 4;
 		this.x = X;
 		this.y = Y;
+		state = INIT_STATE;
 		setBounds(X, Y, 100, 100);
 		setVisible(true);
 
