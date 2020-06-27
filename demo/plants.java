@@ -315,8 +315,8 @@ public class plants extends JLabel implements Runnable{
 			return new Bullets(x, y);
 		}
 		
-		public Bomb getBomb(int x, int y) {
-			return new Bomb(x, y);
+		public Bomb getBomb(int x0, int x1, int y0, int y1) {
+			return new Bomb(0, 0, 0, 0);
 		}
 		
 		public boolean involve(int x, int y) {

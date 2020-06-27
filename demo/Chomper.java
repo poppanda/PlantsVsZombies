@@ -26,6 +26,7 @@ public class Chomper extends plants {
 		for (int i = 0; i < 6; i++) {
 			getChomperDigest().add(new ImageIcon("./img/Plants/Chomper/ChomperDigest/ChomperDigest_" + i + ".png").getImage());
 		}
+		DrawGroup = Chomper;
 	}
 
 	public void Eat() {
