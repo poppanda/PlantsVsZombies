@@ -50,7 +50,7 @@ public class Bullets extends plants {
 		  if(this.y == y) {
 			  return state = HIT_STATE;
 		  }
-		  return state = AttACK_STATE;
+		  return state = ATTACK_STATE;
 	  }
 	  
 		

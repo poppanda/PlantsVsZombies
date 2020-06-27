@@ -195,7 +195,7 @@ public class AdventurePane extends JLayeredPane implements Runnable
         this.frame = frame;
         setBounds(0, 0, 810, 600);
         setVisible(true);
-        //add(BGImgPanel, JLayeredPane.DEFAULT_LAYER);
+        add(BGImgPanel, JLayeredPane.DEFAULT_LAYER);
         BGImgPanel.setBounds(0, 0, getWidth(), getHeight());
         BGImgPanel.setVisible(true);
         add(new Repeater(80, 97));
@@ -205,8 +205,8 @@ public class AdventurePane extends JLayeredPane implements Runnable
         moveToZombie.start();
         Thread barThread = new Thread(plantBar);
         Thread groupThread = plantGroup.moveTo(plantGroup.VisibleX, plantGroup.VisibleY, 500, moveToZombie);
-        //add(plantBar, JLayeredPane.POPUP_LAYER, 1);
-        //add(plantGroup, JLayeredPane.POPUP_LAYER, 1);
+        add(plantBar, JLayeredPane.POPUP_LAYER, 1);
+        add(plantGroup, JLayeredPane.POPUP_LAYER, 1);
         barThread.start();
         groupThread.start();
         startBtn.addActionListener(new ActionListener()
