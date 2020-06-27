@@ -18,8 +18,6 @@ public class DrawSunFlowerCard extends Card{
 	
 	public SunFlower CreatePlant(int X, int Y)
 	{
-		this.x = X;
-		this.y = Y;
 		return new SunFlower(X, Y);
 	}
 	

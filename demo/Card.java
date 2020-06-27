@@ -22,14 +22,13 @@ public abstract class Card extends JButton
     public final int GroupX, GroupY;
     private int state;
     private boolean isMoving = false;
-    public final int NORM_STATE = 1, DARK_STATE = 2, FILL_STATE = 3, IN_BAR = 4, IN_GROUP = 5;
+    public final int NORM_STATE = 1, DARK_STATE = 2, FILL_STATE = 3, IN_BAR = 4, IN_GROUP = 5, LOCK_STATE = 6;
     private AdventurePane pane;
     private ActionListener click = new ActionListener()
     {
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            System.out.println(Runtime.getRuntime().totalMemory()/1024/1024);
             if(state == IN_GROUP){
                 Card.this.removeActionListener(click);
                 if(pane.moveCardToBar(Card.this))
@@ -119,6 +118,13 @@ public abstract class Card extends JButton
             PaintingIcon = FillIcon;
             repaint();
             Fill();
+        }
+        else if(state == LOCK_STATE)
+        {
+            setEnabled(false);
+            PaintingIcon = DarkIcon;
+            repaint();
+            removeActionListener(click);
         }
     }
     public JLabel chosenLabel()

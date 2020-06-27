@@ -181,9 +181,14 @@ public class AdventurePane extends JLayeredPane implements Runnable
                     new DrawRepeaterCard(this),
                     new DrawSnowPeaCard(this),
                     new DrawSunFlowerCard(this),
-                    new DrawWallNutCard(this)
+                    new DrawWallNutCard(this),
+                    new DrawPotatoMineCard(this),
+                    new DrawChomperCard(this),
+                    new DrawHypnoShroomCard(this),
+                    new DrawSquashCard(this),
+                    new DrawSunShroomCard(this),
+                    new DrawThreePeashooterCard(this)
                     };
-                    
                 add(startBtn, JLayeredPane.POPUP_LAYER, 0);
             }catch(InterruptedException e){
                 e.printStackTrace();
@@ -198,11 +203,6 @@ public class AdventurePane extends JLayeredPane implements Runnable
         add(BGImgPanel, JLayeredPane.DEFAULT_LAYER);
         BGImgPanel.setBounds(0, 0, getWidth(), getHeight());
         BGImgPanel.setVisible(true);
-        CherryBomb cb = new CherryBomb(80, 97);
-        add(cb, JLayeredPane.PALETTE_LAYER);
-        cb.repaint();
-        //new Thread(cb).run();
-        System.out.println("ADD");
     }
     public void run()
     {
