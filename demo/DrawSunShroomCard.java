@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 public class DrawSunShroomCard extends Card{
 	public DrawSunShroomCard(AdventurePane pane) {
 		
-		super(pane, 159, 75, 4000, 
+		super(pane, 212, 145, 4000, 
 			new ImageIcon("./img/Cards/SunShroom0.png"),
 			new ImageIcon("./img/Cards/SunShroom2.png"),
 			new ImageIcon("./img/Cards/SunShroom1.png"),

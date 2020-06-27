@@ -9,7 +9,7 @@ public class DrawThreePeashooterCard extends Card{
 	
 	public DrawThreePeashooterCard(AdventurePane pane) {
 		
-		super(pane, 212, 75, 9000, 
+		super(pane, 265, 145, 9000, 
 			new ImageIcon("./img/Cards/ThreePeashooter0.png"),
 			new ImageIcon("./img/Cards/ThreePeashooter2.png"),
 			new ImageIcon("./img/Cards/ThreePeashooter1.png"),

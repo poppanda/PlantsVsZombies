@@ -9,7 +9,7 @@ public class DrawHypnoShroomCard extends Card{
 	
 	public DrawHypnoShroomCard(AdventurePane pane) {
 		
-		super(pane, 371, 72, 6000, 
+		super(pane, 0, 145, 6000, 
 			new ImageIcon("./img/Cards/HypnoShroom0.png"),
 			new ImageIcon("./img/Cards/HypnoShroom2.png"),
 			new ImageIcon("./img/Cards/HypnoShroom1.png"),
