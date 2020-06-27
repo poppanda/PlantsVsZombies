@@ -177,14 +177,15 @@ public class AdventurePane extends JLayeredPane implements Runnable
                 before.join();
                 Card[] cards ={
                     new DrawCherryBombCard(this),
+                    new DrawChomperCard(this),
+                    new DrawHypnoShroomCard(this),
+                    new DrawJalapenCard(this),
                     new DrawPeaShooterCard(this),
                     new DrawRepeaterCard(this),
                     new DrawSnowPeaCard(this),
                     new DrawSunFlowerCard(this),
                     new DrawWallNutCard(this),
                     new DrawPotatoMineCard(this),
-                    new DrawChomperCard(this),
-                    new DrawHypnoShroomCard(this),
                     new DrawSquashCard(this),
                     new DrawSunShroomCard(this),
                     new DrawThreePeashooterCard(this)

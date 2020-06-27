@@ -8,7 +8,6 @@ import javax.swing.JLabel;
 public class DrawThreePeashooterCard extends Card{
 	
 	public DrawThreePeashooterCard(AdventurePane pane) {
-		
 		super(pane, 265, 145, 9000, 
 			new ImageIcon("./img/Cards/ThreePeashooter0.png"),
 			new ImageIcon("./img/Cards/ThreePeashooter2.png"),
@@ -19,10 +18,6 @@ public class DrawThreePeashooterCard extends Card{
 	
 	public ThreePeashooter CreatePlant(int X, int Y)
 	{
-		this.x = X;
-		this.y = Y;
 		return new ThreePeashooter(X, Y);
 	}
-	
-	
 }

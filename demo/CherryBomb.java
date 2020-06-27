@@ -26,21 +26,23 @@ public class CherryBomb extends plants {
 
 	@Override
 	public void run() {
-		while (num < 7) {
+		num = 0;
+		while (true) {
 			if (isAlive(this.HP)) {
 				try {
 					Thread.sleep(100);
-					num++;
 					repaint();
+					if (num + 1 == 7) break;
+					else num++;
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-
 			} else {
 				this.goEmpty();
 				break;
 			}
 		}
+		System.out.println("DONE");
 	}
 	public int boom() {
 		return HP = 0;

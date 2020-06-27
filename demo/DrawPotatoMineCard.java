@@ -6,9 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class DrawPotatoMineCard extends Card{
-	
 	public DrawPotatoMineCard(AdventurePane pane) {
-		
 		super(pane, 106, 72, 5000, 
 			new ImageIcon("./img/Cards/PotatoMine0.png"),
 			new ImageIcon("./img/Cards/PotatoMine2.png"),
@@ -18,10 +16,6 @@ public class DrawPotatoMineCard extends Card{
 	
 	public PotatoMine CreatePlant(int X, int Y)
 	{
-		this.x = X;
-		this.y = Y;
 		return new PotatoMine(X, Y);
 	}
-	
-	
 }
