@@ -23,8 +23,9 @@ public class PotatoMine extends plants  {
 	    setVisible(true);
 	    
 	    for(int i = 0; i < 8; i++) {
-	    	getPotatoMine().add(new ImageIcon("PotatoMine/PotatoMine/PotatoMine_" + i + ".png").getImage());
+	    	getPotatoMine().add(new ImageIcon("./img/Plants/PotatoMine/PotatoMine/PotatoMine_" + i + ".png").getImage());
 	    }
+	    getBombPotato().add(new ImageIcon("./img/Plants/PotatoMine/PotatoMineExplode/PotatoMineExplode_0.png").getImage());
 	    DrawGroup = PotatoMine;
 	}
 
@@ -33,6 +34,7 @@ public class PotatoMine extends plants  {
 	    {
 	        while(true)
 	        {
+	        	DrawGroup = PotatoMine;
 	        	if(isAlive(this.HP)) {
 	            try{
 	            	
@@ -51,6 +53,9 @@ public class PotatoMine extends plants  {
 	        		break;
 	        	}
 	        }
+	        state = BOMB_STATE;
+			DrawGroup = BombPotato;
+			repaint();
 }
 	  
 	  public int boom() {

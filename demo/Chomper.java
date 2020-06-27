@@ -27,41 +27,43 @@ public class Chomper extends plants  {
 	    }
 	}
 	
-	public boolean canEat(int X, int Y) {
-		if(X - this.x < 50 && Y == this.y)
-			return true;
-		return false;
-	}
-	
-	public boolean eating()
-	{
-		return true;
+	public void Eat() {
+		state = EAT_STATE;
+		num = 0;
 	}
 
 	  @Override
 	    public void run()
 	    {
+		  int eatingTime;
 	        while(true)
 	        {
 	        	if(isAlive(this.HP)) {
 	            try{
-	            	if(canEat(100,100) == false) {
+	            	if(state == CAN_EAT_STATE) {
 	            		DrawGroup = Chomper;
 	            		Thread.sleep(100);
 		                repaint();
 	            		num = (num + 1) % 13;
 	            	}
-	            	else if(canEat(100,100)) {
+	            	else if(state == EAT_STATE) {
 	            		DrawGroup = ChomperAttack;
 	            		Thread.sleep(100);
 		                repaint();
 	            		num = (num + 1) % 9;
+	            		if(num == 0) {
+	            			state = EATING;
+	            			eatingTime = 10000;
+	            			num = 0;
+	            		}
 	            	}
-	            	else if(eating()) {
+	            	else if(state == EATING) {
 	            		DrawGroup = ChomperDigest;
 	            		Thread.sleep(100);
+	            		eatingTime -= 100;
 		                repaint();
 	            		num = (num + 1) % 6;
+	            		if(eatingTime == 0) state = CAN_EAT_STATE;
 	            	}
 	            }catch(InterruptedException e)
 	            {

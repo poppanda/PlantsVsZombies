@@ -20,7 +20,8 @@ public class CherryBomb extends plants {
 		for (int i = 0; i < 7; i++) {
 			getCherrybomb().add(new ImageIcon("./img/Plants/CherryBomb/CherryBomb_" + i + ".png").getImage());
 		}
-		DrawGroup = Cherrybomb;
+		getBombCherry().add(new ImageIcon("./img/Screen/Boom.png").getImage());
+		
 	}
 
 
@@ -28,6 +29,7 @@ public class CherryBomb extends plants {
 	public void run() {
 		num = 0;
 		while (true) {
+			DrawGroup = Cherrybomb;
 			if (isAlive(this.HP)) {
 				try {
 					Thread.sleep(100);
@@ -42,6 +44,9 @@ public class CherryBomb extends plants {
 				break;
 			}
 		}
+		state = BOMB_STATE;
+		DrawGroup = BombCherry;
+		repaint();
 		System.out.println("DONE");
 	}
 	public int boom() {
