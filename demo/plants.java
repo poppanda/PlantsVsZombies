@@ -11,7 +11,7 @@ public class plants extends JLabel implements Runnable{
 		protected int CD;
 		protected int attack;
 		public int state;
-		public final int ATTACK_STATE = 1, HIT_STATE = 2, BOMB_STATE = 3, NORMAL_STATE = 4, CAN_EAT_STATE = 5, EAT_STATE = 6, EATING = 7, DEAD_STATE = 8;
+		public final int ATTACK_STATE = 1, HIT_STATE = 2, BOMB_STATE = 3, NORMAL_STATE = 4, CAN_EAT_STATE = 5, EAT_STATE = 6, EATING = 7, DEAD_STATE = 8,INIT_STATE = 9, ALL_STATE = 10;
 		public int x;
 		public int y;
 		
@@ -72,7 +72,7 @@ public class plants extends JLabel implements Runnable{
 				return true;
 				return false;
 		}
-		
+		public int num = 0;
 		LinkedList<Image> DrawGroup ;
 		LinkedList<Image> Peashooter = new LinkedList<>();
 		LinkedList<Image> Snowpea = new LinkedList<>();
@@ -103,9 +103,14 @@ public class plants extends JLabel implements Runnable{
 		LinkedList<Bullets> BulletsList = new LinkedList<Bullets>();
 		LinkedList<Image> BombCherry = new LinkedList<>();
 		LinkedList<Image> BombPotato = new LinkedList<>();
+		LinkedList<Image> PotatoInit = new LinkedList<>();
 		
-		public int num = 0;
-		
+		public LinkedList<Image> getPotatoInit() {
+			return PotatoInit;
+		}
+		public void setPotatoInit(LinkedList<Image> potatoInit) {
+			PotatoInit = potatoInit;
+		}
 		public LinkedList<Image> getBombCherry() {
 			return BombCherry;
 		}

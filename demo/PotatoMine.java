@@ -22,20 +22,30 @@ public class PotatoMine extends plants {
 			getPotatoMine().add(new ImageIcon("./img/Plants/PotatoMine/PotatoMine/PotatoMine_" + i + ".png").getImage());
 		}
 		getBombPotato().add(new ImageIcon("./img/Plants/PotatoMine/PotatoMineExplode/PotatoMineExplode_0.png").getImage());
-		DrawGroup = PotatoMine;
+		getPotatoInit().add(new ImageIcon("./img/Plants/PotatoMine/PotatoMineInit/PotatoMineInit_0.png"));
+		
 	}
 
 	@Override
 	public void run() {
+		int beBigTime = 3000;
 		while (true) {
-			DrawGroup = PotatoMine;
 			if (isAlive(this.HP)) {
 				try {
-
-					Thread.sleep(100);
-					num = (num + 1) % 8;
-					repaint();
-
+					if(state == INIT_STATE)
+					{
+						DrawGroup = PotatoInit;
+						Thread.sleep(100);
+						beBigTime -= 100;
+						repaint();
+						if(beBigTime == 0) state = ALL_STATE;
+					}
+					else if(state == ALL_STATE) {
+						DrawGroup = PotatoMine;
+						Thread.sleep(100);
+						num = (num + 1) % 8;
+						repaint();
+					}
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
