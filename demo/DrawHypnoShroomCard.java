@@ -19,8 +19,6 @@ public class DrawHypnoShroomCard extends Card{
 	
 	public HypnoShroom CreatePlant(int X, int Y)
 	{
-		this.x = X;
-		this.y = Y;
 		return new HypnoShroom(X, Y);
 	}
 		

@@ -18,8 +18,6 @@ public class DrawChomperCard extends Card{
 	
 	public Chomper CreatePlant(int X, int Y)
 	{
-		this.x = X;
-		this.y = Y;
 		return new Chomper(X, Y);
 	}
 	
