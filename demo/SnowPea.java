@@ -30,7 +30,7 @@ public class SnowPea extends plants  {
 	        {
 	        	if(isAlive(this.HP)) {
 	            try{
-	            	state = AttACK_STATE;
+	            	state = ATTACK_STATE;
 	            	if(BulletsList.size() == 0) {
 	            		BulletsList.add(new Bullets(x+10,y));
 	            	}
