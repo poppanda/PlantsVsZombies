@@ -20,6 +20,10 @@ public class Bomb extends plants{
 			return true;
 		return false;
 	}
+	
+	public void getBomb(int x, int y) {
+		
+	}
 
 
 }

@@ -41,6 +41,7 @@ public class CherryBomb extends plants {
 					e.printStackTrace();
 				}
 			} else {
+				state = DEAD_STATE;
 				this.goEmpty();
 				break;
 			}
@@ -49,6 +50,7 @@ public class CherryBomb extends plants {
 		DrawGroup = BombCherry;
 		num = 0;
 		repaint();
+		state = DEAD_STATE;
 	}
 	public int boom() {
 		return HP = 0;

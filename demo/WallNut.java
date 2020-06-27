@@ -71,6 +71,7 @@ public class WallNut extends plants  {
 	            
 	        }
 	        	else {
+	        		state = DEAD_STATE;
 	        		this.goEmpty();
 	        		break;
 	        	}

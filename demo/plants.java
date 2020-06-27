@@ -11,7 +11,7 @@ public class plants extends JLabel implements Runnable{
 		protected int CD;
 		protected int attack;
 		public int state;
-		public final int ATTACK_STATE = 1, HIT_STATE = 2, BOMB_STATE = 3, NORMAL_STATE = 4, CAN_EAT_STATE = 5, EAT_STATE = 6, EATING = 7;
+		public final int ATTACK_STATE = 1, HIT_STATE = 2, BOMB_STATE = 3, NORMAL_STATE = 4, CAN_EAT_STATE = 5, EAT_STATE = 6, EATING = 7, DEAD_STATE = 8;
 		public int x;
 		public int y;
 		
@@ -64,7 +64,7 @@ public class plants extends JLabel implements Runnable{
 		public boolean isAlive(int hp) {
 			if(hp > 0)
 				return true;
-			    return false;
+			return false;
 		}
 				
 		public boolean isOk(int time) {

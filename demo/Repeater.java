@@ -43,6 +43,7 @@ public class Repeater extends plants {
 				}
 
 			} else {
+				state = DEAD_STATE;
 				this.goEmpty();
 				break;
 			}

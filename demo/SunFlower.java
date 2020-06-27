@@ -39,6 +39,7 @@ public class SunFlower extends plants  {
 	            
 	        }
 	        	else {
+	        		state = DEAD_STATE;
 	        		this.goEmpty();
 	        		break;
 	        	}
