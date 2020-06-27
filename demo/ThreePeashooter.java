@@ -1,7 +1,5 @@
 package demo;
 
-package demo;
-
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.LinkedList;
@@ -9,11 +7,6 @@ import java.util.LinkedList;
 import javax.swing.ImageIcon;
 
 public class ThreePeashooter extends plants  {
-	
-	int width = 100;
-	int height = 100;
-	static LinkedList<Image> pic= new LinkedList<>();
-	 LinkedList<Image> draw = new LinkedList<>();
 	public ThreePeashooter(int X, int Y) {
 		super();
 		HP = 6;
