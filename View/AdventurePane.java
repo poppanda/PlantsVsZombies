@@ -209,8 +209,8 @@ public class AdventurePane extends JLayeredPane implements Runnable
         moveToZombie.start();
         Thread barThread = new Thread(plantBar);
         Thread groupThread = plantGroup.moveTo(plantGroup.VisibleX, plantGroup.VisibleY, 500, moveToZombie);
-        //add(plantBar, JLayeredPane.POPUP_LAYER, 1);
-        //add(plantGroup, JLayeredPane.POPUP_LAYER, 1);
+        add(plantBar, JLayeredPane.POPUP_LAYER, 1);
+        add(plantGroup, JLayeredPane.POPUP_LAYER, 1);
         barThread.start();
         groupThread.start();
         startBtn.addActionListener(new ActionListener()
