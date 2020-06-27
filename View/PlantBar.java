@@ -25,7 +25,7 @@ public class PlantBar extends JLabel implements Runnable
         this.pane = pane;
         this.before = before;
         cardCapacity = 7;
-        cardX = new int[]{0, 80, 132, 184, 236, 288, 340, 392, 444, 496};
+        cardX = new int[]{0, 77, 129, 181, 233, 285, 337, 389, 441, 493};
         cardY = 7;
         cardsInBar = 0;
         x = 0;

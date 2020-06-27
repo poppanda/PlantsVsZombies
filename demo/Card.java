@@ -46,7 +46,9 @@ public abstract class Card extends JButton
                 pane.PlantPlainVisible();
                 pane.setPlant(Card.this);
                 Card.this.addActionListener(click);
-            }else if(state == FILL_STATE){}
+            }else if(state == FILL_STATE){
+                Fill();
+            }
         }
     };
     @Override
@@ -76,7 +78,7 @@ public abstract class Card extends JButton
         setVisible(true);
         state = IN_GROUP;
 
-        pane.add(this, JLayeredPane.POPUP_LAYER, 0);
+        pane.add(this, JLayeredPane.POPUP_LAYER, 1);
         pane.addCard(this);
         addActionListener(click);
     }
@@ -88,18 +90,25 @@ public abstract class Card extends JButton
     }
     private void Fill()
     {
-        JLabel filLabel = chosenLabel();
-        pane.add(filLabel, JLayeredPane.POPUP_LAYER, 0);
+        JLabel fillLabel = chosenLabel();
+        pane.add(fillLabel, JLayeredPane.POPUP_LAYER, 0);
         new Thread(()->{
             int time = FillTime;
-            double vy = (double)FillIcon.getIconHeight() * 20 / time, ny = 0;
+            double vy = (double)FillIcon.getIconHeight() * 100 / time, ny = 0;
             while(time != 0)
             {
-                time -= 20;
+                try{
+                    Thread.sleep(100);
+                }catch(InterruptedException e){
+                    e.printStackTrace();
+                }
+                time -= 100;
                 ny += vy;
                 FISY = FIEY - (int)ny;
-                filLabel.repaint();
+                fillLabel.repaint();
             }
+            pane.remove(fillLabel);
+            pane.repaint();
             setState(NORM_STATE);
         }).start();
     }
@@ -115,7 +124,7 @@ public abstract class Card extends JButton
         else if(state == FILL_STATE)
         {
             setEnabled(false);
-            PaintingIcon = FillIcon;
+            PaintingIcon = DarkIcon;
             repaint();
             Fill();
         }
@@ -136,7 +145,7 @@ public abstract class Card extends JButton
                 g.drawImage(FillIcon.getImage(), FISX, FISY, FIEX, FIEY, FISX, FISY, FIEX, FIEY, this);
             }
         };
-        label.setLocation(GroupX, GroupY);
+        label.setBounds(x, y, w, h);
         label.setVisible(true);
         return label;
     }
