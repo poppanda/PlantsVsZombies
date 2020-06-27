@@ -13,6 +13,7 @@ public class DrawSunShroomCard extends Card{
 			new ImageIcon("./img/Cards/SunShroom2.png"),
 			new ImageIcon("./img/Cards/SunShroom1.png"),
 			new ImageIcon("./img/Blurs/SunShroom.png"));
+		super.setState(LOCK_STATE);
 	}
 	
 	public SunShroom CreatePlant(int X, int Y)

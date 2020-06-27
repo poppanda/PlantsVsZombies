@@ -14,6 +14,7 @@ public class DrawThreePeashooterCard extends Card{
 			new ImageIcon("./img/Cards/ThreePeashooter2.png"),
 			new ImageIcon("./img/Cards/ThreePeashooter1.png"),
 			new ImageIcon("./img/Blurs/ThreePeashooter.png"));
+		super.setState(LOCK_STATE);
 	}
 	
 	public ThreePeashooter CreatePlant(int X, int Y)

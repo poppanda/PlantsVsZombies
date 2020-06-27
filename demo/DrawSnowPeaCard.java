@@ -14,6 +14,7 @@ public class DrawSnowPeaCard extends Card{
 			new ImageIcon("./img/Cards/SnowPea2.png"),
 			new ImageIcon("./img/Cards/SnowPea1.png"),
 			new ImageIcon("./img/Blurs/SnowPea.png"));
+		super.setState(LOCK_STATE);
 	}
 	
 	public SnowPea CreatePlant(int X, int Y)

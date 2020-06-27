@@ -14,6 +14,7 @@ public class DrawHypnoShroomCard extends Card{
 			new ImageIcon("./img/Cards/HypnoShroom2.png"),
 			new ImageIcon("./img/Cards/HypnoShroom1.png"),
 			new ImageIcon("./img/Blurs/HypnoShroom.png"));
+		super.setState(LOCK_STATE);
 	}
 	
 	public HypnoShroom CreatePlant(int X, int Y)

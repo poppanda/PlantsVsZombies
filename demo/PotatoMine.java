@@ -1,7 +1,5 @@
 package demo;
 
-package demo;
-
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.LinkedList;
@@ -25,7 +23,7 @@ public class PotatoMine extends plants  {
 	    setVisible(true);
 	    
 	    for(int i = 0; i < 8; i++) {
-	    	getPotatoMine().add(new ImageIcon("./img/Plants/PotatoMine/PotatoMine/PotatoMine_" + i + ".png").getImage());
+	    	getPotatoMine().add(new ImageIcon("PotatoMine/PotatoMine/PotatoMine_" + i + ".png").getImage());
 	    }
 	    DrawGroup = PotatoMine;
 	}
@@ -37,15 +35,11 @@ public class PotatoMine extends plants  {
 	        {
 	        	if(isAlive(this.HP)) {
 	            try{
-	            	if(num <= 7) {
+	            	
 	                Thread.sleep(100);
-	                
+	                num = (num + 1) % 8;
 	                repaint();
-	                num ++;
-	            	}
-	            	else {
-	            		num = 0;
-	            	}
+	                
 	            }catch(InterruptedException e)
 	            {
 	                e.printStackTrace();

@@ -14,6 +14,7 @@ public class DrawSquashCard extends Card{
 			new ImageIcon("./img/Cards/Squash2.png"),
 			new ImageIcon("./img/Cards/Squash1.png"),
 			new ImageIcon("./img/Blurs/Squash.png"));
+		super.setState(LOCK_STATE);
 	}
 	
 	public Squash CreatePlant(int X, int Y)

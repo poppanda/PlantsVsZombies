@@ -14,6 +14,7 @@ public class DrawJalapenCard extends Card{
 			new ImageIcon("./img/Cards/Jalapen2.png"),
 			new ImageIcon("./img/Cards/Jalapen1.png"),
 			new ImageIcon("./img/Blurs/Jalapen.png"));
+		super.setState(LOCK_STATE);
 	}
 	
 	public Jalapen CreatePlant(int X, int Y)
