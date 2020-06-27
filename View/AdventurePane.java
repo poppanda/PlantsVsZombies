@@ -195,10 +195,14 @@ public class AdventurePane extends JLayeredPane implements Runnable
         this.frame = frame;
         setBounds(0, 0, 810, 600);
         setVisible(true);
-        //add(BGImgPanel, JLayeredPane.DEFAULT_LAYER);
+        add(BGImgPanel, JLayeredPane.DEFAULT_LAYER);
         BGImgPanel.setBounds(0, 0, getWidth(), getHeight());
         BGImgPanel.setVisible(true);
-        add(new Repeater(80, 97));
+        CherryBomb cb = new CherryBomb(80, 97);
+        add(cb, JLayeredPane.PALETTE_LAYER);
+        cb.repaint();
+        //new Thread(cb).run();
+        System.out.println("ADD");
     }
     public void run()
     {
