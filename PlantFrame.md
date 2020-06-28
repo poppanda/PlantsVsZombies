@@ -7,16 +7,13 @@
 ```mermaid
 classDiagram
 class plants{
-	int HP, CD, attack
+	int HP
 	int state, **_STATE
 	int x, y
-	int empty, hold, num
+	int num
 	LinkedList
-	boolean isEmpty()
-	void goEmpty()
-	void goHold()
 	void loseHP(int attack)
-	boolean isAlive(int hp)
+	boolean isAlive()
 	void paint(Graphics g)
 	boolean involve(int x, int y)
 	int isHit(int x, int y)
@@ -26,7 +23,8 @@ class plants{
 }
 
 class Bullets{
-	int attack
+	Image BulletsImage, BulletsbombImage, PaintingImage
+	int damage
 	+int isHit(int x,int y)
 }
 
