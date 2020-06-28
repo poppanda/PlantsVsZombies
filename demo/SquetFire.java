@@ -8,8 +8,6 @@ public class SquetFire extends plants {
 	public SquetFire(int X, int Y) {
 		super();
 		HP = 10;
-		CD = 15;
-		attack = 10;
 		this.x = X;
 		this.y = Y;
 		setBounds(X, Y, 100, 100);

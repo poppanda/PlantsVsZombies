@@ -9,8 +9,6 @@ public class SunFlower extends plants {
 	public SunFlower(int X, int Y, AdventurePane pane) {
 		super();
 		HP = 4;
-		CD = 6;
-		attack = 0;
 		this.x = X;
 		this.y = Y;
 		this.pane = pane;

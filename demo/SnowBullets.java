@@ -10,8 +10,6 @@ public class SnowBullets extends plants {
 	
 	public SnowBullets(int X, int Y) {
 		super();
-		CD = 1;
-		attack = 2;
 		setBounds(X, Y, 100, 100);
 		this.x = X;
 		this.y = Y;

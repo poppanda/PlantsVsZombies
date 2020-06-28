@@ -11,8 +11,6 @@ public class PeaShooter extends plants {
 	public PeaShooter(int X, int Y) {
 		super();
 		HP = 6;
-		CD = 6;
-		attack = 2;
 		this.x = X;
 		this.y = Y;
 		setBounds(X, Y, 100, 100);

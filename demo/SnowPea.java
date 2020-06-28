@@ -8,8 +8,6 @@ public class SnowPea extends plants  {
 	public SnowPea(int X, int Y) {
 		super();
 		HP = 6;
-		CD = 7;
-		attack = 3;
 		this.x = X;
 		this.y = Y;
 		setBounds(X, Y, 100, 100);

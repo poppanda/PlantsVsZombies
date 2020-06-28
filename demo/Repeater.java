@@ -8,8 +8,6 @@ public class Repeater extends plants {
 	public Repeater(int X, int Y) {
 		super();
 		HP = 7;
-		CD = 9;
-		attack = 2;
 		this.x = X;
 		this.y = Y;
 		setBounds(X, Y, 100, 100);

@@ -10,8 +10,6 @@ public class ThreePeashooter extends plants  {
 	public ThreePeashooter(int X, int Y) {
 		super();
 		HP = 6;
-		CD = 6;
-		attack = 4;
 		this.x = X;
 		this.y = Y;
 		setBounds(X, Y, 100, 100);
