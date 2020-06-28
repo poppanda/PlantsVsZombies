@@ -31,7 +31,7 @@ public class HypnoShroom extends plants  {
 		  int n = 0;
 	        while(true)
 	        {
-	        	if(isAlive(this.HP)) {
+	        	if(isAlive()) {
 	        		n++;
 	            try{
 	            	if(n <= 70) {
@@ -77,7 +77,6 @@ public class HypnoShroom extends plants  {
 	            
 	        }
 	        	else {
-	        		this.goEmpty();
 	        		break;
 	        	}
 	        }

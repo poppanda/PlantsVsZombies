@@ -5,8 +5,6 @@ import javax.swing.ImageIcon;
 
 public class SnowPea extends plants  {
 	
-	int width = 100;
-	int height = 100;
 	public SnowPea(int X, int Y) {
 		super();
 		HP = 6;
@@ -28,7 +26,7 @@ public class SnowPea extends plants  {
 	    {
 	        while(true)
 	        {
-	        	if(isAlive(this.HP)) {
+	        	if(isAlive()) {
 	            try{
 	            	state = ATTACK_STATE;
 	            	if(BulletsList.size() == 0) {
@@ -52,7 +50,6 @@ public class SnowPea extends plants  {
 	            
 	        }
 	        	else {
-	        		this.goEmpty();
 	        		break;
 	        	}
 	        }

@@ -5,8 +5,7 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
 public class WallNut extends plants {
-	int width = 100;
-	int height = 100;
+
 	public WallNut(int X, int Y) {
 		super();
 		HP = 15;
@@ -30,7 +29,7 @@ public class WallNut extends plants {
 	@Override
 	public void run() {
 		while (true) {
-			if (isAlive(this.HP)) {
+			if (isAlive()) {
 				try {
 					if (HP > 10) {
 						DrawGroup = Wallnut;
@@ -64,7 +63,6 @@ public class WallNut extends plants {
 
 			} else {
 				state = DEAD_STATE;
-				this.goEmpty();
 				break;
 			}
 		}

@@ -5,8 +5,6 @@ import javax.swing.ImageIcon;
 
 public class CherryBomb extends plants {
 
-	int width = 100;
-	int height = 100;
 	public CherryBomb(int X, int Y) {
 		super();
 		HP = 10;
@@ -39,7 +37,6 @@ public class CherryBomb extends plants {
 				}
 			} else {
 				state = DEAD_STATE;
-				this.goEmpty();
 				break;
 			}
 		}

@@ -36,7 +36,7 @@ public class Chomper extends plants {
 	public void run() {
 		int eatingTime = 0;
 		while (true) {
-			if (isAlive(this.HP)) {
+			if (isAlive()) {
 				try {
 					if (state == CAN_EAT_STATE) {
 						DrawGroup = Chomper;
@@ -67,7 +67,6 @@ public class Chomper extends plants {
 
 			} else {
 				state = DEAD_STATE;
-				this.goEmpty();
 				break;
 			}
 		}

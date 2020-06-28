@@ -31,7 +31,7 @@ public class PotatoMine extends plants {
 		retBomb = new Bomb((x - 55)/80 - 1, (x - 55)/80 - 1, (y - 100) / 97, (y - 100) / 97);
 		retBomb.setState(retBomb.WAIT_STATE);
 		while (true) {
-			if (isAlive(this.HP)) {
+			if (isAlive()) {
 				try {
 					if(state == INIT_STATE)
 					{
@@ -57,7 +57,6 @@ public class PotatoMine extends plants {
 				}
 			} else {
 				state = DEAD_STATE;
-				this.goEmpty();
 				break;
 			}
 		}

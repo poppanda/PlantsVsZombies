@@ -7,11 +7,7 @@ import java.util.LinkedList;
 import javax.swing.ImageIcon;
 
 public class Jalapen extends plants  {
-	
-	int width = 100;
-	int height = 100;
-	static LinkedList<Image> pic= new LinkedList<>();
-	 LinkedList<Image> draw = new LinkedList<>();
+
 	public Jalapen(int X, int Y) {
 		super();
 		HP = 4;
@@ -33,7 +29,7 @@ public class Jalapen extends plants  {
 	    {
 	        while(true)
 	        {
-	        	if(isAlive(this.HP)) {
+	        	if(isAlive()) {
 	            try{
 	            	if(num <= 7) {
 	                Thread.sleep(100);
@@ -51,7 +47,6 @@ public class Jalapen extends plants  {
 	            
 	        }
 	        	else {
-	        		this.goEmpty();
 	        		break;
 	        	}
 	        }

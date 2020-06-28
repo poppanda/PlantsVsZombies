@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import javax.swing.ImageIcon;
 
 public class PeaShooter extends plants {
+	
 	public PeaShooter(int X, int Y) {
 		super();
 		HP = 6;
@@ -28,7 +29,7 @@ public class PeaShooter extends plants {
 	public void run() {
 
 		while (true) {
-			if (isAlive(this.HP)) {
+			if (isAlive()) {
 				try {
 					if (num == 3) state = ATTACK_STATE;
 					else state = NORMAL_STATE;
@@ -45,7 +46,6 @@ public class PeaShooter extends plants {
 
 			} else {
 				state = DEAD_STATE;
-				this.goEmpty();
 				break;
 			}
 		}

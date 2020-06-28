@@ -5,8 +5,6 @@ import javax.swing.ImageIcon;
 
 public class Repeater extends plants {
 
-	int width = 100;
-	int height = 100;
 	public Repeater(int X, int Y) {
 		super();
 		HP = 7;
@@ -26,7 +24,7 @@ public class Repeater extends plants {
 	@Override
 	public void run() {
 		while (true) {
-			if (isAlive(this.HP)) {
+			if (isAlive()) {
 				try {
 					if (num == 2) state = ATTACK_STATE;
 					else state = NORMAL_STATE;
@@ -44,7 +42,6 @@ public class Repeater extends plants {
 
 			} else {
 				state = DEAD_STATE;
-				this.goEmpty();
 				break;
 			}
 		}

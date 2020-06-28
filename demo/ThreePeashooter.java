@@ -27,7 +27,7 @@ public class ThreePeashooter extends plants  {
 	    {
 	        while(true)
 	        {
-	        	if(isAlive(this.HP)) {
+	        	if(isAlive()) {
 	            try{
 	            	if(num == 6) state = ATTACK_STATE;
 	            	else state = NORMAL_STATE;
@@ -47,7 +47,6 @@ public class ThreePeashooter extends plants  {
 	            
 	        }
 	        	else {
-	        		this.goEmpty();
 	        		break;
 	        	}
 	        }

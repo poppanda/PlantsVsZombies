@@ -32,23 +32,7 @@ public class plants extends JLabel implements Runnable{
 		public void setHP(int hP) {
 			HP = hP;
 		}
-		protected static final int empty = 0;
-		protected static final int hold = 1;
-		protected int tem = empty;
-
-		public boolean isEmpty() {
-			return tem == empty;
-		}
-		public boolean isHold() {
-			return tem == hold;
-		}
 		
-		public void goEmpty() {
-			tem = empty;
-		}
-		public void goHold() {
-			tem = hold;
-		}
 		public void loseHP(int attack) {
 			this.HP = HP - attack;
 		}

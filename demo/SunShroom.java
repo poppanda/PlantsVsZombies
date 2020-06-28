@@ -28,7 +28,7 @@ public class SunShroom extends plants {
 		int n = 0;
 		while (true) {
 
-			if (isAlive(this.HP)) {
+			if (isAlive()) {
 				n++;
 				try {
 					//12s later be big
@@ -56,7 +56,6 @@ public class SunShroom extends plants {
 				}
 
 			} else {
-				this.goEmpty();
 				break;
 			}
 		}

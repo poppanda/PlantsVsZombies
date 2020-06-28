@@ -41,7 +41,7 @@ public class Squash extends plants  {
 	    {
 	        while(true)
 	        {
-	        	if(isAlive(this.HP)) {
+	        	if(isAlive()) {
 	            try{
 	            	if(canSit(100,100) == true) {
 	            		DrawGroup = Squash;
@@ -73,7 +73,6 @@ public class Squash extends plants  {
 	            
 	        }
 	        	else {
-	        		this.goEmpty();
 	        		break;
 	        	}
 	        }

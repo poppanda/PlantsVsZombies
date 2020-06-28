@@ -5,8 +5,6 @@ import javax.swing.ImageIcon;
 
 public class SquetFire extends plants {
 	
-	int width = 100;
-	int height = 100;
 	public SquetFire(int X, int Y) {
 		super();
 		HP = 10;
@@ -29,7 +27,7 @@ public class SquetFire extends plants {
 	    {
 	        while(true)
 	        {
-	        	if(isAlive(this.HP)) {
+	        	if(isAlive()) {
 	            try{
 	            	if(num <= 7) {
 		                Thread.sleep(200);
@@ -46,7 +44,6 @@ public class SquetFire extends plants {
 	            
 	        }
 	        	else {
-	        		this.goEmpty();
 	        		break;
 	        	}
 	        }

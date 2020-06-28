@@ -32,7 +32,7 @@ public class SunFlower extends plants {
 				count = 0;
 				new Sun_Shine(x, y, pane);
 			}
-			if (isAlive(this.HP)) {
+			if (isAlive()) {
 				try {
 					Thread.sleep(100);
 					num = (num + 1) % 18;
@@ -43,7 +43,6 @@ public class SunFlower extends plants {
 
 			} else {
 				state = DEAD_STATE;
-				this.goEmpty();
 				break;
 			}
 		}
