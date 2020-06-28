@@ -8,7 +8,7 @@ public class Chomper extends plants {
 
 	public Chomper(int X, int Y) {
 		super();
-		HP = 6;
+		HP = 35;
 		this.x = X;
 		this.y = Y;
 		state = CAN_EAT_STATE;

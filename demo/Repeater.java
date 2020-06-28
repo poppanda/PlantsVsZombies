@@ -7,7 +7,7 @@ public class Repeater extends plants {
 
 	public Repeater(int X, int Y) {
 		super();
-		HP = 7;
+		HP = 50;
 		this.x = X;
 		this.y = Y;
 		setBounds(X, Y, 100, 100);

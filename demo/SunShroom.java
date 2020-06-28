@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 public class SunShroom extends plants {
 	public SunShroom(int X, int Y) {
 		super();
-		HP = 4;
+		HP = 30;
 		this.x = X;
 		this.y = Y;
 		setBounds(X, Y, 100, 100);

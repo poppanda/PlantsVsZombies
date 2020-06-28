@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 public class ThreePeashooter extends plants  {
 	public ThreePeashooter(int X, int Y) {
 		super();
-		HP = 6;
+		HP = 60;
 		this.x = X;
 		this.y = Y;
 		setBounds(X, Y, 100, 100);

@@ -7,7 +7,7 @@ public class CherryBomb extends plants {
 
 	public CherryBomb(int X, int Y) {
 		super();
-		HP = 10;
+		HP = 30;
 		this.x = X;
 		this.y = Y;
 		setBounds(X, Y, 300, 300);

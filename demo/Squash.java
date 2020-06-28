@@ -7,7 +7,7 @@ public class Squash extends plants  {
 	
 	public Squash(int X, int Y) {
 		super();
-		HP = 6;
+		HP = 50;
 		this.x = X;
 		this.y = Y;
 		setBounds(X, Y, 100, 100);

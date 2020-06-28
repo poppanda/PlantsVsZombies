@@ -8,7 +8,7 @@ public class HypnoShroom extends plants  {
 	
 	public HypnoShroom(int X, int Y) {
 		super();
-		HP = 6;
+		HP = 30;
 		this.x = X;
 		this.y = Y;
 		setBounds(X, Y, 100, 100);

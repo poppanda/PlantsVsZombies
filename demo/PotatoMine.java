@@ -10,7 +10,7 @@ public class PotatoMine extends plants {
 	Bomb retBomb;
 	public PotatoMine(int X, int Y) {
 		super();
-		HP = 4;
+		HP = 30;
 		this.x = X;
 		this.y = Y;
 		state = INIT_STATE;

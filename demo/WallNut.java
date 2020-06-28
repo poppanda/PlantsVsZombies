@@ -8,7 +8,7 @@ public class WallNut extends plants {
 
 	public WallNut(int X, int Y) {
 		super();
-		HP = 15;
+		HP = 400;
 		this.x = X;
 		this.y = Y;
 		setBounds(X, Y, 100, 100);
@@ -31,21 +31,21 @@ public class WallNut extends plants {
 		while (true) {
 			if (isAlive()) {
 				try {
-					if (HP > 10) {
+					if (HP > 250) {
 						DrawGroup = Wallnut;
 
 						Thread.sleep(100);
 						num = (num + 1) % 16;
 						repaint();
 
-					} else if (HP > 5 && HP < 10) {
+					} else if (HP > 100 && HP <= 250) {
 						DrawGroup = Wallnut1;
 
 						Thread.sleep(100);
 						num = (num + 1) % 11;
 						repaint();
 
-					} else if (HP > 0 && HP < 5) {
+					} else if (HP > 0 && HP =< 100) {
 						DrawGroup = Wallnut2;
 
 						Thread.sleep(100);
