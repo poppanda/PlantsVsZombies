@@ -12,9 +12,8 @@ public class Zombie extends ZombieBasis{
 	{
 		super();
 		this.delaytime = delaytime;
-		state = 1;
+		state = WALK_STATE;
 		HP = 10;
-	    damage = 3;
 		int i;
 		for(i = 0;i<20;i++)
 		{

@@ -13,7 +13,6 @@ public class BucketheadZombie extends ZombieBasis{
 		HP = 18;
 		state = 5;
 		this.delaytime = delaytime;
-		damage = 3;
 		int i;
 		for(i = 0;i<15;i++)
 		{

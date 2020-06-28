@@ -9,8 +9,9 @@ import java.util.LinkedList;
 
 
 public abstract class ZombieBasis extends JLabel implements Runnable {
-	public int HP, damage, losehat = 10;
-	private int x, y, countDown = 1;
+	private int x, y, countDown = 1, losehat = 10;
+	public int state;
+	protected int num = 0,delaytime, HP;
 	LinkedList < Image > BoomDie = new LinkedList < > ();
 	LinkedList < Image > Walk = new LinkedList < > ();
 	LinkedList < Image > NormDie = new LinkedList < > ();
@@ -83,7 +84,6 @@ public abstract class ZombieBasis extends JLabel implements Runnable {
 	public LinkedList < Image > getHead() {
 		return Head;
 	}
-	public int num = 0, state, delaytime;
 
 	public void walk() {
 		if (HP > 10) setState(HAT_WALK_STATE);

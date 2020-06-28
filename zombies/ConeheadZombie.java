@@ -13,7 +13,6 @@ public class ConeheadZombie extends ZombieBasis {
 		HP = 15;
 		this.delaytime = delaytime;
 		state = 5;
-		damage = 3;
 		int i;
 		for(i = 0;i<21;i++)
 		{
