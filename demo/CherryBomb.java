@@ -10,8 +10,6 @@ public class CherryBomb extends plants {
 	public CherryBomb(int X, int Y) {
 		super();
 		HP = 10;
-		CD = 15;
-		attack = 10;
 		this.x = X;
 		this.y = Y;
 		setBounds(X, Y, 300, 300);
@@ -30,7 +28,7 @@ public class CherryBomb extends plants {
 		num = 0;
 		while (true) {
 			DrawGroup = Cherrybomb;
-			if (isAlive(this.HP)) {
+			if (isAlive()) {
 				try {
 					Thread.sleep(100);
 					repaint();
@@ -59,7 +57,7 @@ public class CherryBomb extends plants {
 	}
 	public Bomb getBomb()
 	{
-		Bomb ret = new Bomb(x - 80, x + 160, y - 97, y + 194);
+		Bomb ret = new Bomb((x - 55)/80 - 2, (x - 55)/80 + 1, (y - 100) / 97 - 1, (y - 100) / 97 + 1);
 		ret.setState(ret.BOMB_STATE);
 		return ret;
 	}

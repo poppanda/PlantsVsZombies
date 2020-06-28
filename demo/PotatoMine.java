@@ -11,12 +11,10 @@ public class PotatoMine extends plants {
 	public PotatoMine(int X, int Y) {
 		super();
 		HP = 4;
-		CD = 7;
-		attack = 4;
 		this.x = X;
 		this.y = Y;
 		state = INIT_STATE;
-		setBounds(X, Y, 100, 100);
+		setBounds(X, Y, 200, 200);
 		setVisible(true);
 
 		for (int i = 0; i < 8; i++) {
@@ -30,6 +28,8 @@ public class PotatoMine extends plants {
 	@Override
 	public void run() {
 		int beBigTime = 3000;
+		retBomb = new Bomb((x - 55)/80 - 1, (x - 55)/80 - 1, (y - 100) / 97, (y - 100) / 97);
+		retBomb.setState(retBomb.WAIT_STATE);
 		while (true) {
 			if (isAlive(this.HP)) {
 				try {
@@ -41,12 +41,13 @@ public class PotatoMine extends plants {
 						repaint();
 						if(beBigTime == 0)
 						{
-							state = ALL_STATE;
+							state = BOMB_STATE;
 							num = 0;
 						}
 					}
-					else if(state == ALL_STATE) {
+					else if(state == BOMB_STATE) {
 						DrawGroup = PotatoMine;
+						if(retBomb.state == retBomb.BOMB_STATE)break;
 						Thread.sleep(100);
 						num = (num + 1) % 8;
 						repaint();
@@ -54,27 +55,21 @@ public class PotatoMine extends plants {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-
 			} else {
 				state = DEAD_STATE;
 				this.goEmpty();
 				break;
 			}
 		}
-		state = BOMB_STATE;
-		retBomb = new Bomb(x, x + 80, y, y + 97);
-		retBomb.setState(retBomb.WAIT_STATE);
-		while(retBomb.state == retBomb.WAIT_STATE)
-		{
-			try{
-				Thread.sleep(100);
-			}catch(InterruptedException e){
-				e.printStackTrace();
-			}
-		}
+		num = 0;
 		DrawGroup = BombPotato;
 		repaint();
-		state = DEAD_STATE;
+		try{
+			Thread.sleep(500);
+			state = DEAD_STATE;
+		}catch(InterruptedException e){
+			e.printStackTrace();
+		}
 	}
 	public Bomb getBomb(){
 		return retBomb;

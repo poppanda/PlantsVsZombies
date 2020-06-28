@@ -7,9 +7,7 @@ import java.util.LinkedList;
 import javax.swing.JLabel;
 
 public class plants extends JLabel implements Runnable{
-		protected int HP;
-		protected int CD;
-		protected int attack;
+		public int HP;
 		public int state;
 		public final int ATTACK_STATE = 1, HIT_STATE = 2, BOMB_STATE = 3, NORMAL_STATE = 4, CAN_EAT_STATE = 5, EAT_STATE = 6, EATING = 7, DEAD_STATE = 8,INIT_STATE = 9, ALL_STATE = 10;
 		public int x;
@@ -34,12 +32,6 @@ public class plants extends JLabel implements Runnable{
 		public void setHP(int hP) {
 			HP = hP;
 		}
-		public int getCD() {
-			return CD;
-		}
-		public void setCD(int cD) {
-			CD = cD;
-		}
 		protected static final int empty = 0;
 		protected static final int hold = 1;
 		protected int tem = empty;
@@ -61,16 +53,8 @@ public class plants extends JLabel implements Runnable{
 			this.HP = HP - attack;
 		}
 				
-		public boolean isAlive(int hp) {
-			if(hp > 0)
-				return true;
-			return false;
-		}
-				
-		public boolean isOk(int time) {
-			if(time >= CD)
-				return true;
-				return false;
+		public boolean isAlive() {
+			return HP > 0;
 		}
 		public int num = 0;
 		LinkedList<Image> DrawGroup ;
@@ -100,7 +84,7 @@ public class plants extends JLabel implements Runnable{
 		LinkedList<Image> SunShroomBig = new LinkedList<>();
 		LinkedList<Image> Bulletsbomb = new LinkedList<>();
 		LinkedList<Image> Snowbullets = new LinkedList<>();
-		LinkedList<Bullets> BulletsList = new LinkedList<Bullets>();
+		public LinkedList<Bullets> BulletsList = new LinkedList<Bullets>();
 		LinkedList<Image> BombCherry = new LinkedList<>();
 		LinkedList<Image> BombPotato = new LinkedList<>();
 		LinkedList<Image> PotatoInit = new LinkedList<>();
@@ -290,9 +274,7 @@ public class plants extends JLabel implements Runnable{
 			SquashAttack = squashAttack;
 		}
 		
-		public LinkedList<Bullets> getBulletsList() {
-			return BulletsList;
-		}
+		public Bullets getBullet(){return null;}
 		public void setBulletsList(LinkedList<Bullets> bulletsList) {
 			BulletsList = bulletsList;
 		}
@@ -315,15 +297,7 @@ public class plants extends JLabel implements Runnable{
 			return new Bullets(x, y);
 		}
 		
-		public Bomb getBomb(int x0, int x1, int y0, int y1) {
+		public Bomb getBomb() {
 			return new Bomb(0, 0, 0, 0);
-		}
-		
-		public boolean involve(int x, int y) {
-			return true;
-		}
-		
-		public int isHit(int x, int y) {
-			return state = 2;
 		}
 }

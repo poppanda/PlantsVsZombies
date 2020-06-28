@@ -15,6 +15,9 @@ public class Bomb
 		this.state = state;
 	}
 	public boolean involve(int x, int y) {
+		x = (x - 55) / 80;
+		y = (y - 10) / 97;
+		//System.out.println(x + " " + y + " " + x0 + " " + x1 + " " + y0 + " " + y1);
 		if(x >= x0 && x <= x1 && y >= y0 && y <= y1)
 			return true;
 		return false;

@@ -1,58 +1,52 @@
 package demo;
 
+import java.awt.Image;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.*;
 
-public class Bullets extends plants {
-
-	int width = 20;
-	int height = 20;
-	
+public class Bullets extends JLabel implements Runnable
+{
+	public int x, y, damage = 1, state;
+	public final int HIT_STATE = 1, NOEM_STATE = 0, DEAD_STATE = 2;
+	Image BulletsImage, BulletsbombImage, PaintingImage;
 	public Bullets(int X, int Y) {
 		super();
-		CD = 1;
-		attack = 2;
 		this.x = X;
 		this.y = Y;
+		this.state = NOEM_STATE;
 		setBounds(X, Y, 100, 100);
-	    setVisible(true);
-	    
-	    getBullets().add(new ImageIcon("./img/Bullets/PeaNormal/PeaNormal_0.png" ).getImage());
-	    getBulletsbomb().add(new ImageIcon("./img/Bullets/PeaNormalExplode/PeaNormalExplode_0.png" ).getImage());
+		setVisible(true);
+
+		BulletsImage = (new ImageIcon("./img/Bullets/PeaNormal/PeaNormal_0.png").getImage());
+		BulletsbombImage = (new ImageIcon("./img/Bullets/PeaNormalExplode/PeaNormalExplode_0.png").getImage());
+
+		PaintingImage = BulletsImage;
 	}
-	  @Override
-	    public void run()
-	    {
-	        while(true)
-	        {
-	            try{
-	            	DrawGroup = Bullets;
-	            	Thread.sleep(100);
-	            		repaint();
-	            		this.setBounds(x+20, y, this.width, this.height);
-	            		if(state == HIT_STATE) {
-	            			DrawGroup = Bulletsbomb;
-	            			repaint();
-	            			break;
-	            		}
-	               
-	            }catch(InterruptedException e)
-	            {
-	                e.printStackTrace();
-	            }
-	            
-	        }
-	
-}
-	  
-	  //to determine if a bulletcan hit a zombie
-	  public int isHit(int x,int y) {
-		  if(this.y == y) {
-			  return state = HIT_STATE;
-		  }
-		  return state = ATTACK_STATE;
-	  }
-	  
-		
-		
+	@Override
+	public void paint(Graphics g)
+	{
+		super.paint(g);
+		g.drawImage(PaintingImage, 0, 0, this);
+	}
+	public void run() {
+		while (true) {
+			try {
+				Thread.sleep(100);
+				repaint();
+				this.setBounds(x = x + 20, y, 100, 100);
+				if (state == HIT_STATE) {
+					PaintingImage = BulletsbombImage;
+					repaint();
+					Thread.sleep(100);
+					state = DEAD_STATE;
+					break;
+				}
+
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }

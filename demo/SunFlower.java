@@ -24,7 +24,14 @@ public class SunFlower extends plants {
 
 	@Override
 	public void run() {
+		int count = 0;
 		while (true) {
+			count++;
+			if(count == 50)
+			{
+				count = 0;
+				new Sun_Shine(x, y, pane);
+			}
 			if (isAlive(this.HP)) {
 				try {
 					Thread.sleep(100);
