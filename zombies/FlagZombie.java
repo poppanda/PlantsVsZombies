@@ -9,7 +9,6 @@ public class FlagZombie extends ZombieBasis{
 		state = WALK_STATE;
 		this.delaytime = delaytime;
 		HP = 10;
-		damage = 1;
 		int i;
 		    for(i = 0;i<12;i++)
 			{

@@ -7,34 +7,33 @@ import java.awt.Image;
 import java.lang.Thread;
 
 import javax.swing.ImageIcon;
-class Zombie extends ZombieBasis{
+public class Zombie extends ZombieBasis{
 	public Zombie(int delaytime) 
 	{
 		super();
 		this.delaytime = delaytime;
-		state = 1;
+		state = WALK_STATE;
 		HP = 10;
-	    damage = 3;
 		int i;
 		for(i = 0;i<20;i++)
 		{
-			getBoomDie().add(new ImageIcon("src/NormalZombie/BoomDie/BoomDie_"+i+".png").getImage());
+			getBoomDie().add(new ImageIcon("./img/Zombies/NormalZombie/BoomDie/BoomDie_"+i+".png").getImage());
 		}
 		for(i = 0;i<10;i++)
 		{
-			getNormDie().add(new ImageIcon("src/NormalZombie/ZombieDie/ZombieDie_"+i+".png").getImage());
+			getNormDie().add(new ImageIcon("./img/Zombies/NormalZombie/ZombieDie/ZombieDie_"+i+".png").getImage());
 		}
 		for(i = 0;i<22;i++)
 		{
-			getWalk().add(new ImageIcon("src/NormalZombie/Zombie/Zombie_"+i+".png").getImage());
+			getWalk().add(new ImageIcon("./img/Zombies/NormalZombie/Zombie/Zombie_"+i+".png").getImage());
 		}
 		for(i = 0;i<21;i++)
 		{
-			getEat().add(new ImageIcon("src/NormalZombie/ZombieAttack/ZombieAttack_"+i+".png").getImage());
+			getEat().add(new ImageIcon("./img/Zombies/NormalZombie/ZombieAttack/ZombieAttack_"+i+".png").getImage());
 		}
 		for(i = 0;i<12;i++)
 		{
-			getHead().add(new ImageIcon("src/NormalZombie/ZombieHead/ZombieHead_"+i+".png").getImage());
+			getHead().add(new ImageIcon("./img/Zombies/NormalZombie/ZombieHead/ZombieHead_"+i+".png").getImage());
 		}
 	}
 	@Override

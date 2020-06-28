@@ -1,6 +1,6 @@
 package View;
 
-import demo.*;
+import plant.*;
 import zombies.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -25,6 +25,7 @@ public class AdventurePane extends JLayeredPane implements Runnable {
     Battle battle = new Battle(this);
     AddPlantPlain addPlantPlain = new AddPlantPlain();
     Blur blur = new Blur();
+    protected boolean win = true;
 
     JButton startBtn = new JButton(new ImageIcon("./img/Screen/StartButton.png"));
     final ImageIcon BGImg = new ImageIcon("./img/Background/Background_0.jpg");
@@ -84,6 +85,9 @@ public class AdventurePane extends JLayeredPane implements Runnable {
     public void addSunshine(Sun_Shine s) {
         add(s, JLayeredPane.DRAG_LAYER);
         battle.addSunshine(s);
+    }
+    public void addZombie(ZombieBasis z){
+        battle.addZombie(z);
     }
     public Thread moveCard(Card card, int tarX, int tarY, int T) {
         return new Thread(() -> {
@@ -232,22 +236,29 @@ public class AdventurePane extends JLayeredPane implements Runnable {
             }
         });
         ShowPlants(groupThread);
-        try {
-            synchronized(battle) {
-                battle.wait();
-            }
+        try{
+            while(battleThread == null)Thread.sleep(100);
+            battleThread.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        JButton backToMenu = new JButton();
-        backToMenu.setLocation(300, 200);
-        if (battle.win) backToMenu.setIcon(new ImageIcon("./img/Screen/GameVictory.png"));
-        else backToMenu.setIcon(new ImageIcon("./img/Screen/GameLoose.jpg"));
+        System.out.println(win);
+        JButton backToMenu = new JButton(){
+            @Override
+            public void paintComponent(Graphics g)
+            {
+                super.paintComponent(g);
+                g.drawImage(new ImageIcon("./img/Screen/GameLoose.png").getImage(), 0, 0, this);
+            }
+        };
+        backToMenu.setBorder(null);
+        backToMenu.setOpaque(false);
+        backToMenu.setBounds(0, 0, 1000, 1000);
         add(backToMenu, JLayeredPane.DRAG_LAYER);
         backToMenu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.runLaunchPane();
+                System.exit(0);
             }
         });
     }
@@ -320,7 +331,6 @@ class Battle implements Runnable {
     private ExecutorService livePlants = new ThreadPoolExecutor(45, 45, 500, TimeUnit.MILLISECONDS, new LinkedBlockingQueue < > ());
     private ExecutorService liveZombies = new ThreadPoolExecutor(45, 45, 500, TimeUnit.MILLISECONDS, new LinkedBlockingQueue < > ());
     private ExecutorService liveBullets = new ThreadPoolExecutor(45, 45, 500, TimeUnit.MILLISECONDS, new LinkedBlockingQueue < > ());
-    public boolean win = false;
     protected boolean hasZombie[][] = new boolean[15][6], hasPlant[][] = new boolean[15][6];
     private int Damage[][] = new int[15][6];
     AdventurePane pane;
@@ -330,10 +340,9 @@ class Battle implements Runnable {
     //(locY - 100) / 97 * 97 + 100
     public Thread before;
     void addPlant(plants P) {
-        pane.add(P, JLayeredPane.MODAL_LAYER);
+        pane.add(P, JLayeredPane.PALETTE_LAYER, 1);
         plantList.add(P);
         livePlants.submit(new Thread(P));
-        addZombie(new FlagZombie(1000));
     }
     public void addSunshine(Sun_Shine s) {
         sunshineList.add(s);
@@ -344,42 +353,22 @@ class Battle implements Runnable {
         liveZombies.submit(new Thread(Z));
     }
     public void run() {
-        int rest = 10, gridX, gridY, damageDis = 10;
+        // new Zombiefactory("./zombies/ZombieDATA.txt", pane);
+        int gridX, gridY, damageDis = 10;
+        boolean lose = false;
         try {
             if (before != null) before.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        //while(liveZombies.isTerminated() == false)
-        while (rest != 0) {
+        while(pane.win && liveZombies.isTerminated() == false)
+        {
+            liveZombies.shutdown();
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            for (Bullets b: bulletList)
-                if(b.state == b.DEAD_STATE)
-                    bulletRemoveList.add(b);
-            for (Bullets b: bulletRemoveList) {
-                bulletList.remove(b);
-                pane.remove(b);
-            }
-            for (Bomb b:bombRemoveList){
-                bombList.remove(b);
-            }
-            for (plants p: plantRemoveList) {
-                plantList.remove(p);
-                pane.remove(p);
-            }
-            for (ZombieBasis z : zombieRemoveList){
-                zombieList.remove(z);
-                pane.remove(z);
-            }
-            pane.repaint();
-            bulletRemoveList.clear();
-            plantRemoveList.clear();
-            bombRemoveList.clear();
-            zombieRemoveList.clear();
             for (int y = 0; y < 5; y++)
                 for (int x = 0; x <= 9; x++)
                     hasZombie[x][y] = false;
@@ -388,12 +377,16 @@ class Battle implements Runnable {
                     if (z.state == z.DEAD_STATE)zombieRemoveList.add(z);
                     if (z.state == z.NORM_DIE_STATE || z.state == z.BOMB_DIE_STATE) continue;
                 }
+                if(z.getX() == -50)
+                {
+                    pane.win = false;
+                    break;
+                }
                 gridX = (z.getX() - 55) / 80;
                 gridY = (z.getY() - 10) / 97;
                 hasZombie[gridX][gridY] = true;
                 if (hasPlant[gridX + 1][gridY])
                 {
-                    System.out.println(gridX + " " + gridY);
                     Damage[gridX + 1][gridY]++;
                     z.eat();
                 }
@@ -423,7 +416,6 @@ class Battle implements Runnable {
                 }
                 if (haszombie && (p.state == p.ATTACK_STATE)) {
                     while (p.BulletsList.size() != 0) {
-                        System.out.println("Bullet");
                         Bullets b = p.getBullet();
                         pane.add(b, JLayeredPane.MODAL_LAYER);
                         bulletList.add(b);
@@ -432,7 +424,16 @@ class Battle implements Runnable {
                 } else if (p.state == p.BOMB_STATE) {
                     Bomb b = p.getBomb();
                     bombList.add(b);
-                } else if (p.state == p.DEAD_STATE) {
+                } else if (p.state == p.CAN_EAT_STATE){
+                    boolean eat = hasZombie[gridX][gridY];
+                    if(eat)
+                    {
+                        ((Chomper)p).Eat();
+                        for(ZombieBasis z : zombieList)
+                            if(((z.getX() - 55) / 80 == gridX) && ((z.getY() - 10) / 97 == gridY))
+                                z.setState(z.DEAD_STATE);
+                    }
+                }else if (p.state == p.DEAD_STATE) {
                     plantRemoveList.add(p);
                     hasPlant[gridX][gridY] = false;
                 }
@@ -452,9 +453,29 @@ class Battle implements Runnable {
                             break;
                         }
                 }
+            for (Bullets b: bulletList)
+                if(b.state == b.DEAD_STATE)
+                    bulletRemoveList.add(b);
+            for (Bullets b: bulletRemoveList) {
+                bulletList.remove(b);
+                pane.remove(b);
+            }
+            for (Bomb b:bombRemoveList){
+                bombList.remove(b);
+            }
+            for (plants p: plantRemoveList) {
+                plantList.remove(p);
+                pane.remove(p);
+            }
+            for (ZombieBasis z : zombieRemoveList){
+                zombieList.remove(z);
+                pane.remove(z);
+            }
+            pane.repaint();
+            bulletRemoveList.clear();
+            plantRemoveList.clear();
+            bombRemoveList.clear();
+            zombieRemoveList.clear();
         }
-        if (rest == 0) win = true;
-        else win = false;
-        Battle.this.notify();
     }
 }

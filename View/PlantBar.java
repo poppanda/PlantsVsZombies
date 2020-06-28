@@ -1,6 +1,6 @@
 package View;
 
-import demo.*;
+import plant.*;
 import javax.swing.*;
 import java.awt.Graphics;
 import java.util.LinkedList;
@@ -24,7 +24,7 @@ public class PlantBar extends JLabel implements Runnable
     {
         this.pane = pane;
         this.before = before;
-        cardCapacity = 3;
+        cardCapacity = 7;
         cardX = new int[]{0, 77, 129, 181, 233, 285, 337, 389, 441, 493};
         cardY = 7;
         cardsInBar = 0;

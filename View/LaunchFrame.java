@@ -1,12 +1,11 @@
 package View;
 
-import demo.Card;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class LaunchFrame extends JFrame
 {
-    private LaunchPane launchPane;
+    private LaunchPane launchPane = new LaunchPane(this);
     private AdventurePane adventurePane;
     public void runLaunchPane(){
         launchPane = new LaunchPane(this);
@@ -28,6 +27,6 @@ public class LaunchFrame extends JFrame
     public static void main(String[] args)
     {
         LaunchFrame launchFrame = new LaunchFrame();
-        launchFrame.runAdventurePane();
+        launchFrame.runLaunchPane();
     }
 }

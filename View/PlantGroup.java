@@ -1,6 +1,6 @@
 package View;
 
-import demo.*;
+import plant.*;
 import javax.swing.*;
 import java.awt.Graphics;
 import java.security.DrbgParameters.Capability;
