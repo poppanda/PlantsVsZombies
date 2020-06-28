@@ -102,7 +102,7 @@ public abstract class ZombieBasis extends JLabel implements Runnable {
 
 	@Override
 	public void run() {
-		while (countDown != 0) {
+		while (true) {
 			if (state == WALK_STATE)
 			{
 				setX(getX() - 1);
@@ -123,14 +123,15 @@ public abstract class ZombieBasis extends JLabel implements Runnable {
 			{
 				if(HP <= 10) setState(EAT_STATE);
 			}
-			setLocation(getX(), getY());
-			num = (num + 1) % DrawGroup.size();
 			repaint();
+			setLocation(getX(), getY());
+			if(countDown == 0) break;
 			try{
 				Thread.sleep(100);
 			}catch(InterruptedException e){
 				e.printStackTrace();
 			}
+			num = (num + 1) % DrawGroup.size();
 		}
 		state = DEAD_STATE;
 	}
@@ -141,13 +142,13 @@ public abstract class ZombieBasis extends JLabel implements Runnable {
 		if(STATE == BOMB_DIE_STATE)
 		{
 			DrawGroup = BoomDie;
-			countDown = BoomDie.size() - 1;
+			countDown = BoomDie.size() - 2;
 			state = STATE;
 		}
 		else if(STATE == NORM_DIE_STATE)
 		{
 			DrawGroup = NormDie;
-			countDown = NormDie.size() - 1;
+			countDown = NormDie.size() - 2;
 			state = STATE;
 		}
 		else if(STATE == WALK_STATE)
@@ -176,15 +177,18 @@ public abstract class ZombieBasis extends JLabel implements Runnable {
 		{
 			DrawGroup = HatEat;
 			state = STATE;
+		}else if(STATE == DEAD_STATE)
+		{
+			state = STATE;
 		}
 	}
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 		if (state == NORM_DIE_STATE) {
-			g.drawImage(getHead().get(num), 50, 30, this);
-			g.drawImage(getDrawGroup().get(num), 0, 0, this);
-		} else g.drawImage(getDrawGroup().get(num), 0, 0, this);
+			g.drawImage(getHead().get(num), 0, 60, this);
+			g.drawImage(getDrawGroup().get(num), -50, 30, this);
+		} else g.drawImage(getDrawGroup().get(num), -50, 30, this);
 	}
 
 	public void getHurt(int damage) {

@@ -73,9 +73,6 @@ public class LaunchPane extends JLayeredPane
         //Options setting
         //Adventure mode
         MyButton adventureBtn = new MyButton(340, 120, adventureIcon_Light, adventureIcon_Dark);
-        //File musicFile = new File("./audio/Faster.wav");
-        //AudioClip BGMusic = Applet.newAudioClip(musicFile.toURL());
-        //BGMusic.play();
         adventureBtn.setBounds(410, 80, adventureBtn.getBtnWidth(), adventureBtn.getBtnHeight());
         add(adventureBtn, 0);
         adventureBtn.addMouseListener(new MouseListener()
@@ -101,17 +98,6 @@ public class LaunchPane extends JLayeredPane
             {
                 Thread twinkle = new Thread(()->{
                     int times = 12, idx = 1;
-                    /*JLabel hand = new JLabel()
-                    {
-                        @Override
-                        public void paintComponent(Graphics g)
-                        {
-                            super.paintComponent(g);
-                            g.drawImage(new ImageIcon("./img/Claw/hand" + idx + ".png").getImage(), 0, 0, this);
-                        }
-                    };
-                    hand.setBounds(300, 300, 1000, 1000);
-                    LaunchPane.this.add(hand, 0);*/
                     try
                     {
                         while(times != 0)
