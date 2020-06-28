@@ -14,92 +14,26 @@ import javax.swing.ImageIcon;
 public class Sun_Shine extends JButton {
 	private int x, y, num;
 	private boolean clicked = false;
-	private Thread moveThread = null;
-	private static ReentrantLock lock = new ReentrantLock();
-	LinkedList < Image > sunIcons = new LinkedList < > ();
-	public int MODE;
-	public final int PRODUCE_MODE = 0, SUN_MODE = 1, DEAD_MODE = 2;
-	public Sun_Shine(int x, int y, int MODE, AdventurePane pane) {
+	private final ImageIcon PaintingIcon = new ImageIcon("./img/Plants/Sun/Sun_0.png");
+	public Sun_Shine(int x, int y, AdventurePane pane) {
 		super();
-		for (int i = 0; i <= 21; i++)
-			sunIcons.add(new ImageIcon("./img/Plants/Sun/Sun_" + i + ".png").getImage());
-		num = 0;
-		this.MODE = MODE;
 		this.x = x;
 		this.y = y;
-		setBounds(x, y, 100, 100);
+		setBorder(null);
+        setOpaque(false);
+        setVisible(true);
+		setBounds(x, y, PaintingIcon.getIconWidth(), PaintingIcon.getIconHeight());
 		pane.add(this, JLayeredPane.DRAG_LAYER);
-		moveThread = new move();
-		//moveThread.start();
 		addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("CLICK");
-				clicked = true;
-				setEnabled(false);
-				(new moveToCorner()).start();
+				pane.remove(Sun_Shine.this);
+				pane.repaint();
 			}
 		});
 	}
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		System.out.println(num);
-		g.drawImage(sunIcons.get(num), 0, 0, this);
-		//g.drawImage(new ImageIcon("./img/Plants/Sun/Sun_0.png").getImage(), 0, 0, this);
-	}
-	class moveToCorner extends Thread {
-		public moveToCorner() {
-			int time = 500;
-			double nx = x, ny = y, vx = (10 - x) / 5, vy = (10 - y) / 5;
-			while (time != 0) {
-				try {
-					Thread.sleep(100);
-					time -= 100;
-					nx += vx;
-					ny += vy;
-					setLocation(x = (int) nx, y = (int) ny);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-			MODE = DEAD_MODE;
-		}
-	}
-	class move extends Thread {
-		public move() {
-			setEnabled(false);
-			try {
-				if (MODE == PRODUCE_MODE) {
-					double dx = -40, dy, ox = x, oy = y, vx = 8, a = 0.125;
-					int time = 1000;
-					while (time != 0 && clicked == false) {
-						num = (num + 1) % 22;
-						repaint();
-						Thread.sleep(100);
-						time -= 100;
-						dx += vx;
-						dy = 100 - a * dx * dx / 2;
-						x = (int)(ox + dx);
-						y = (int)(oy + dy);
-						setLocation(x, y);
-					}
-				} else if (MODE == SUN_MODE) {
-					double ny = y, dy = (int) Math.random() % 300 + 200, vy = 12;
-					while (ny < dy && clicked == false) {
-						num = (num + 1) % 22;
-						repaint();
-						Thread.sleep(100);
-						ny += vy;
-						y = (int) ny;
-						setLocation(x, y);
-					}
-				}
-				setEnabled(true);
-				Thread.sleep(5000);
-				MODE = DEAD_MODE;
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
+		g.drawImage(PaintingIcon.getImage(), 0, 0, this);
 	}
 }
