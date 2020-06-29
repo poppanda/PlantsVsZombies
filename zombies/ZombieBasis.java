@@ -10,8 +10,8 @@ import java.util.LinkedList;
 
 public abstract class ZombieBasis extends JLabel implements Runnable {
 	private int x, y, countDown = 1, losehat = 10;
-	public int state;
-	protected int num = 0,delaytime, HP;
+	public int state, HP;
+	protected int num = 0,delaytime;
 	LinkedList < Image > BoomDie = new LinkedList < > ();
 	LinkedList < Image > Walk = new LinkedList < > ();
 	LinkedList < Image > NormDie = new LinkedList < > ();
