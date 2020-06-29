@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 import javax.swing.JLabel;
 
-public class plants extends JLabel implements Runnable {
+public abstract class plants extends JLabel implements Runnable {
 	public int HP;
 	public int state;
 	public final int ATTACK_STATE = 1, HIT_STATE = 2, BOMB_STATE = 3, NORMAL_STATE = 4, CAN_EAT_STATE = 5, EAT_STATE = 6, EATING = 7, DEAD_STATE = 8, INIT_STATE = 9, ALL_STATE = 10;
@@ -260,24 +260,11 @@ public class plants extends JLabel implements Runnable {
 	public Bullets getBullet() {
 		return null;
 	}
-	public void setBulletsList(LinkedList < Bullets > bulletsList) {
-		BulletsList = bulletsList;
-	}
 
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 		g.drawImage(getDrawGroup().get(num), 0, dy, null);
-	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-
-	}
-
-	public Bullets getBullet(int x, int y) {
-		return new Bullets(x, y);
 	}
 
 	public Bomb getBomb() {
