@@ -19,8 +19,8 @@ public class Sunshine extends JButton {
 	public final int PRODUCE_MODE = 0, SUN_MODE = 1, DEAD_MODE = 2;
 	public Sunshine(int x, int y, int MODE, AdventurePane pane) {
 		super();
-		// for (int i = 0; i <= 21; i++)
-		//	sunIcons.add(new ImageIcon("./img/Plants/Sun/Sun_" + i + ".png").getImage());
+        for (int i = 0; i <= 21; i++)
+            sunIcons.add(new ImageIcon("./img/Plants/Sun/Sun_" + i + ".png").getImage());
 		num = 0;
 		this.MODE = MODE;
 		this.x = x;
@@ -33,7 +33,7 @@ public class Sunshine extends JButton {
 				pane.repaint();
 			}
 		});
-		/*
+		
 		moveThread = new move();
 		addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -42,14 +42,14 @@ public class Sunshine extends JButton {
 				(new moveToCorner()).start();
 			}
 		});
-		*/
+		
 	}
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.drawImage(new ImageIcon("./img/Plants/Sun/Sun_0.png").getImage(), 0, 0, this);
 	}
-	/*
+	
 	class moveToCorner extends Thread {
 		public moveToCorner() {
 			int time = 500;
@@ -105,5 +105,5 @@ public class Sunshine extends JButton {
 			}
 		}
 	}
-	*/
+	
 }
